@@ -88,6 +88,7 @@
     <Compile Include="zmod_coe_core\scr\debugg.py" />
     <Compile Include="zmod_coe_core\scr\monster_info.py" />
     <Compile Include="zmod_coe_core\scr\pc_gen.py" />
+    <Compile Include="zmod_coe_core\scr\py00406Game_Portal.py" />
     <Compile Include="zmod_coe_core\scr\py05000_knowstone.py" />
     <Compile Include="zmod_coe_core\scr\py05001_bag_of_holding.py" />
     <Compile Include="zmod_coe_core\scr\py06101_daemon_pc.py" />
@@ -216,6 +217,7 @@
     <Compile Include="zmod_coe_core\scr\_include.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
