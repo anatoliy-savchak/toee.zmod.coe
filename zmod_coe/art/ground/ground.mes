@@ -1,0 +1,25 @@
+//
+// ground.mes
+//
+// base names for ground art
+//
+//DAY MAPS are in 0000-0999 bank.  NIGHT MAPS should be found in 1000-1999 bank.  
+//
+//The NIGHT MAPS number should coincide with the end numbers found in the day bank.
+//
+
+//
+// DAY MAPS 0000-0999
+//
+
+{0000}{--TEMP--}
+{0149}{CO8_SHOPMAP-day}
+{0240}{ZMOD_VILLAGE}
+{0241}{ZMOD_COE_CRYPT_LV1}
+
+// NIGHT MAPS 1000-1999
+
+{1000}{4096test}
+{1149}{CO8_SHOPMAP-night}
+{1240}{ZMOD_VILLAGE}
+{1241}{ZMOD_COE_CRYPT_LV1}

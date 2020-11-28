@@ -1,0 +1,216 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>009f100b-1deb-4c05-933e-8f5929559ac1</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>toee.zmod.coe</Name>
+    <RootNamespace>toee.zmod.coe</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>Global|PythonCore|2.7-32</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|2.7-32" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="zmod_coe\" />
+    <Folder Include="zmod_coe\rules\" />
+    <Folder Include="zmod_coe_core\" />
+    <Folder Include="zmod_coe_core\scr\" />
+    <Folder Include="zmod_coe_core\scr\tpModifiers\" />
+    <Folder Include="zmod_coe_core\rules\" />
+    <Folder Include="zmod_coe_core\art\" />
+    <Folder Include="zmod_coe_core\dlg\" />
+    <Folder Include="zmod_coe_core\mes\" />
+    <Folder Include="zmod_coe_core\oemes\" />
+    <Folder Include="zmod_coe_core\sound\" />
+    <Folder Include="zmod_coe_core\tpmes\" />
+    <Folder Include="zmod_coe_core\tprules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="zmod_coe_core\scr\barovia_consts.py" />
+    <Compile Include="zmod_coe_core\scr\barovia_pc.py" />
+    <Compile Include="zmod_coe_core\scr\behavior.py" />
+    <Compile Include="zmod_coe_core\scr\const_animate.py" />
+    <Compile Include="zmod_coe_core\scr\const_deseases.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_armor.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_cloth.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_containers.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_food.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_items.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_armor.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_scrolls.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_wands.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_weapons.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_weapons_magic.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_weapons_masterwork.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_potions.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_rings.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_scrolls.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_wands.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_weapon.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_wondrous.py" />
+    <Compile Include="zmod_coe_core\scr\const_toee.py" />
+    <Compile Include="zmod_coe_core\scr\const_traps.py" />
+    <Compile Include="zmod_coe_core\scr\cormyr_config.py" />
+    <Compile Include="zmod_coe_core\scr\cormyr_pc.py" />
+    <Compile Include="zmod_coe_core\scr\ctrl_behaviour.py" />
+    <Compile Include="zmod_coe_core\scr\ctrl_daemon.py" />
+    <Compile Include="zmod_coe_core\scr\data_critter.py" />
+    <Compile Include="zmod_coe_core\scr\data_obj.py" />
+    <Compile Include="zmod_coe_core\scr\debugg.py" />
+    <Compile Include="zmod_coe_core\scr\monster_info.py" />
+    <Compile Include="zmod_coe_core\scr\pc_gen.py" />
+    <Compile Include="zmod_coe_core\scr\py05000_knowstone.py" />
+    <Compile Include="zmod_coe_core\scr\py05001_bag_of_holding.py" />
+    <Compile Include="zmod_coe_core\scr\py06101_daemon_pc.py" />
+    <Compile Include="zmod_coe_core\scr\py06110_daemon_cormyr_lor.py" />
+    <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
+    <Compile Include="zmod_coe_core\scr\py06112_cormyr_lor_doors.py" />
+    <Compile Include="zmod_coe_core\scr\py06120_cormyr_sw_daemon.py" />
+    <Compile Include="zmod_coe_core\scr\py06121_marauder.py" />
+    <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
+    <Compile Include="zmod_coe_core\scr\py06123_banelar.py" />
+    <Compile Include="zmod_coe_core\scr\py06124_shadowscale_chief.py" />
+    <Compile Include="zmod_coe_core\scr\py06125_knell_beetle_lesser.py" />
+    <Compile Include="zmod_coe_core\scr\py06126_shocker_lizard.py" />
+    <Compile Include="zmod_coe_core\scr\py06127_shambling_mound.py" />
+    <Compile Include="zmod_coe_core\scr\py06201_daemon_adask.py" />
+    <Compile Include="zmod_coe_core\scr\py06202_vargouille_lesser.py" />
+    <Compile Include="zmod_coe_core\scr\py06203_trap_chest.py" />
+    <Compile Include="zmod_coe_core\scr\py06204_daemon_crossroad.py" />
+    <Compile Include="zmod_coe_core\scr\py06210_daemon_shattered_lab.py" />
+    <Compile Include="zmod_coe_core\scr\py06211_shuttered_monster.py" />
+    <Compile Include="zmod_coe_core\scr\py06212_trap_scything_blade_trap.py" />
+    <Compile Include="zmod_coe_core\scr\py06213_hobgoblin_cleric.py" />
+    <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
+    <Compile Include="zmod_coe_core\scr\py06300_daemon_sumberton.py" />
+    <Compile Include="zmod_coe_core\scr\py06310_daemon_sumberton_market.py" />
+    <Compile Include="zmod_coe_core\scr\py06320_daemon_sumberton_inn1.py" />
+    <Compile Include="zmod_coe_core\scr\py06330_daemon_sumberton_inn2.py" />
+    <Compile Include="zmod_coe_core\scr\py06400_daemon_shattered_temple.py" />
+    <Compile Include="zmod_coe_core\scr\py06401_shattered_temple_encounters.py" />
+    <Compile Include="zmod_coe_core\scr\py06402_trap_fiery_demon_arch.py" />
+    <Compile Include="zmod_coe_core\scr\py06403_trap_poison_gas_pressurized_ungol_dust.py" />
+    <Compile Include="zmod_coe_core\scr\py06410_daemon_shattered_armory.py" />
+    <Compile Include="zmod_coe_core\scr\py06411_shattered_armory_encounters.py" />
+    <Compile Include="zmod_coe_core\scr\py06500_daemon_barovia.py" />
+    <Compile Include="zmod_coe_core\scr\py06501_barovia_encounters.py" />
+    <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
+    <Compile Include="zmod_coe_core\scr\py32007Trap8_scythe.py" />
+    <Compile Include="zmod_coe_core\scr\py32021_trap_cr4_glyph_of_warding.py" />
+    <Compile Include="zmod_coe_core\scr\random_encounter.py" />
+    <Compile Include="zmod_coe_core\scr\shattered_consts.py" />
+    <Compile Include="zmod_coe_core\scr\Spell076 - Contagion.py" />
+    <Compile Include="zmod_coe_core\scr\Spell090 - Cure Light Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell096 - Darkness.py" />
+    <Compile Include="zmod_coe_core\scr\Spell200 - Grease.py" />
+    <Compile Include="zmod_coe_core\scr\Spell228 - Hold Person.py" />
+    <Compile Include="zmod_coe_core\scr\Spell246 - Inflict Critical Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell247 - Inflict Light Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell248 - Inflict Minor Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell249 - Inflict Moderate Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell250 - Inflict Serious Wounds.py" />
+    <Compile Include="zmod_coe_core\scr\Spell275 - Lightning Bolt.py" />
+    <Compile Include="zmod_coe_core\scr\Spell280 - Mage Armor.py" />
+    <Compile Include="zmod_coe_core\scr\Spell427 - Shield of Faith.py" />
+    <Compile Include="zmod_coe_core\scr\Spell432 - Shout.py" />
+    <Compile Include="zmod_coe_core\scr\Spell434 - Silence.py" />
+    <Compile Include="zmod_coe_core\scr\Spell457 - Spiritual Weapon.py" />
+    <Compile Include="zmod_coe_core\scr\Spell469 - Summon Monster III.py" />
+    <Compile Include="zmod_coe_core\scr\Spell566 - Harm.py" />
+    <Compile Include="zmod_coe_core\scr\Spell735 - Hezrou Stench.py" />
+    <Compile Include="zmod_coe_core\scr\startup_zmod.py" />
+    <Compile Include="zmod_coe_core\scr\stat_generator.py" />
+    <Compile Include="zmod_coe_core\scr\stat_inspect.py" />
+    <Compile Include="zmod_coe_core\scr\utils_conds.py" />
+    <Compile Include="zmod_coe_core\scr\utils_inventory_source.py" />
+    <Compile Include="zmod_coe_core\scr\utils_item.py" />
+    <Compile Include="zmod_coe_core\scr\utils_locks.py" />
+    <Compile Include="zmod_coe_core\scr\utils_npc.py" />
+    <Compile Include="zmod_coe_core\scr\utils_npc_spells.py" />
+    <Compile Include="zmod_coe_core\scr\utils_obj.py" />
+    <Compile Include="zmod_coe_core\scr\utils_sneak.py" />
+    <Compile Include="zmod_coe_core\scr\utils_spell.py" />
+    <Compile Include="zmod_coe_core\scr\utils_storage.py" />
+    <Compile Include="zmod_coe_core\scr\utils_tactics.py" />
+    <Compile Include="zmod_coe_core\scr\utils_target_list.py" />
+    <Compile Include="zmod_coe_core\scr\utils_toee.py" />
+    <Compile Include="zmod_coe_core\scr\_co8init.py" />
+    <Compile Include="zmod_coe_core\scr\_include.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="zmod_coe_core\scr\monster_info.pyo" />
+    <Content Include="zmod_coe_core\scr\py05001_bag_of_holding.pyo" />
+    <Content Include="zmod_coe_core\scr\py06210_daemon_shattered_lab.pyo" />
+    <Content Include="zmod_coe_core\scr\py06211_shuttered_monster.pyo" />
+    <Content Include="zmod_coe_core\scr\py06300_daemon_sumberton.pyo" />
+    <Content Include="zmod_coe_core\scr\py06310_daemon_sumberton_market.pyo" />
+    <Content Include="zmod_coe_core\scr\py06320_daemon_sumberton_inn1.pyo" />
+    <Content Include="zmod_coe_core\scr\py06400_daemon_shattered_temple.pyo" />
+    <Content Include="zmod_coe_core\scr\py06401_shattered_temple_encounters.pyo" />
+    <Content Include="zmod_coe_core\scr\py06410_daemon_shattered_armory.pyo" />
+    <Content Include="zmod_coe_core\scr\py06411_shattered_armory_encounters.pyo" />
+    <Content Include="zmod_coe_core\scr\utils_inventory_source.pyo" />
+    <Content Include="zmod_coe_core\scr\utils_npc_spells.pyo" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

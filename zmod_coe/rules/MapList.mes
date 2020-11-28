@@ -1,0 +1,21 @@
+//
+// Map List Info
+//
+
+// Types:
+//	START_MAP -- This is the starting map (there should only be one of these!)
+//	SHOPPING_MAP -- This is the shopping map used in character creation.  If not
+//		present, then this process is skipped during character creation.
+
+	// Starting Location (Convert for World by:)
+	// (54624 - 32) / 64 = 853
+	// (45408 - 32) / 64 = 709
+
+// Area: <#> -- This is the Index # in area.mes that the map maps to
+
+
+// List of valid maps for game & Starting X/Y position
+{5000}{ShopMaps, 514, 445, Type: SHOPPING_MAP, Flag: UNFOGGED}
+{5107}{CO8_SHOPMAP, 493, 477, Flag: DAYNIGHT_XFER, Flag: UNFOGGED, Flag: BEDREST}
+{5126}{ZMOD_VILLAGE, 480, 480, Flag: OUTDOOR}
+{5127}{ZMOD_COE_CRYPT_LV1, 480, 480}
