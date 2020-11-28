@@ -8,9 +8,8 @@
     <ProjectTypeGuids>{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <StartupFile>
     </StartupFile>
-    <SearchPath>
-    </SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <SearchPath>zmod_coe_core\scr.builtin</SearchPath>
+    <WorkingDirectory>zmod_coe_core/scr</WorkingDirectory>
     <LaunchProvider>Web launcher</LaunchProvider>
     <WebBrowserUrl>http://localhost</WebBrowserUrl>
     <OutputPath>.</OutputPath>
@@ -35,6 +34,8 @@
     <Folder Include="zmod_coe\" />
     <Folder Include="zmod_coe\rules\" />
     <Folder Include="zmod_coe_core\" />
+    <Folder Include="zmod_coe_core\scr.builtin\" />
+    <Folder Include="zmod_coe_core\scr.builtin\templeplus\" />
     <Folder Include="zmod_coe_core\scr\" />
     <Folder Include="zmod_coe_core\scr\tpModifiers\" />
     <Folder Include="zmod_coe_core\rules\" />
@@ -47,6 +48,13 @@
     <Folder Include="zmod_coe_core\tprules\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="zmod_coe_core\scr.builtin\char_editor.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\debug.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\templeplus\pymod.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\templeplus\__init__.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\toee.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\tpactions.py" />
+    <Compile Include="zmod_coe_core\scr.builtin\tpdp.py" />
     <Compile Include="zmod_coe_core\scr\barovia_consts.py" />
     <Compile Include="zmod_coe_core\scr\barovia_pc.py" />
     <Compile Include="zmod_coe_core\scr\behavior.py" />
@@ -83,43 +91,14 @@
     <Compile Include="zmod_coe_core\scr\py05000_knowstone.py" />
     <Compile Include="zmod_coe_core\scr\py05001_bag_of_holding.py" />
     <Compile Include="zmod_coe_core\scr\py06101_daemon_pc.py" />
-    <Compile Include="zmod_coe_core\scr\py06110_daemon_cormyr_lor.py" />
     <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
-    <Compile Include="zmod_coe_core\scr\py06112_cormyr_lor_doors.py" />
-    <Compile Include="zmod_coe_core\scr\py06120_cormyr_sw_daemon.py" />
-    <Compile Include="zmod_coe_core\scr\py06121_marauder.py" />
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
-    <Compile Include="zmod_coe_core\scr\py06123_banelar.py" />
-    <Compile Include="zmod_coe_core\scr\py06124_shadowscale_chief.py" />
-    <Compile Include="zmod_coe_core\scr\py06125_knell_beetle_lesser.py" />
-    <Compile Include="zmod_coe_core\scr\py06126_shocker_lizard.py" />
-    <Compile Include="zmod_coe_core\scr\py06127_shambling_mound.py" />
-    <Compile Include="zmod_coe_core\scr\py06201_daemon_adask.py" />
-    <Compile Include="zmod_coe_core\scr\py06202_vargouille_lesser.py" />
-    <Compile Include="zmod_coe_core\scr\py06203_trap_chest.py" />
-    <Compile Include="zmod_coe_core\scr\py06204_daemon_crossroad.py" />
-    <Compile Include="zmod_coe_core\scr\py06210_daemon_shattered_lab.py" />
     <Compile Include="zmod_coe_core\scr\py06211_shuttered_monster.py" />
-    <Compile Include="zmod_coe_core\scr\py06212_trap_scything_blade_trap.py" />
-    <Compile Include="zmod_coe_core\scr\py06213_hobgoblin_cleric.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
-    <Compile Include="zmod_coe_core\scr\py06300_daemon_sumberton.py" />
-    <Compile Include="zmod_coe_core\scr\py06310_daemon_sumberton_market.py" />
-    <Compile Include="zmod_coe_core\scr\py06320_daemon_sumberton_inn1.py" />
-    <Compile Include="zmod_coe_core\scr\py06330_daemon_sumberton_inn2.py" />
-    <Compile Include="zmod_coe_core\scr\py06400_daemon_shattered_temple.py" />
-    <Compile Include="zmod_coe_core\scr\py06401_shattered_temple_encounters.py" />
-    <Compile Include="zmod_coe_core\scr\py06402_trap_fiery_demon_arch.py" />
-    <Compile Include="zmod_coe_core\scr\py06403_trap_poison_gas_pressurized_ungol_dust.py" />
-    <Compile Include="zmod_coe_core\scr\py06410_daemon_shattered_armory.py" />
-    <Compile Include="zmod_coe_core\scr\py06411_shattered_armory_encounters.py" />
-    <Compile Include="zmod_coe_core\scr\py06500_daemon_barovia.py" />
-    <Compile Include="zmod_coe_core\scr\py06501_barovia_encounters.py" />
     <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
     <Compile Include="zmod_coe_core\scr\py32007Trap8_scythe.py" />
     <Compile Include="zmod_coe_core\scr\py32021_trap_cr4_glyph_of_warding.py" />
     <Compile Include="zmod_coe_core\scr\random_encounter.py" />
-    <Compile Include="zmod_coe_core\scr\shattered_consts.py" />
     <Compile Include="zmod_coe_core\scr\Spell076 - Contagion.py" />
     <Compile Include="zmod_coe_core\scr\Spell090 - Cure Light Wounds.py" />
     <Compile Include="zmod_coe_core\scr\Spell096 - Darkness.py" />
@@ -142,6 +121,84 @@
     <Compile Include="zmod_coe_core\scr\startup_zmod.py" />
     <Compile Include="zmod_coe_core\scr\stat_generator.py" />
     <Compile Include="zmod_coe_core\scr\stat_inspect.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\ability_check_modifier_attacker.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\ai_improved_trip_aoo.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\armor_blurring.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\armor_displacement.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\bag_of_holding.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\base_attack_bonus1.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\base_attack_bonus2.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\base_attack_bonus3.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\base_attack_bonus5.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\base_movement.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\belch_fire.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\blind.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\bonus_attack.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\break_object.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\caster_level_base_add.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\caster_level_mod.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\cast_defensively_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\chained.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\close_door.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\combat_messages.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\cone_of_cold.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\construct_max_hp.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\contagion_desease_preference.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\critter_no_con.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\defensive_casting_disable.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\drow.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\energy_drain_su.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\ex-Entangled.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\fighting_defensively_monster.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\hide_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_blindness.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_critical_hits.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_illusion.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_paralysis.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_poison.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_sleep.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_stunning.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\immunity_visual.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\initiative_bonus.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\inspect.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\lethal_shock.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\line_of_acid.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\lodged_quills.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\mage_armor_auto.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_ability_drain.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_bite.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_ranged_poison.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_trip_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\napping.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\netted.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\net_throw.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\no_move.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\open_door.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\pull_down_ceiling.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\python_action_shriek.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\quills_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\self_saving_fortitude.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\shadow_cloak_su.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\skill_appraise_bonus.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\skill_bluff_bonus.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\skill_diplomacy_bonus.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\skill_intimidate_bonus.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\smash_object.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\sneak_attack_add.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\sneak_attack_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\spell_dc_mod.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\spell_quicken.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\spell_quicken_all.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\sp_darkness.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\stench_of_troglodyte.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\stunning_shock.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\summon_monster_preference.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\surprised2.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\surprise_round2.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\transferrence.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\vulnurability_cold.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\wand_attack.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\weapon_damage_dice.py" />
     <Compile Include="zmod_coe_core\scr\utils_conds.py" />
     <Compile Include="zmod_coe_core\scr\utils_inventory_source.py" />
     <Compile Include="zmod_coe_core\scr\utils_item.py" />
@@ -159,19 +216,7 @@
     <Compile Include="zmod_coe_core\scr\_include.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="zmod_coe_core\scr\monster_info.pyo" />
-    <Content Include="zmod_coe_core\scr\py05001_bag_of_holding.pyo" />
-    <Content Include="zmod_coe_core\scr\py06210_daemon_shattered_lab.pyo" />
-    <Content Include="zmod_coe_core\scr\py06211_shuttered_monster.pyo" />
-    <Content Include="zmod_coe_core\scr\py06300_daemon_sumberton.pyo" />
-    <Content Include="zmod_coe_core\scr\py06310_daemon_sumberton_market.pyo" />
-    <Content Include="zmod_coe_core\scr\py06320_daemon_sumberton_inn1.pyo" />
-    <Content Include="zmod_coe_core\scr\py06400_daemon_shattered_temple.pyo" />
-    <Content Include="zmod_coe_core\scr\py06401_shattered_temple_encounters.pyo" />
-    <Content Include="zmod_coe_core\scr\py06410_daemon_shattered_armory.pyo" />
-    <Content Include="zmod_coe_core\scr\py06411_shattered_armory_encounters.pyo" />
-    <Content Include="zmod_coe_core\scr\utils_inventory_source.pyo" />
-    <Content Include="zmod_coe_core\scr\utils_npc_spells.pyo" />
+    <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

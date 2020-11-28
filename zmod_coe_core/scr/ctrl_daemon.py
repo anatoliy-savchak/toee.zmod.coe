@@ -1,4 +1,4 @@
-import toee, py06122_cormyr_prompter, shattered_consts, utils_toee, const_toee, utils_storage, debug, utils_obj, utils_npc, ctrl_behaviour, monster_info, utils_item
+import toee, py06122_cormyr_prompter, utils_toee, const_toee, utils_storage, debug, utils_obj, utils_npc, ctrl_behaviour, monster_info, utils_item
 
 class CtrlDaemon(object):
 	def __init__(self):
@@ -86,7 +86,7 @@ class CtrlDaemon(object):
 		return npc
 
 	def get_monster_faction_default(self, npc):
-		return shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN
+		return 73# shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN
 
 	def get_monster_prefix_default(self):
 		return None
@@ -210,7 +210,7 @@ class CtrlDaemon(object):
 	def check_npc_enemy(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		if (npc.proto == py06122_cormyr_prompter.PROTO_NPC_PROMPTER): return 0
-		result = npc.faction_has(shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN) or npc.faction_has(shattered_consts.FACTION_WILDERNESS_HOSTILE)
+		result = npc.faction_has(73) or npc.faction_has(75)
 		return result
 
 	def kill_enemy_all(self):
@@ -328,12 +328,12 @@ class CtrlDaemon(object):
 	# Sleep interface
 	def can_sleep(self):
 		for npc in toee.game.obj_list_vicinity(toee.game.leader.location, toee.OLC_NPC):
-			if (utils_npc.npc_is_alive(npc, 1) and (npc.faction_has(shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN) or npc.faction_has(shattered_consts.FACTION_WILDERNESS_HOSTILE))): 
+			if (utils_npc.npc_is_alive(npc, 1) and (npc.faction_has(73) or npc.faction_has(75))): 
 				return toee.SLEEP_IMPOSSIBLE
 
 		spawn_left = 0
-		if (self.factions_existance and (shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN in self.factions_existance)): 
-			spawn_left = self.factions_existance[shattered_consts.FACTION_SLAUGHTERGARDE_SPAWN][0]
+		if (self.factions_existance and (73 in self.factions_existance)): 
+			spawn_left = self.factions_existance[73][0]
 
 		if (spawn_left):
 			return toee.SLEEP_DANGEROUS
