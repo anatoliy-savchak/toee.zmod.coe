@@ -56,8 +56,6 @@
     <Compile Include="zmod_coe_core\scr.builtin\tpactions.py" />
     <Compile Include="zmod_coe_core\scr.builtin\tpdp.py" />
     <Compile Include="zmod_coe_core\scr\barovia_consts.py" />
-    <Compile Include="zmod_coe_core\scr\barovia_pc.py" />
-    <Compile Include="zmod_coe_core\scr\behavior.py" />
     <Compile Include="zmod_coe_core\scr\const_animate.py" />
     <Compile Include="zmod_coe_core\scr\const_deseases.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_armor.py" />
@@ -83,9 +81,10 @@
     <Compile Include="zmod_coe_core\scr\cormyr_pc.py" />
     <Compile Include="zmod_coe_core\scr\ctrl_behaviour.py" />
     <Compile Include="zmod_coe_core\scr\ctrl_daemon.py" />
-    <Compile Include="zmod_coe_core\scr\data_critter.py" />
-    <Compile Include="zmod_coe_core\scr\data_obj.py" />
     <Compile Include="zmod_coe_core\scr\debugg.py" />
+    <Compile Include="zmod_coe_core\scr\factions_zmod.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\monster_info.py" />
     <Compile Include="zmod_coe_core\scr\pc_gen.py" />
     <Compile Include="zmod_coe_core\scr\py00406Game_Portal.py" />
@@ -94,8 +93,10 @@
     <Compile Include="zmod_coe_core\scr\py06101_daemon_pc.py" />
     <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
-    <Compile Include="zmod_coe_core\scr\py06211_shuttered_monster.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
+    <Compile Include="zmod_coe_core\scr\py06600_daemon_village.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
     <Compile Include="zmod_coe_core\scr\py32007Trap8_scythe.py" />
     <Compile Include="zmod_coe_core\scr\py32021_trap_cr4_glyph_of_warding.py" />
