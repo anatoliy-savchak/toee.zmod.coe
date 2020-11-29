@@ -1,0 +1,91 @@
+# Dwarf Wife
+{1}{[You see a Dwarf woman surrounded by cloth.] Well?}{[You see a Dwarf woman surrounded by cloth.] Well?}{}{}{}{}
+{2}{Just show me your wares.}{}{1}{}{1000}{}
+{3}{F:}{}{1}{}{0}{}
+
+{120}{Yes?}{Yes?}{}{}{}{}
+{121}{Trade please!}{}{1}{}{1000}{}
+{122}{F:}{}{1}{}{0}{}
+
+{1000}{Barter options:}{Barter options:}{}{}{}{}
+{1001}{B: Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
+{1002}{B: Buy Simple Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons.PROTOS_WEAPON_SIMPLE)}
+{1003}{B: Buy Martial Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons.PROTOS_WEAPON_MARTIAL)}
+{1004}{B: Buy Exotic Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons.PROTOS_WEAPON_EXOTIC)}
+{1005}{More...}{}{1}{}{1010}{}
+
+{1010}{Barter options:}{Barter options:}{}{}{}{}
+{1011}{Browse Masterwork Weapon}{}{1}{}{1020}{}
+{1012}{Browse Magic Weapon}{}{1}{}{1030}{}
+{1018}{Back}{}{1}{}{1000}{}
+{1019}{E:}{}{1}{}{0}{}
+
+{1020}{Barter Masterwork options:}{Barter Masterwork options:}{}{}{}{}
+{1022}{B: Buy Masterwork Simple Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons_masterwork.PROTOS_WEAPON_SIMPLE_MASTERWORK)}
+{1023}{B: Buy Masterwork Martial Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons_masterwork.PROTOS_WEAPON_MARTIAL_MASTERWORK)}
+{1024}{B: Buy Masterwork Exotic Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons_masterwork.PROTOS_WEAPON_EXOTIC_MASTERWORK)}
+{1026}{E:}{}{1}{}{0}{}
+
+{1030}{Barter Magic Weapon options:}{Barter Magic Weapon options:}{}{}{}{}
+{1032}{B: Buy Magic Minor Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons_magic.PROTOS_WEAPON_MINOR)}
+{1033}{B: Buy Magic Medium Weapon}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_weapons_magic.PROTOS_WEAPON_MEDIUM)}
+{1036}{E:}{}{1}{}{0}{}
+
+# Wizard
+{220}{Yes?}{Yes?}{}{}{}{}
+{221}{Trade please!}{}{1}{}{1300}{}
+{222}{F:}{}{1}{}{0}{}
+
+{1300}{Barter options:}{Barter options:}{}{}{}{}
+{1301}{B: Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
+{1302}{Buy Arcane Scroll}{}{1}{}{1310}{}
+{1304}{Buy Divine Scroll}{}{1}{}{1340}{}
+{1309}{E:}{}{1}{}{0}{}
+
+{1310}{Barter options:}{Barter options:}{}{}{}{}
+{1312}{B:Buy Arcane Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_0)}
+{1313}{B:Buy Arcane Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_1)}
+{1314}{B:Buy Arcane Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_2)}
+{1317}{Next...}{}{1}{}{1320}{}
+{1318}{Back...}{}{1}{}{1300}{}
+{1319}{E:}{}{1}{}{0}{}
+
+{1320}{Barter options:}{Barter options:}{}{}{}{}
+{1322}{B:Buy Arcane Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_3)}
+{1323}{B:Buy Arcane Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_4)}
+{1324}{B:Buy Arcane Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_5)}
+{1327}{Next...}{}{1}{}{1330}{}
+{1328}{Back...}{}{1}{}{1300}{}
+{1329}{E:}{}{1}{}{0}{}
+
+{1330}{Barter options:}{Barter options:}{}{}{}{}
+{1332}{B:Buy Arcane Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_6)}
+{1333}{B:Buy Arcane Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_7)}
+{1334}{B:Buy Arcane Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_8)}
+{1335}{B:Buy Arcane Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_9)}
+{1338}{Back...}{}{1}{}{1300}{}
+{1339}{E:}{}{1}{}{0}{}
+
+{1340}{Barter options:}{Barter options:}{}{}{}{}
+{1342}{B:Buy Divine Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_0)}
+{1343}{B:Buy Divine Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_1)}
+{1344}{B:Buy Divine Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_2)}
+{1347}{Next...}{}{1}{}{1350}{}
+{1348}{Back...}{}{1}{}{1300}{}
+{1349}{E:}{}{1}{}{0}{}
+
+{1350}{Barter options:}{Barter options:}{}{}{}{}
+{1352}{B:Buy Divine Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_3)}
+{1353}{B:Buy Divine Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_4)}
+{1354}{B:Buy Divine Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_5)}
+{1357}{Next...}{}{1}{}{1360}{}
+{1358}{Back...}{}{1}{}{1300}{}
+{1359}{E:}{}{1}{}{0}{}
+
+{1360}{Barter options:}{Barter options:}{}{}{}{}
+{1362}{B:Buy Divine Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_6)}
+{1363}{B:Buy Divine Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_7)}
+{1364}{B:Buy Divine Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_8)}
+{1365}{B:Buy Divine Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_DIVINE_LEVEL_9)}
+{1368}{Back...}{}{1}{}{1300}{}
+{1369}{E:}{}{1}{}{0}{}

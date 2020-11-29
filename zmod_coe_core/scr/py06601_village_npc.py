@@ -22,7 +22,7 @@ def san_dialog(attachee, triggerer):
 class CtrlVillageMerchantAbstract(ctrl_behaviour.CtrlBehaviour):
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
-		npc.scripts[const_toee.sn_dialog] = VILLAGE_NPC_DIALOG
+		npc.scripts[const_toee.sn_dialog] = self.get_dialog_id()
 		npc.faction_add(factions_zmod.FACTION_NEUTRAL_NPC)
 
 		utils_item.item_clear_all(npc)
@@ -46,14 +46,17 @@ class CtrlVillageMerchantAbstract(ctrl_behaviour.CtrlBehaviour):
 		return toee.SKIP_DEFAULT
 
 	@classmethod
-	def get_dialog_not_met(cls): return 0
+	def get_dialog_id(cls): return VILLAGE_NPC_DIALOG
 
 	@classmethod
-	def get_dialog_met(cls): return 0
+	def get_dialog_not_met(cls): return 1
+
+	@classmethod
+	def get_dialog_met(cls): return 100
 
 class CtrlVillageSmith(CtrlVillageMerchantAbstract):
 	@classmethod
-	def get_proto_id(cls): return 14700
+	def get_proto_id(cls): return 14710
 
 	@classmethod
 	def get_dialog_not_met(cls): return 1
@@ -74,7 +77,7 @@ class CtrlVillageSmith(CtrlVillageMerchantAbstract):
 
 class CtrlVillageSmithWife(CtrlVillageMerchantAbstract):
 	@classmethod
-	def get_proto_id(cls): return 14701
+	def get_proto_id(cls): return 14711
 
 	@classmethod
 	def get_dialog_not_met(cls): return 100
@@ -96,7 +99,7 @@ class CtrlVillageSmithWife(CtrlVillageMerchantAbstract):
 
 class CtrlVillageWizard(CtrlVillageMerchantAbstract):
 	@classmethod
-	def get_proto_id(cls): return 14702
+	def get_proto_id(cls): return 14712
 
 	@classmethod
 	def get_dialog_not_met(cls): return 220
@@ -107,11 +110,6 @@ class CtrlVillageWizard(CtrlVillageMerchantAbstract):
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		super(CtrlVillageWizard, self).after_created(npc)
-		npc.obj_set_int(toee.obj_f_critter_portrait, 7930)
-		desc_id = toee.game.make_custom_name("Man in red robes")
-		npc.obj_set_int(toee.obj_f_critter_description_unknown, desc_id)
-		desc_id = toee.game.make_custom_name("Wizard")
-		npc.obj_set_int(toee.obj_f_description, desc_id)
 
 		# create inventory
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CIRCLET_HOODLESS, npc, 1, 1)
