@@ -1,5 +1,5 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod
-import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons
+import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls
 
 VILLAGE_NPC_DIALOG = 6601
 
@@ -89,6 +89,33 @@ class CtrlVillageSmithWife(CtrlVillageMerchantAbstract):
 		# create inventory
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_KILT, npc, 1, 1)
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CLOTH_ARMOR, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
+		
+		npc.item_wield_best_all()
+		return
+
+class CtrlVillageWizard(CtrlVillageMerchantAbstract):
+	@classmethod
+	def get_proto_id(cls): return 14702
+
+	@classmethod
+	def get_dialog_not_met(cls): return 220
+
+	@classmethod
+	def get_dialog_met(cls): return 220
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlVillageWizard, self).after_created(npc)
+		npc.obj_set_int(toee.obj_f_critter_portrait, 7930)
+		desc_id = toee.game.make_custom_name("Man in red robes")
+		npc.obj_set_int(toee.obj_f_critter_description_unknown, desc_id)
+		desc_id = toee.game.make_custom_name("Wizard")
+		npc.obj_set_int(toee.obj_f_description, desc_id)
+
+		# create inventory
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CIRCLET_HOODLESS, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_ROBE_WIZARD_RED, npc, 1, 1)
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
 		
 		npc.item_wield_best_all()
