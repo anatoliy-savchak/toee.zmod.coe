@@ -299,7 +299,8 @@ def npc_print_wears(dic):
 	assert isinstance(dic, dict)
 	for key, value in dic.iteritems():
 		if (value):
-			print("{} = {}".format(key, value))
+			assert isinstance(value, toee.PyObjHandle)
+			print("{} = {}, proto: {}".format(key, value, value.proto))
 	return
 
 def npc_unexploit(npc):

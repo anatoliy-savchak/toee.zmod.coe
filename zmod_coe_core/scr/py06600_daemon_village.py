@@ -111,6 +111,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 
 		if (not self.encounters_placed):
 			self.create_npc_at(utils_obj.sec2loc(478, 508), py06601_village_npc.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(476, 505), py06601_village_npc.CtrlVillageSmithWife, const_toee.rotation_0800_oclock, "merchant", "smith_wife", None, 0, 1)
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()

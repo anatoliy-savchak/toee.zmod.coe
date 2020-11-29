@@ -224,6 +224,7 @@
   <ItemGroup>
     <Content Include="docs\village.txt" />
     <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
+    <Content Include="zmod_coe_core\dlg\06601_village_npc.dlg" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
