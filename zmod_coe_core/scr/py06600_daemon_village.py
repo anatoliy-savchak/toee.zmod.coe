@@ -1,6 +1,7 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
 import startup_zmod, utils_sneak
+import py06601_village_npc
 
 # import py06500_daemon_barovia
 # py06500_daemon_barovia.cs()
@@ -109,12 +110,13 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.last_leave_shrs = this_entrance_time
 
 		if (not self.encounters_placed):
-			print""
+			self.create_npc_at(utils_obj.sec2loc(478, 508), py06601_village_npc.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
 		self.check_sleep_status_update(1)
 
+		toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 479, 494) #smith
 		utils_obj.scroll_to_leader()
 		return
 

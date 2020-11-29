@@ -31,6 +31,7 @@
     <InterpreterReference Include="Global|PythonCore|2.7-32" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs\" />
     <Folder Include="zmod_coe\" />
     <Folder Include="zmod_coe\rules\" />
     <Folder Include="zmod_coe_core\" />
@@ -95,6 +96,9 @@
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
     <Compile Include="zmod_coe_core\scr\py06600_daemon_village.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="zmod_coe_core\scr\py06601_village_npc.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
@@ -218,6 +222,7 @@
     <Compile Include="zmod_coe_core\scr\_include.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="docs\village.txt" />
     <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>

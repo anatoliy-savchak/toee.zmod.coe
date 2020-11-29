@@ -112,6 +112,9 @@ class CtrlBehaviour(object):
 	def dying(self, attachee, triggerer):
 		return toee.RUN_DEFAULT
 
+	def dialog(self, attachee, triggerer):
+		return toee.RUN_DEFAULT
+
 	def join(self, npc, follower):
 		return toee.RUN_DEFAULT
 

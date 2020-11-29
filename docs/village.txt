@@ -1,0 +1,15 @@
+Village NPCs
+
+Smith, sells weapons and armor.
+Smith Wife, sells general items and cloth.
+Priest, sells divine scrolls, divine wands, potions, provides services.
+Wizard, sells arcne scrolls, arcane wands, wondrous items.
+Barman, provides the room, provides roomors.
+Mayor, grants quests and rewards.
+
+Smith, dwarf.
+Smith Wife, dwarf.
+Priest, human man.
+Wizard, human man.
+Barman, human half-elf.
+Mayor, human man.
