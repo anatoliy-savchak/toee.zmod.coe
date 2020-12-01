@@ -1,7 +1,7 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
 import startup_zmod, utils_sneak
-import py14710_smith, py14711_smith_wife, py14712_wizard
+import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest
 
 # import py06500_daemon_barovia
 # py06500_daemon_barovia.cs()
@@ -113,6 +113,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.create_npc_at(utils_obj.sec2loc(478, 508), py14710_smith.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(476, 505), py14711_smith_wife.CtrlVillageSmithWife, const_toee.rotation_0800_oclock, "merchant", "smith_wife", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.rotation_1100_oclock, "merchant", "priest", None, 0, 1)
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
