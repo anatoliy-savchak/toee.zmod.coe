@@ -30,6 +30,10 @@ def config_set_string(config_item, value):
 	assert isinstance(value, str)
 	return
 
+def config_get_string(config_item):
+	assert isinstance(config_item, str)
+	return ""
+
 def config_set_bool(config_item, value):
 	assert isinstance(config_item, str)
 	assert isinstance(value, bool)

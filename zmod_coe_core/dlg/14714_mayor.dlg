@@ -1,0 +1,6 @@
+{1}{Where are the heroes?}{Where are the heroes?}{}{}{}{}
+{2}{Where are the brave folk?}{Where are the brave folk?}{}{}{}{}
+
+{1}{[You see a man in the purple robes of a nobleman. He smiles at you.]}{[You see a man in the purple robes of a nobleman. He smiles at you.]}{}{}{}{}
+{2}{Hello, I'm @pcname@.}{}{1}{}{10}{}
+{3}{Greetings, fellow.}{}{1}{pc.stat_level_get(stat_level_bard) >= 1}{10}{}

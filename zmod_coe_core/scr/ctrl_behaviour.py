@@ -38,11 +38,17 @@ class CtrlBehaviour(object):
 		return 0
 
 	@classmethod
+	def get_alias(self):
+		return
+
+	@classmethod
 	def create_obj_and_class(cls, loc, call_created=1):
 		protoid = cls.get_proto_id()
 		npc = toee.game.obj_create(protoid, loc)
 		ctrl = cls()
-		utils_storage.obj_storage(npc).data[cls.get_name()] = ctrl
+		o = utils_storage.obj_storage(npc)
+		o.data[cls.get_name()] = ctrl
+		o.alias = cls.get_alias()
 		if (call_created):
 			ctrl.created(npc)
 		return npc, ctrl

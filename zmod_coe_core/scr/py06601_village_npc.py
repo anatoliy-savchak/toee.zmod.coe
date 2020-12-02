@@ -32,16 +32,22 @@ class CtrlVillagePersonRandom(ctrl_behaviour.CtrlBehaviour):
 
 	def make_up(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
+		gender = npc.obj_get_int(toee.obj_f_critter_gender)
 		hairStyle = utils_npc.HairStyle.from_npc(npc)
-		if (npc.obj_get_int(toee.obj_f_critter_gender) == toee.gender_female):
+		if (gender == toee.gender_female):
 			hairStyle.style = const_toee.hair_styles_human_woman[toee.game.random_range(0, len(const_toee.hair_styles_human_woman)-1)]
 		else: hairStyle.style = const_toee.hair_styles_human_gentleman[toee.game.random_range(0, len(const_toee.hair_styles_human_gentleman)-1)]
 		hairStyle.color = const_toee.hair_colors_human[toee.game.random_range(0, len(const_toee.hair_colors_human)-1)]
 		hairStyle.update_npc(npc)
-		# make hair style
-		# make hair color
 
-		# make height
+		# need to recheck
+		if (0):
+			height = 100
+			if (gender == toee.gender_female):
+				height = int(160/180*100 - 20 + toee.game.random_range(1, 20))
+			else:
+				height = int(100 - 20 + toee.game.random_range(1, 20))
+			npc.obj_set_int(toee.obj_f_critter_height, height)
 		return
 
 	def dress_up(self, npc):
