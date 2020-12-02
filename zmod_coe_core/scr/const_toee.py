@@ -107,3 +107,35 @@ D20STD_SPELL_DESCRIPTOR_EARTH = 0x80000000
 spell_summon_vrock = 729
 spell_scorching_ray = 733
 spell_hezrou_stench = 735
+
+hair_color_black = 0
+hair_color_blonde = 1
+hair_color_blue = 2
+hair_color_brown = 3
+hair_color_light_brown = 4
+hair_color_pink = 5
+hair_color_red = 6
+hair_color_white = 7
+
+hair_colors_human = (hair_color_black, hair_color_blonde, hair_color_brown, hair_color_light_brown, hair_color_red)
+
+hair_style_longhair = 0 # Longhair (m/f)
+hair_style_ponytail = 1 # Ponytail (m/f)
+hair_style_shorthair = 2 # Shorthair (m/f)
+hair_style_topknot = 3 # Topknot (m/f)
+hair_style_mullet = 4 # Mullet (m)
+hair_style_pigtails = 5 # Pigtails (f)
+hair_style_bald = 6 # Bald (m)
+hair_style_braids = 7 # Braids (f)
+hair_style_mohawk = 8 # Mohawk (m/f)
+hair_style_medium = 9 # Medium (m)
+hair_style_ponytail2 = 10 # Ponytail2 (f)
+
+hair_styles_all = (hair_style_longhair, hair_style_ponytail, hair_style_shorthair, hair_style_topknot, hair_style_mullet, \
+	hair_style_pigtails, hair_style_bald, hair_style_braids, hair_style_mohawk, hair_style_medium, hair_style_ponytail2)
+
+hair_styles_human_man = (hair_style_shorthair, hair_style_bald, hair_style_medium, hair_style_mullet)
+hair_styles_human_gentleman = (hair_style_shorthair, hair_style_medium)
+
+hair_styles_human_woman = (hair_style_longhair, hair_style_topknot, hair_style_mullet, \
+	hair_style_pigtails, hair_style_braids, hair_style_ponytail2)

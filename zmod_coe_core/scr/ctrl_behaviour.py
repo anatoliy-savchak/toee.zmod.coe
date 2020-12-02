@@ -34,8 +34,8 @@ class CtrlBehaviour(object):
 		return
 
 	@classmethod
-	def get_proto_id():
-		return 14919
+	def get_proto_id(cls):
+		return 0
 
 	@classmethod
 	def create_obj_and_class(cls, loc, call_created=1):
