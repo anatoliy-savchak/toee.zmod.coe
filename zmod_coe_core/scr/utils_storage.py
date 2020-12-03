@@ -1,4 +1,4 @@
-import toee, json, os, sys, inspect, imp, traceback, debug
+import toee, json, os, sys, inspect, imp, traceback, debug, tpdp
 
 def obj_storage(obj):
 	assert isinstance(obj, toee.PyObjHandle)
@@ -8,11 +8,33 @@ def obj_storage_by_id(id):
 	assert isinstance(obj, toee.PyObjHandle)
 	return Storage.getObjectStorageByName(id)
 
+def obj_storage_by_alias(alias):
+	assert isinstance(obj, toee.PyObjHandle)
+	return Storage.getObjectStorageByAlias(alias)
+
+def ca(alias):
+	assert isinstance(obj, toee.PyObjHandle)
+	o = Storage.getObjectStorageByAlias(alias)
+	if (o):
+		for c in o.data.itervalues():
+			if (c): return c
+	return
+
+def cn(obj):
+	assert isinstance(obj, toee.PyObjHandle)
+	o = Storage.getObjectStorageByName(obj.id)
+	if (o):
+		for c in o.data.itervalues():
+			if (c): return c
+	return
+
 class ObjectStorage(object):
+
 	def __init__(self, aname):
 		self.name = aname
 		self.data = dict()
 		self.origin = None
+		self.alias = None
 		return
 
 	def get_data(self, name):
@@ -44,11 +66,19 @@ class Storage(object):
 	_objs = dict()
 
 	@staticmethod
+	def get_default_module():
+		result = tpdp.config_get_string("defaultmodule")
+		if (not result):
+			return "zmod_coe"
+		return result
+
+	@staticmethod
 	def save(savegame):
 		#breakp("Storage.save({})".format(savegame))
 		try:
-			saveDirBase = "modules\\ToEE\\save\\"
-			saveDirName = "d" + savegame + "\\storage"
+			saveDirBase = "modules\\{}\\save\\".format(Storage.get_default_module())
+			saveDirName = "d" + savegame
+			saveDirName = "\\Current\\dSlot"
 			saveDir = saveDirBase + saveDirName
 			#print(saveDir)
 			if (not os.path.exists(saveDir)):
@@ -60,21 +90,29 @@ class Storage(object):
 
 			Storage.saveObjects(saveDir)
 		except :
-			print "Storage.save error:", sys.exc_info()[0]
-		#breakp("Storage.save end({})".format(savegame))
+			print "!!!!!!!!!!!!! Storage.save error:"
+			print '-'*60
+			traceback.print_exc(file=sys.stdout)
+			print '-'*60		
+			print("saveDir: {}".format(saveDir))
+			debug.breakp("error")
 		return
 
 	@staticmethod
 	def load(savegame):
 		#breakp("Storage.load({})".format(savegame))
-		saveDirBase = "modules\\ToEE\\save\\"
-		saveDirName = "d" + savegame + "\\storage"
+		saveDirBase = "modules\\{}\\save\\".format(Storage.get_default_module())
+		saveDirName = "d" + savegame
+		saveDirName = "\\Current\\dSlot"
 		saveDir = saveDirBase + saveDirName
 		ss = Storage()
 		oo = ss.objs
 		oo.clear()
 		if (os.path.exists(saveDir)):
 			Storage.loadObjects(saveDir)
+		else: 
+			print("Storage failed to locate dir: {}".format(saveDir))
+			debug.breakp("")
 		return
 
 	@staticmethod
@@ -121,6 +159,15 @@ class Storage(object):
 		objStorage = ObjectStorage(name)
 		oo[name] = objStorage
 		return objStorage
+
+	@staticmethod
+	def getObjectStorageByAlias(alias):
+		ss = Storage()
+		oo = ss.objs
+		for o in oo.itervalues():
+			if ("alias" in dir(o)):
+				if (o.alias == alias): return o
+		return
 
 	@staticmethod
 	def saveObjects(dirname):

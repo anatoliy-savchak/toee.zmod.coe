@@ -329,6 +329,7 @@ class CtrlDaemon(object):
 	def can_sleep(self):
 		for npc in toee.game.obj_list_vicinity(toee.game.leader.location, toee.OLC_NPC):
 			if (utils_npc.npc_is_alive(npc, 1) and (npc.faction_has(factions_zmod.FACTION_ENEMY) or npc.faction_has(factions_zmod.FACTION_WILDERNESS_HOSTILE))): 
+				print("toee.SLEEP_IMPOSSIBLE, obj_list_vicinity - spawn_left: {}".format(spawn_left))
 				return toee.SLEEP_IMPOSSIBLE
 
 		spawn_left = 0
@@ -336,8 +337,10 @@ class CtrlDaemon(object):
 			spawn_left = self.factions_existance[factions_zmod.FACTION_ENEMY][0]
 
 		if (spawn_left):
+			print("toee.SLEEP_DANGEROUS, spawn_left: {}".format(spawn_left))
 			return toee.SLEEP_DANGEROUS
 
+		print("toee.SLEEP_SAFE, spawn_left: {}".format(spawn_left))
 		return toee.SLEEP_SAFE
 
 	# Sleep interface
@@ -388,7 +391,7 @@ class CtrlDaemon(object):
 
 	def factions_existance_refresh(self):
 		print("factions_existance_refresh")
-		self.factions_existance = monster_info.MonsterInfo.get_factions_existance(self.m2, 0)
+		self.factions_existance = monster_info.MonsterInfo.get_factions_existance(self.m2, 1)
 		print(self.factions_existance)
 		return
 

@@ -1,7 +1,7 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
 import startup_zmod, utils_sneak
-import py06601_village_npc
+import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_npc, py14714_mayor
 
 # import py06500_daemon_barovia
 # py06500_daemon_barovia.cs()
@@ -88,7 +88,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 
 	@staticmethod
 	def get_name():
-		return "CtrlBarovia"
+		return "CtrlVillage"
 
 	def get_map_default(self):
 		return MAP_ID_VILLAGE
@@ -110,13 +110,19 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.last_leave_shrs = this_entrance_time
 
 		if (not self.encounters_placed):
-			self.create_npc_at(utils_obj.sec2loc(478, 508), py06601_village_npc.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(478, 508), py14710_smith.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(476, 505), py14711_smith_wife.CtrlVillageSmithWife, const_toee.rotation_0800_oclock, "merchant", "smith_wife", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.rotation_1100_oclock, "merchant", "priest", None, 0, 1)
+			self.create_npc_at(utils_obj.sec2loc(475, 475), py14714_mayor.CtrlVillageMayor, const_toee.rotation_1000_oclock, "authority", "mayor", None, 0, 1)
+			self.generate_crowd()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
 		self.check_sleep_status_update(1)
 
-		toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 479, 494) #smith
+		#toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 479, 494) #smith
+		toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 466, 468) #near fontain entrance
 		utils_obj.scroll_to_leader()
 		return
 
@@ -124,10 +130,25 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 		super(CtrlVillage, self).monster_setup(npc, encounter_name, monster_code_name, monster_name, no_draw, no_kos, faction)
 		npc.scripts[const_toee.sn_dying] = VILLAGE_DAEMON_SCRIPT
 		return
-	
-	def heartbeat(self):
-		#self.remove_door_by_name(921) #{921}{Portcullis A2}
-		return
 
 	def get_dialogid_default(self):
 		return VILLAGE_DAEMON_DIALOG
+
+	def get_monster_faction_default(self, npc):
+		return factions_zmod.FACTION_NEUTRAL_NPC
+
+	def generate_crowd(self):
+		num = 0
+		x = 464
+		while (x <= 472-2):
+			x += 2
+			y = 468
+			while (y <= 486-2):
+				x1 = x + toee.game.random_range(0, 1)
+				y += 2 + toee.game.random_range(0, 1)
+				num += 1
+				cl = py06601_village_npc.CtrlVillageManRandom
+				if (toee.game.random_range(0, 1)):
+					cl = py06601_village_npc.CtrlVillageWomanRandom
+				self.create_npc_at(utils_obj.sec2loc(y, x1), cl, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
+		return

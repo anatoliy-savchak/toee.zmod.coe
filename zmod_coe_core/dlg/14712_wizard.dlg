@@ -1,0 +1,50 @@
+# Wizard
+{100}{Yes?}{Yes?}{}{}{}{}
+{101}{Trade please!}{}{1}{}{1000}{}
+{102}{F:}{}{1}{}{0}{}
+
+{1000}{Barter options}{Barter options}{}{}{}{}
+{1001}{B:Sell}{}{1}{}{0}{utils_item.barter_sell(npc)}
+{1002}{Scrolls}{}{1}{}{1310}{}
+{1003}{Wands}{}{1}{}{1210}{}
+{1004}{Wondrous Items}{}{1}{}{0}{}
+{1009}{E:}{}{1}{}{0}{}
+
+{1210}{Barter options:}{Barter options:}{}{}{}{}
+{1212}{B:Buy Arcane Wand Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_0)}
+{1213}{B:Buy Arcane Wand Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_1)}
+{1214}{B:Buy Arcane Wand Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_2)}
+{1217}{Next...}{}{1}{}{1220}{}
+{1218}{Back...}{}{1}{}{1000}{}
+{1219}{E:}{}{1}{}{0}{}
+
+{1220}{Barter options:}{Barter options:}{}{}{}{}
+{1222}{B:Buy Arcane Wand Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_3)}
+{1223}{B:Buy Arcane Wand Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_4)}
+{1224}{B:Buy Arcane Wand Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_ARCANE_LEVEL_5)}
+{1228}{Back...}{}{1}{}{1210}{}
+{1229}{E:}{}{1}{}{0}{}
+
+{1310}{Barter options:}{Barter options:}{}{}{}{}
+{1312}{B:Buy Arcane Scroll Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_0)}
+{1313}{B:Buy Arcane Scroll Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_1)}
+{1314}{B:Buy Arcane Scroll Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_2)}
+{1317}{Next...}{}{1}{}{1320}{}
+{1318}{Back...}{}{1}{}{1000}{}
+{1319}{E:}{}{1}{}{0}{}
+
+{1320}{Barter options:}{Barter options:}{}{}{}{}
+{1322}{B:Buy Arcane Scroll Level 3}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_3)}
+{1323}{B:Buy Arcane Scroll Level 4}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_4)}
+{1324}{B:Buy Arcane Scroll Level 5}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_5)}
+{1327}{Next...}{}{1}{}{1330}{}
+{1328}{Back...}{}{1}{}{1310}{}
+{1329}{E:}{}{1}{}{0}{}
+
+{1330}{Barter options:}{Barter options:}{}{}{}{}
+{1332}{B:Buy Arcane Scroll Level 6}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_6)}
+{1333}{B:Buy Arcane Scroll Level 7}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_7)}
+{1334}{B:Buy Arcane Scroll Level 8}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_8)}
+{1335}{B:Buy Arcane Scroll Level 9}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_scrolls.PROTOS_WANDS_ARCANE_LEVEL_9)}
+{1338}{Back...}{}{1}{}{1320}{}
+{1339}{E:}{}{1}{}{0}{}

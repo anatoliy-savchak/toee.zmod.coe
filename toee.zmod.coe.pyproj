@@ -101,6 +101,11 @@
     <Compile Include="zmod_coe_core\scr\py06601_village_npc.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="zmod_coe_core\scr\py14712_wizard.py" />
+    <Compile Include="zmod_coe_core\scr\py14711_smith_wife.py" />
+    <Compile Include="zmod_coe_core\scr\py14710_smith.py" />
+    <Compile Include="zmod_coe_core\scr\py14714_mayor.py" />
+    <Compile Include="zmod_coe_core\scr\py14713_priest.py" />
     <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
     <Compile Include="zmod_coe_core\scr\py32007Trap8_scythe.py" />
     <Compile Include="zmod_coe_core\scr\py32021_trap_cr4_glyph_of_warding.py" />
@@ -224,6 +229,12 @@
   <ItemGroup>
     <Content Include="docs\village.txt" />
     <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
+    <Content Include="zmod_coe_core\dlg\06601_village_npc.dlg" />
+    <Content Include="zmod_coe_core\dlg\14710_smith.dlg" />
+    <Content Include="zmod_coe_core\dlg\14711_smith_wife.dlg" />
+    <Content Include="zmod_coe_core\dlg\14712_wizard.dlg" />
+    <Content Include="zmod_coe_core\dlg\14714_mayor.dlg" />
+    <Content Include="zmod_coe_core\dlg\14713_priest.dlg" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
