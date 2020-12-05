@@ -57,6 +57,9 @@
     <Compile Include="zmod_coe_core\scr.builtin\tpactions.py" />
     <Compile Include="zmod_coe_core\scr.builtin\tpdp.py" />
     <Compile Include="zmod_coe_core\scr\barovia_consts.py" />
+    <Compile Include="zmod_coe_core\scr\coe_consts.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\const_animate.py" />
     <Compile Include="zmod_coe_core\scr\const_deseases.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_armor.py" />
@@ -95,6 +98,7 @@
     <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
+    <Compile Include="zmod_coe_core\scr\py06602_daemon_road_to_coe.py" />
     <Compile Include="zmod_coe_core\scr\py06600_daemon_village.py">
       <SubType>Code</SubType>
     </Compile>
@@ -238,6 +242,7 @@
     <Content Include="zmod_coe_core\dlg\14712_wizard.dlg" />
     <Content Include="zmod_coe_core\dlg\14714_mayor.dlg" />
     <Content Include="zmod_coe_core\dlg\14713_priest.dlg" />
+    <Content Include="zmod_coe_core\mes\gamequestlog.mes" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
