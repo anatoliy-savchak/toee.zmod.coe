@@ -1,5 +1,5 @@
 # This module is specifically to address missing breakp() function from TemplePlus
-import debug
+import debug, tpdp
 import json
 
 def breakp(v):
@@ -25,4 +25,13 @@ def debug_save_spells(file_name):
 	dm = json.dumps(o, indent = 2)
 	f.write(dm)
 	f.close()
+	return
+
+def swap_zmod():
+	iszmod = tpdp.config_get_bool("iszmod")
+	print("iszmod: {}".format(iszmod))
+	iszmod = False
+	tpdp.config_set_bool("iszmod", iszmod)
+	iszmod = tpdp.config_get_bool("iszmod")
+	print("iszmod new: {}".format(iszmod))
 	return

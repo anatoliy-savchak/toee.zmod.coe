@@ -25,7 +25,9 @@ class CtrlDaemon(object):
 		else:
 			ctrl = cls()
 			ctrl.created(npc)
-			utils_storage.obj_storage(npc).data[cls.get_name()] = ctrl
+			o = utils_storage.obj_storage(npc)
+			o.data[cls.get_name()] = ctrl
+			o.alias = cls.get_alias()
 			map_default = ctrl.get_map_default()
 			if (map_default):
 				CtrlDaemon.set_daemon(npc.id, map_default)

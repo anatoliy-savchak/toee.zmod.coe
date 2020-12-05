@@ -112,7 +112,7 @@ class Storage(object):
 			Storage.loadObjects(saveDir)
 		else: 
 			print("Storage failed to locate dir: {}".format(saveDir))
-			debug.breakp("")
+			#debug.breakp("")
 		return
 
 	@staticmethod

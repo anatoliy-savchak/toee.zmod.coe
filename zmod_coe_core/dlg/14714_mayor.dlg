@@ -1,6 +1,24 @@
 {1}{Where are the heroes?}{Where are the heroes?}{}{}{}{}
 {2}{Where are the brave folk?}{Where are the brave folk?}{}{}{}{}
 
-{1}{[You see a man in the purple robes of a nobleman. He smiles at you.]}{[You see a man in the purple robes of a nobleman. He smiles at you.]}{}{}{}{}
-{2}{Hello, I'm @pcname@.}{}{1}{}{10}{}
-{3}{Greetings, fellow.}{}{1}{pc.stat_level_get(stat_level_bard) >= 1}{10}{}
+{10}{[You see a man in the purple robes of a nobleman who is shouting into the crowd.]}{[You see a man in the purple robes of a nobleman who is shouting into the crowd.]}{}{}{}{}
+{11}{[Wait and see]}{}{1}{}{24}{}
+{12}{Once again the winter winds blow through the Fangwood, marking the end of another harvest.}{Once again the winter winds blow through the Fangwood, marking the end of another harvest.}{}{}{}{}
+{13}{[Wait and see]}{}{1}{}{14}{}
+{14}{There are wolves in the woods, howling at our walls, and serpents in our shadows, waiting to strike. Just as it was one hundred and seventy-four years ago, when Kassen himself left these walls to protect us, so it is today.}{There are wolves in the woods, howling at our walls, and serpents in our shadows, waiting to strike. Just as it was one hundred and seventy-four years ago, when Kassen himself left these walls to protect us, so it is today.}{}{}{}{}
+{15}{[Wait and see]}{}{1}{}{16}{}
+{16}{Where are the heroes? Where are the brave folk that will venture out to Kassen's tomb and retrieve the flame to keep this community safe for another winter?}{Where are the heroes? Where are the brave folk that will venture out to Kassen's tomb and retrieve the flame to keep this community safe for another winter?}{}{}{}{}
+{17}{We are!}{}{1}{}{18}{}
+{18}{[He hands you lantern and three potions of cure light wounds.]}{[He hands you lantern and three potions of cure light wounds.]}{}{}{}{}
+{19}{Thanks!}{}{1}{}{20}{}
+{20}{[The mayor once again speaks to the townsfolk] I present toyou the brave heroes who will follow in Kassen's footsteps to retrieve the Everflame!}{[The mayor once again speaks to the townsfolk] I present toyou the brave heroes who will follow in Kassen's footsteps to retrieve the Everflame!}{}{}{}{}
+{21}{[Wait and see]}{}{1}{}{22}{}
+{22}{Some of them may not return, but I say to you that their sacrifice shall not be forgotten. Go, brave heroes, and do not return until you have the eternal fire.}{Some of them may not return, but I say to you that their sacrifice shall not be forgotten. Go, brave heroes, and do not return until you have the eternal fire.}{}{}{}{}
+{23}{[Wait and see]}{}{1}{}{24}{}
+{24}{[With that, the mayor points to the south, the direction of Kassen's tomb. The townsfolk begin waving goodbye with cold, solemn looks on most of their faces.]}{[With that, the mayor points to the south, the direction of Kassen's tomb. The townsfolk begin waving goodbye with cold, solemn looks on most of their faces.]}{}{}{}{}
+{25}{F:}{}{1}{}{0}{utils_storage.ca("village").quest_everflame_recieved()}
+
+
+
+{12000}{}{}{}{}{}{}
+{13000}{[Wait and see]}{}{1}{}{14}{}

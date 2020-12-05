@@ -1,6 +1,6 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import startup_zmod, utils_sneak
+import startup_zmod, utils_sneak, monster_info, copy
 import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_npc, py14714_mayor
 
 # import py06500_daemon_barovia
@@ -90,6 +90,10 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 	def get_name():
 		return "CtrlVillage"
 
+	@classmethod
+	def get_alias(self):
+		return "village" # utils_storage.ca("village")
+
 	def get_map_default(self):
 		return MAP_ID_VILLAGE
 
@@ -152,3 +156,31 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 					cl = py06601_village_npc.CtrlVillageWomanRandom
 				self.create_npc_at(utils_obj.sec2loc(y, x1), cl, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
 		return
+
+	def quest_everflame_recieved(self):
+		utils_storage.ca("mayor_uptal").quest_everflame_recieved()
+
+		exit_loc = utils_obj.sec2loc(505, 473)
+		objs = utils_storage.Storage().objs
+		assert isinstance(objs, dict)
+		m3 = copy.copy(self.m2)
+		for minfo in m3:
+			assert isinstance(minfo, monster_info.MonsterInfo)
+			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
+			if (minfo.name.find("crowd") != -1):
+				id = minfo.id
+				self.m2.remove(minfo)
+				del self.monsters[minfo.name]
+				del objs[id]
+				#npc = minfo.get_npc()
+				npc = utils_toee.get_obj_by_id(id)
+				print(npc)
+				assert isinstance(npc, toee.PyObjHandle)
+				if (npc):
+					#print("npc.runoff(), {}".format(npc))
+					npc.runoff(exit_loc, 0, 0)
+				#else: print("npc not found: {}, id: {}".format(npc, id))
+		return
+
+	def get_monster_prefix_default(self):
+		return "village"

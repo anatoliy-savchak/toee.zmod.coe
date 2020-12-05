@@ -30,6 +30,10 @@ class CtrlVillageMayor(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14714
 
+	@classmethod
+	def get_alias(self):
+		return "mayor_uptal" # utils_storage.ca("mayor_uptal").npc_get()
+
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		npc.scripts[const_toee.sn_dialog] = self.get_proto_id()
@@ -57,10 +61,10 @@ class CtrlVillageMayor(ctrl_behaviour.CtrlBehaviour):
 		self.vars["shout_mode"] = 0
 		attachee.turn_towards(triggerer)
 		if not attachee.has_met(triggerer):
-			triggerer.begin_dialog(attachee, 1)
+			triggerer.begin_dialog(attachee, 10)
 			return toee.SKIP_DEFAULT
 		else:
-			triggerer.begin_dialog(attachee, 100)
+			triggerer.begin_dialog(attachee, 10)
 		return toee.SKIP_DEFAULT
 
 	def heartbeat(self, attachee, triggerer):
@@ -79,6 +83,7 @@ class CtrlVillageMayor(ctrl_behaviour.CtrlBehaviour):
 
 		return toee.RUN_DEFAULT
 
-	@classmethod
-	def get_alias(self):
-		return "mayor_uptal"
+	def quest_everflame_recieved(self):
+		self.npc_get().standpoint_set(toee.STANDPOINT_DAY, -1, utils_obj.sec2loc(459, 456), 0, 0, 0)
+		self.npc_get().standpoint_set(toee.STANDPOINT_NIGHT, -1, utils_obj.sec2loc(461, 452), 0, 0, 0)
+		return

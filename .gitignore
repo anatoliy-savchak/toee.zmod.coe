@@ -257,3 +257,5 @@ zmod_coe/Save/
 ToEE/
 zmod_coe/players/
 zmod_coe.dat.1
+zmod_coe/TIGCache/
+zmod_coe_core/scr/tezts.py

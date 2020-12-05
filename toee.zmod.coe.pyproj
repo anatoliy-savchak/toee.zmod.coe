@@ -132,6 +132,9 @@
     <Compile Include="zmod_coe_core\scr\startup_zmod.py" />
     <Compile Include="zmod_coe_core\scr\stat_generator.py" />
     <Compile Include="zmod_coe_core\scr\stat_inspect.py" />
+    <Compile Include="zmod_coe_core\scr\tezts.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\tpModifiers\ability_check_modifier_attacker.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\ai_improved_trip_aoo.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\armor_blurring.py" />

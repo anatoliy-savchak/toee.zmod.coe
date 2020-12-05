@@ -399,6 +399,9 @@ class PyObjHandle(object):
 	def move(self, new_loc_x, new_loc_y, off_x, off_y):
 		return
 	
+	def npc_flags_get(self):
+		return 1 #ONF_EX_FOLLOWER
+	
 	def npc_flag_set(self, flag):
 		"""npc.npc_flag_set(int[ONF_EX_FOLLOWER...]: flag) -> None"""
 		return
@@ -485,6 +488,9 @@ class PyObjHandle(object):
 	def refresh_turn(self):
 		return
 
+	def runoff(self, loc, off_x, off_y):
+		return
+
 	def saving_throw(self, dc, type, saving_throw_flags, attacker, d20a_type = None):
 		"""npc.saving_throw_spell(int: dc, int[D20_Save_Fortitude]: type, int[D20STD_F_REROLL]: saving_throw_flags, PyObjHandle: attacker) -> int (finalSaveThrowMod + diceResult >= dc): """
 		return 0
@@ -521,7 +527,11 @@ class PyObjHandle(object):
 		"""npc.spell_memorized_add(int[skill_appraise...]: spellIdx, int: spellClassCode, int: slotLevel) -> None"""
 		return
 	
-	def spells_pending_to_memorized():
+	def spells_pending_to_memorized(self):
+		return
+
+	def standpoint_set(self, type, jumppoint, loc = 0, mapid = None, loc_x = 0.0, loc_y = 0.0):
+		"""npc.standpoint_set(int[STANDPOINT_DAY]: type, int: jumppoint, long: loc = 0, int: mapid = None, float: loc_x = 0.0, float: loc_y = 0.0) -> None, see jumppoint.tab"""
 		return
 
 	def stat_base_set(self, stat, value):
@@ -4433,3 +4443,7 @@ Pattern = 9
 Phantasm = 10
 Shadow = 11
 Scrying = 12
+
+STANDPOINT_DAY = 0
+STANDPOINT_NIGHT = 1
+STANDPOINT_SCOUT = 2
