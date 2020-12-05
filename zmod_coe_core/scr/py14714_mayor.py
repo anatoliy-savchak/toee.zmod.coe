@@ -64,7 +64,8 @@ class CtrlVillageMayor(ctrl_behaviour.CtrlBehaviour):
 			triggerer.begin_dialog(attachee, 10)
 			return toee.SKIP_DEFAULT
 		else:
-			triggerer.begin_dialog(attachee, 10)
+			attachee.float_line(3, attachee)
+
 		return toee.SKIP_DEFAULT
 
 	def heartbeat(self, attachee, triggerer):

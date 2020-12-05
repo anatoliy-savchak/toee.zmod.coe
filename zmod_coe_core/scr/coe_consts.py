@@ -1,0 +1,2 @@
+QUEST_EVERFLAME = 0
+

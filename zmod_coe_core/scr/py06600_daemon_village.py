@@ -1,6 +1,6 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import startup_zmod, utils_sneak, monster_info, copy
+import startup_zmod, utils_sneak, monster_info, copy, coe_consts
 import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_npc, py14714_mayor
 
 # import py06500_daemon_barovia
@@ -158,6 +158,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 		return
 
 	def quest_everflame_recieved(self):
+		toee.game.quests[coe_consts.QUEST_EVERFLAME].state = toee.qs_accepted
 		utils_storage.ca("mayor_uptal").quest_everflame_recieved()
 
 		exit_loc = utils_obj.sec2loc(505, 473)
