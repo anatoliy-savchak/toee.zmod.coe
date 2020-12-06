@@ -58,10 +58,12 @@ def san_dying(attachee, triggerer):
 			cb.dying(attachee, triggerer)
 	return toee.RUN_DEFAULT
 
-
 def san_use(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	print("san_use id: {}, nameid: {}".format(attachee.id, attachee.name))
+	if (attachee.name == coe_consts.PORTAL_KASSEN_2_ROAD_2_EVERFLAME):
+		toee.game.fade_and_teleport(0, 0, 0, 5127, 484, 458)
+		return toee.SKIP_DEFAULT
 	return toee.RUN_DEFAULT
 
 def cs():

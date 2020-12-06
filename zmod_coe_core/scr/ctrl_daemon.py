@@ -331,7 +331,7 @@ class CtrlDaemon(object):
 	def can_sleep(self):
 		for npc in toee.game.obj_list_vicinity(toee.game.leader.location, toee.OLC_NPC):
 			if (utils_npc.npc_is_alive(npc, 1) and (npc.faction_has(factions_zmod.FACTION_ENEMY) or npc.faction_has(factions_zmod.FACTION_WILDERNESS_HOSTILE))): 
-				print("toee.SLEEP_IMPOSSIBLE, obj_list_vicinity - spawn_left: {}".format(spawn_left))
+				print("toee.SLEEP_IMPOSSIBLE, obj_list_vicinity - npc: {}".format(npc))
 				return toee.SLEEP_IMPOSSIBLE
 
 		spawn_left = 0

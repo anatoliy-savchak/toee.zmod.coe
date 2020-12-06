@@ -1,0 +1,6 @@
+{10}{The narrow path winds through the raking claws of the trees, now bereft of their leaves, which crunch loudly underfoot. Up ahead, a fallen tree trunk blocks the path. Suddenly a trio of snarling humanoids leaps up from behind the log, all greenish skin and fearsome tusks, bellowing vulgar challenges.}{The narrow path winds through the raking claws of the trees, now bereft of their leaves, which crunch loudly underfoot. Up ahead, a fallen tree trunk blocks the path. Suddenly a trio of snarling humanoids leaps up from behind the log, all greenish skin and fearsome tusks, bellowing vulgar challenges.}{}{}{}{cs().display_encounter_j01()}
+{19}{Close}{}{1}{}{0}{cs().activate_encounter_j01();npc.destroy()}
+
+{20}{Suddenly a trio of wolfs attack.}{Suddenly a trio of wolfs attack.}{}{}{}{cs().display_encounter_j02()}
+{29}{Close}{}{1}{}{0}{cs().activate_encounter_j02();npc.destroy()}
+

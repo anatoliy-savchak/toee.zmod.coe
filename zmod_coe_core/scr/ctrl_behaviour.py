@@ -49,6 +49,7 @@ class CtrlBehaviour(object):
 		o = utils_storage.obj_storage(npc)
 		o.data[cls.get_name()] = ctrl
 		o.alias = cls.get_alias()
+		o.origin = npc.origin
 		if (call_created):
 			ctrl.created(npc)
 		return npc, ctrl

@@ -259,3 +259,9 @@ zmod_coe/players/
 zmod_coe.dat.1
 zmod_coe/TIGCache/
 zmod_coe_core/scr/tezts.py
+zmod_coe/enemy_rolls.txt
+zmod_coe/hotkeys.sco
+zmod_coe/npc_rolls.txt
+zmod_coe/overall_rolls.txt
+zmod_coe/party_rolls.txt
+zmod_coe/pc_rolls.txt
