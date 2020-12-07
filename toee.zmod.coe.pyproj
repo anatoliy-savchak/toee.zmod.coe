@@ -98,6 +98,8 @@
     <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
+    <Compile Include="zmod_coe_core\scr\py06604_daemon_crypt_lv1.py" />
+    <Compile Include="zmod_coe_core\scr\py06603_coe_encounters.py" />
     <Compile Include="zmod_coe_core\scr\py06602_daemon_road_to_coe.py" />
     <Compile Include="zmod_coe_core\scr\py06600_daemon_village.py">
       <SubType>Code</SubType>
@@ -224,6 +226,9 @@
     <Compile Include="zmod_coe_core\scr\utils_npc.py" />
     <Compile Include="zmod_coe_core\scr\utils_npc_spells.py" />
     <Compile Include="zmod_coe_core\scr\utils_obj.py" />
+    <Compile Include="zmod_coe_core\scr\utils_pc.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\utils_sneak.py" />
     <Compile Include="zmod_coe_core\scr\utils_spell.py" />
     <Compile Include="zmod_coe_core\scr\utils_storage.py" />
@@ -235,14 +240,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="docs\village.txt" />
+    <Content Include="zmod_coe\rules\MapList.mes" />
     <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
     <Content Include="zmod_coe_core\dlg\06601_village_npc.dlg" />
+    <Content Include="zmod_coe_core\dlg\06604_daemon_crypt_lv1.dlg" />
     <Content Include="zmod_coe_core\dlg\14710_smith.dlg" />
     <Content Include="zmod_coe_core\dlg\14711_smith_wife.dlg" />
     <Content Include="zmod_coe_core\dlg\14712_wizard.dlg" />
+    <Content Include="zmod_coe_core\dlg\06602_daemon_road_to_coe.dlg" />
     <Content Include="zmod_coe_core\dlg\14714_mayor.dlg" />
     <Content Include="zmod_coe_core\dlg\14713_priest.dlg" />
+    <Content Include="zmod_coe_core\mes\gamekeylog.mes" />
     <Content Include="zmod_coe_core\mes\gamequestlog.mes" />
+    <Content Include="zmod_coe_core\oemes\oname.mes" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />

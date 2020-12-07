@@ -60,7 +60,7 @@ def san_use(attachee, triggerer):
 		toee.game.fade_and_teleport(0, 0, 0, 5126, 468, 507)
 		return toee.SKIP_DEFAULT
 	elif (attachee.name == coe_consts.PORTAL_ROAD_2EVERFLAME_2CRYPT_OF_EVERFLAME):
-		pass
+		toee.game.fade_and_teleport(0, 0, 0, 5128, 480, 508)
 	return toee.RUN_DEFAULT
 
 def cs():

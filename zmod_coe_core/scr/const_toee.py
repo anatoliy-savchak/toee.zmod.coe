@@ -56,6 +56,7 @@ LightBlue = 5
 
 rotation_grad_south_east = 135
 rotation_grad_south = 180
+rotation_grad_south_west = 225
 
 rotation_0000_oclock = 0.00000
 rotation_0100_oclock = 0.52360
@@ -139,3 +140,22 @@ hair_styles_human_gentleman = (hair_style_shorthair, hair_style_medium)
 
 hair_styles_human_woman = (hair_style_longhair, hair_style_topknot, hair_style_mullet, \
 	hair_style_pigtails, hair_style_braids, hair_style_ponytail2)
+
+OSDF_DC_0 = 0x1
+OSDF_DC_1 = 0x2
+OSDF_DC_2 = 0x4
+OSDF_DC_3 = 0x8
+OSDF_DC_4 = 0x10
+OSDF_DC_5 = 0x20
+OSDF_DC_6 = 0x40
+OSDF_RANK_0 = 0x80
+OSDF_RANK_1 = 0x100
+OSDF_RANK_2 = 0x200
+OSDF_RANK_3 = 0x400
+OSDF_RANK_4 = 0x800
+OSDF_RANK_5 = 0x1000
+OSDF_RANK_6 = 0x2000
+OSDF_UNUSED = 0x4000
+OSDF_UNUSED2 = 0x8000
+OSDF_SECRET_DOOR = 0x10000
+OSDF_SECRET_DOOR_FOUND = 0x20000

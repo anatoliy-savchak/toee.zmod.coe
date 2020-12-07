@@ -49,8 +49,6 @@ def Break_Object_Perform(attachee, args, evt_obj):
 			portal_flags = target.portal_flags_get()
 			dc = target.obj_get_int(toee.obj_f_portal_pad_i_1)
 			if (not dc):
-				dc = target.obj_get_int(toee.obj_f_secretdoor_dc)
-			if (not dc):
 				dc = 23
 			if (not portal_flags & toee.OPF_LOCKED):
 				target.float_text_line("Not Locked!", toee.tf_yellow)

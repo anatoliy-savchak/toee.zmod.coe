@@ -68,3 +68,7 @@ class CtrlOrc(ctrl_behaviour.CtrlBehaviour):
 class CtrlWolf(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14050
+
+class CtrlSkeletonEntry(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14186

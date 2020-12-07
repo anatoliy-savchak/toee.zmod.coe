@@ -11,15 +11,22 @@
 
 // Portal ranges from 800 - 1199
 {800}{Portal}
-
+{821}{Crypt1 Door 1-2}
+{822}{Crypt1 Door 2}
+{823}{Crypt1 Door 2-3}
+{824}{Crypt1 Door 2-4}
+{825}{Crypt1 Door 2-11}
+{826}{Crypt1 Door 4-5}
+{827}{Crypt1 Door 1-6}
+{828}{Crypt1 Door 6-7}
+{829}{Crypt1 Door 7-11}
+{830}{Crypt1 Door 6-8}
+{831}{Crypt1 Door 8-9}
+{832}{Crypt1 Door 9-10}
+{833}{Crypt1 Door 11-12}
 
 // Container ranges from 1200 - 1599
 {1200}{Container}
-{1201}{Throne of gems}
-{1202}{Otis' anvil}
-{1203}{Earth altar}
-{1204}{Trader's substitute inventory}
-{1205}{Otis's substitute inventory}
 
 
 // Scenery ranges from 1600 - 1799
