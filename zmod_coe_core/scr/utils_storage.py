@@ -319,9 +319,10 @@ class Storage(object):
 			#	print("{} : {}".format(key, propval[key]))
 
 			isofclass = None
+			isofmodule = None
+			mod_object = None
 			if ("_isofclass" in propval):
 				isofclass = propval[u'_isofclass']
-			isofmodule = None
 			if ("_isofmodule" in propval):
 				isofmodule = propval[u'_isofmodule']
 
@@ -353,8 +354,8 @@ class Storage(object):
 		except Exception, e:
 			print "!!!!!!!!!!!!! make_instance_from_dic error:"
 			print '-'*60
-			print("mod_class: {}, isofclass: {}, mod_object: {}, ".format(mod_class, isofclass, mod_object))
 			traceback.print_exc(file=sys.stdout)
+			print("mod_class: {}, isofclass: {}, mod_object: {}, ".format(mod_class, isofclass, mod_object))
 			print '-'*60		
 			debug.breakp("error")
 		return result

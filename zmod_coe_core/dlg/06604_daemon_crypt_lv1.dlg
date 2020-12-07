@@ -1,6 +1,6 @@
 {10}{As the heavy doors swing open, the faint light from outside reveals a long chamber with risen platforms on either side. A faded painting of Kassen is on the far wall. The room appears to be the site of a gruesome battle, with two bodies piled in the center and a number of skeletons scattered around. An echoing wail can be heard somewhere in the distance, beyond this foul chamber.}{As the heavy doors swing open, the faint light from outside reveals a long chamber with risen platforms on either side. A faded painting of Kassen is on the far wall. The room appears to be the site of a gruesome battle, with two bodies piled in the center and a number of skeletons scattered around. An echoing wail can be heard somewhere in the distance, beyond this foul chamber.}{}{}{}{cs().display_encounter_k01()}
 {19}{Close}{}{1}{}{0}{cs().activate_encounter_k01();npc.destroy()}
 
-{20}{Suddenly a trio of wolfs attack.}{Suddenly a trio of wolfs attack.}{}{}{}{cs().display_encounter_j02()}
-{29}{Close}{}{1}{}{0}{cs().activate_encounter_j02();npc.destroy()}
+{20}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{}{}{}{cs().display_encounter_k02();}
+{29}{Close}{}{1}{}{0}{cs().activate_encounter_k02();npc.destroy()}
 

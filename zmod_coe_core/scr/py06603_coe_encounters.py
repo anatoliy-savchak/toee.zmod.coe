@@ -72,3 +72,39 @@ class CtrlWolf(ctrl_behaviour.CtrlBehaviour):
 class CtrlSkeletonEntry(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14186
+
+class CtrlBeetleBombardier(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14768
+
+	def created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlBeetleBombardier, self).created(npc)
+		# assign scripts
+		#utils_obj.obj_scripts_clear(npc)
+		npc.scripts[const_toee.sn_start_combat] = COE_ENCOUNTERS
+		npc.scripts[const_toee.sn_enter_combat] = COE_ENCOUNTERS
+
+		npc.condition_add_with_args("Acid_Spray", 10, toee.dice_new("1d4+2").packed, 13)
+		return
+
+	def create_tactics(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		tac = None
+		if (1):
+			m = utils_target_list.AITargetMeasure.by_all()
+			m.measure_affected_range = 10
+			m.measure_has_los = 1
+			foes = utils_target_list.AITargetList(npc, 1, 0, m).rescan()
+			target = foes.find_affected_best(1, 1)
+			tac = utils_tactics.TacticsHelper(self.get_name())
+			tac.add_clear_target()
+			tac.add_target_closest()
+			if (target and target.target):
+				tac.add_target_obj(target.target.id)
+				npc.turn_towards(target.target)
+			tac.add_approach_single()
+			tac.add_python_action(3010)
+			tac.add_attack_threatened
+			tac.add_ready_vs_approach()
+		return tac

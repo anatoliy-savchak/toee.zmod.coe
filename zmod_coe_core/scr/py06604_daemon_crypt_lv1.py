@@ -14,7 +14,7 @@ def san_new_map(attachee, triggerer):
 	#print(attachee.id)
 	#debug.breakp("san_new_map")
 	if (attachee.map != MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
-	ctrl = CtrlCRYPT_LV1.ensure(attachee)
+	ctrl = CtrlCryptLv1.ensure(attachee)
 	ctrl.place_encounters(1)
 	return toee.RUN_DEFAULT
 
@@ -24,7 +24,7 @@ def san_first_heartbeat(attachee, triggerer):
 	#debug.breakp("san_first_heartbeat")
 	startup_zmod.zmod_templeplus_config_apply()
 	if (attachee.map != MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
-	ctrl = CtrlCRYPT_LV1.ensure(attachee)
+	ctrl = CtrlCryptLv1.ensure(attachee)
 	ctrl.place_encounters(0)
 	return toee.RUN_DEFAULT
 
@@ -35,7 +35,7 @@ def san_heartbeat_disable(attachee, triggerer):
 	startup_zmod.zmod_templeplus_config_apply()
 	ctrl = cs()
 	if (not ctrl):
-		ctrl = CtrlCRYPT_LV1.ensure(attachee)
+		ctrl = CtrlCryptLv1.ensure(attachee)
 		ctrl.place_encounters(1)
 	if (ctrl):
 		ctrl.heartbeat()
@@ -68,20 +68,20 @@ def cs():
 	o = utils_storage.obj_storage_by_id(CRYPT_LV1_DAEMON_ID)
 	#print("utils_storage.obj_storage(): {}".format(o))
 	if (not o): return None
-	if (CtrlCRYPT_LV1.get_name() in o.data):
-		result = o.data[CtrlCRYPT_LV1.get_name()]
+	if (CtrlCryptLv1.get_name() in o.data):
+		result = o.data[CtrlCryptLv1.get_name()]
 	else: return None
 	#print("data: {}".format(result))
 	#debugg.breakp("csl")
 	return result
 
-class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
+class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 	def __init__(self):
-		super(CtrlCRYPT_LV1, self).__init__()
+		super(CtrlCryptLv1, self).__init__()
 		return
 
 	def created(self, npc):
-		super(CtrlCRYPT_LV1, self).created(npc)
+		super(CtrlCryptLv1, self).created(npc)
 		npc.scripts[const_toee.sn_dialog] = CRYPT_LV1_DAEMON_SCRIPT
 		return
 
@@ -115,7 +115,8 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 		if (not self.encounters_placed):
 			pass
 			#self.place_encounter_k01()
-			self.place_chests()
+			self.place_encounter_k02()
+			#self.place_chests()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -127,7 +128,7 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 		return
 
 	def monster_setup(self, npc, encounter_name, monster_code_name, monster_name, no_draw = 1, no_kos = 1, faction = None):
-		super(CtrlCRYPT_LV1, self).monster_setup(npc, encounter_name, monster_code_name, monster_name, no_draw, no_kos, faction)
+		super(CtrlCryptLv1, self).monster_setup(npc, encounter_name, monster_code_name, monster_name, no_draw, no_kos, faction)
 		npc.scripts[const_toee.sn_dying] = CRYPT_LV1_DAEMON_SCRIPT
 		return
 
@@ -142,6 +143,11 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 
 	def place_encounter_k01(self):
 		self.create_promter_at(utils_obj.sec2loc(480, 499), self.get_dialogid_default(), 10, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Entry Hall", const_toee.rotation_1100_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k01()
+		return
+
+	def place_monsters_k01(self):
 		self.create_npc_at(utils_obj.sec2loc(482, 489), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0500_oclock, "k01", "skeleton1")
 		self.create_npc_at(utils_obj.sec2loc(480, 489), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0500_oclock, "k01", "skeleton2")
 		self.create_npc_at(utils_obj.sec2loc(479, 489), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0500_oclock, "k01", "skeleton3")
@@ -152,6 +158,8 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 
 	def display_encounter_k01(self):
 		print("display_encounter_k01")
+		if (self.delayed_monsters()):
+			self.place_monsters_k01()
 		self.reveal_monster("k01", "skeleton1")
 		self.reveal_monster("k01", "skeleton2")
 		self.reveal_monster("k01", "skeleton3")
@@ -170,44 +178,34 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 		self.activate_monster("k01", "skeleton6")
 		return
 
-	def place_encounter_j02(self):
-		self.create_promter_at(utils_obj.sec2loc(465, 485), self.get_dialogid_default(), 20, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Wolfs", const_toee.rotation_1100_oclock)
-		self.create_npc_at(utils_obj.sec2loc(456, 488), py06603_coe_encounters.CtrlWolf, const_toee.rotation_0800_oclock, "j02", "wolf1", factions_zmod.FACTION_WILDERNESS_HOSTILE)
-		self.create_npc_at(utils_obj.sec2loc(458, 491), py06603_coe_encounters.CtrlWolf, const_toee.rotation_0900_oclock, "j02", "wolf2", factions_zmod.FACTION_WILDERNESS_HOSTILE)
-		self.create_npc_at(utils_obj.sec2loc(461, 493), py06603_coe_encounters.CtrlWolf, const_toee.rotation_0100_oclock, "j02", "wolf3", factions_zmod.FACTION_WILDERNESS_HOSTILE)
+	def place_encounter_k02(self):
+		self.create_promter_at(utils_obj.sec2loc(488, 470), self.get_dialogid_default(), 20, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0600_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k02()
 		return
 
-	def display_encounter_j02(self):
-		print("display_encounter_j02")
-		self.reveal_monster("j02", "wolf1")
-		self.reveal_monster("j02", "wolf2")
-		self.reveal_monster("j02", "wolf3")
+	def place_monsters_k02(self):
+		self.create_npc_at(utils_obj.sec2loc(487, 469), py06603_coe_encounters.CtrlBeetleBombardier, const_toee.rotation_0900_oclock, "k02", "beetle1", factions_zmod.FACTION_WILDERNESS_HOSTILE)
 		return
 
-	def activate_encounter_j02(self):
-		print("activate_encounter_j02")
-		self.activate_monster("j02", "wolf1")
-		self.activate_monster("j02", "wolf2")
-		self.activate_monster("j02", "wolf3")
+	def display_encounter_k02(self):
+		print("display_encounter_k02")
+		if (self.delayed_monsters()):
+			self.place_monsters_k02()
+		self.reveal_monster("k02", "beetle1")
+		return
+
+	def activate_encounter_k02(self):
+		print("activate_encounter_k02")
+		self.activate_monster("k02", "beetle1")
 		return
 
 	def critter_dying(self, attachee, triggerer):
-		super(CtrlCRYPT_LV1, self).critter_dying(attachee, triggerer)
+		super(CtrlCryptLv1, self).critter_dying(attachee, triggerer)
 		assert isinstance(attachee, toee.PyObjHandle)
-
-		if (attachee.proto == py06603_coe_encounters.CtrlOrc.get_proto_id()):
-			npc1 = self.get_monsterinfo_and_npc_and_ctrl("j01", "orc1")[1]
-			npc2 = self.get_monsterinfo_and_npc_and_ctrl("j01", "orc2")[1]
-			npc3 = self.get_monsterinfo_and_npc_and_ctrl("j01", "orc3")[1]
-			if ((not npc1 or not utils_npc.npc_is_alive(npc1)) and (not npc2 or not utils_npc.npc_is_alive(npc2)) and (not npc3 or not utils_npc.npc_is_alive(npc3))):
-				for pc in toee.game.party:
-					pc.obj_set_int(toee.obj_f_hp_damage, 0)
-				toee.game.party[0].float_text_line("It was illusion!", toee.tf_green)
-				toee.game.create_history_freeform("\n{}: It was illusion!\n".format(toee.game.party[0].description))
 		return
 
 	def place_chests(self):
-
 		chest_with_key_num = toee.game.random_range(1, 3)
 		chest_with_key = None
 		# first chest
@@ -259,3 +257,6 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 				utils_locks.portal_setup_dc(locked_door, utils_locks.LOCK_DC_AVERAGE, coe_consts.KEY_CRYPT1_DOOR_2 \
 					, utils_locks.HP_DOOR_WOODEN_GOOD, utils_locks.HARDNESS_DOOR_WOODEN_GOOD, utils_locks.BREAK_DC_DOOR_WOODEN_GOOD)
 		return
+
+	def delayed_monsters(self):
+		return 1

@@ -162,6 +162,7 @@
     <Compile Include="zmod_coe_core\scr\tpModifiers\chained.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\close_door.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\combat_messages.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\acid_spray.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\cone_of_cold.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\construct_max_hp.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\contagion_desease_preference.py" />
