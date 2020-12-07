@@ -61,14 +61,14 @@ def portal_setup_dc(obj, locked_dc, key_id, hp, hardeness, break_dc):
 	obj.obj_set_int(toee.obj_f_portal_pad_i_1, break_dc)
 
 	if (locked_dc):
-		obj.container_flag_set(toee.OCOF_LOCKED)
+		obj.portal_flag_set(toee.OPF_LOCKED)
 		if (locked_dc < 0):
-			obj.container_flag_set(toee.OCOF_JAMMED)
+			obj.portal_flag_set(toee.OPF_JAMMED)
 		else:
-			obj.obj_set_int(toee.obj_f_container_lock_dc, locked_dc)
+			obj.obj_set_int(toee.obj_f_portal_lock_dc, locked_dc)
 			
 		if (key_id):
-			obj.obj_set_int(toee.obj_f_container_key_id, key_id)
+			obj.obj_set_int(toee.obj_f_portal_key_id, key_id)
 
 	if (hp):
 		obj.obj_set_int(toee.obj_f_hp_pts, hp)

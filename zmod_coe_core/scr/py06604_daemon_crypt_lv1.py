@@ -1,6 +1,6 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import startup_zmod, utils_sneak, monster_info, copy, coe_consts, math, utils_locks
+import startup_zmod, utils_sneak, monster_info, copy, coe_consts, math, utils_locks, utils_trap, const_traps
 import py06603_coe_encounters, const_proto_containers
 
 MAP_ID_CRYPT_LV1 = 5128
@@ -221,6 +221,7 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 				chest.obj_set_int(toee.obj_f_secretdoor_dc, 5)
 				chest.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
 				if (chest_with_key_num == 1): chest_with_key = chest
+				utils_trap.setup_trap(chest, const_traps.TRAP_PIT_TRAP, const_traps.TRAP_SCRIPT_PIT_TRAP)
 		# second chest
 		if (1):
 			loc = utils_obj.sec2loc(503, 498)
@@ -232,6 +233,7 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 				chest.obj_set_int(toee.obj_f_secretdoor_dc, 5)
 				chest.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
 				if (chest_with_key_num == 2): chest_with_key = chest
+				utils_trap.setup_trap(chest, const_traps.TRAP_PIT_TRAP, const_traps.TRAP_SCRIPT_PIT_TRAP)
 		# third chest
 		if (1):
 			loc = utils_obj.sec2loc(494, 487)
@@ -243,6 +245,7 @@ class CtrlCRYPT_LV1(ctrl_daemon.CtrlDaemon):
 				chest.obj_set_int(toee.obj_f_secretdoor_dc, 5)
 				chest.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
 				if (chest_with_key_num == 3): chest_with_key = chest
+				utils_trap.setup_trap(chest, const_traps.TRAP_PIT_TRAP, const_traps.TRAP_SCRIPT_PIT_TRAP)
 
 		if (chest_with_key):
 			key = utils_item.item_create_in_inventory(10001, chest_with_key)

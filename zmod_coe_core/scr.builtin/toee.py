@@ -482,8 +482,8 @@ class PyObjHandle(object):
 		return
 
 	def reflex_save_and_damage(self, attacker, dc, reduction, flags, damageDice, damageType, attackPower, actionType, spellId):
-		"""npc.reflex_save_and_damage(PyObjHandle: attacker, int: dc, int[D20_Save_Reduction_Half]: reduction, int[D20SavingThrowFlag]: flags, PyDice: damageDice, int[D20DAP_UNSPECIFIED]: damageType, int[D20DAP_UNSPECIFIED]: attackPower, int[D20A_NONE]: actionType, int: spellId) -> None"""
-		return
+		"""npc.reflex_save_and_damage(PyObjHandle: attacker, int: dc, int[D20_Save_Reduction_Half]: reduction, int[D20SavingThrowFlag]: flags, PyDice: damageDice, int[D20DAP_UNSPECIFIED]: damageType, int[D20DAP_UNSPECIFIED]: attackPower, int[D20A_NONE]: actionType, int: spellId) -> int[saved]"""
+		return 1
 
 	def refresh_turn(self):
 		return

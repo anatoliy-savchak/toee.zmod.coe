@@ -114,6 +114,7 @@
     <Compile Include="zmod_coe_core\scr\py14713_priest.py" />
     <Compile Include="zmod_coe_core\scr\py32004Trap3_poison_needle.py" />
     <Compile Include="zmod_coe_core\scr\py32007Trap8_scythe.py" />
+    <Compile Include="zmod_coe_core\scr\py32022_trap_pit_trap.py" />
     <Compile Include="zmod_coe_core\scr\py32021_trap_cr4_glyph_of_warding.py" />
     <Compile Include="zmod_coe_core\scr\random_encounter.py" />
     <Compile Include="zmod_coe_core\scr\Spell076 - Contagion.py" />
@@ -235,6 +236,9 @@
     <Compile Include="zmod_coe_core\scr\utils_tactics.py" />
     <Compile Include="zmod_coe_core\scr\utils_target_list.py" />
     <Compile Include="zmod_coe_core\scr\utils_toee.py" />
+    <Compile Include="zmod_coe_core\scr\utils_trap.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="zmod_coe_core\scr\_co8init.py" />
     <Compile Include="zmod_coe_core\scr\_include.py" />
   </ItemGroup>
@@ -253,6 +257,7 @@
     <Content Include="zmod_coe_core\mes\gamekeylog.mes" />
     <Content Include="zmod_coe_core\mes\gamequestlog.mes" />
     <Content Include="zmod_coe_core\oemes\oname.mes" />
+    <Content Include="zmod_coe_core\rules\traps.tab" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
