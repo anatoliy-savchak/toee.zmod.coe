@@ -1,6 +1,13 @@
 {10}{As the heavy doors swing open, the faint light from outside reveals a long chamber with risen platforms on either side. A faded painting of Kassen is on the far wall. The room appears to be the site of a gruesome battle, with two bodies piled in the center and a number of skeletons scattered around. An echoing wail can be heard somewhere in the distance, beyond this foul chamber.}{As the heavy doors swing open, the faint light from outside reveals a long chamber with risen platforms on either side. A faded painting of Kassen is on the far wall. The room appears to be the site of a gruesome battle, with two bodies piled in the center and a number of skeletons scattered around. An echoing wail can be heard somewhere in the distance, beyond this foul chamber.}{}{}{}{cs().display_encounter_k01()}
 {19}{Close}{}{1}{}{0}{cs().activate_encounter_k01();npc.destroy()}
 
-{20}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{}{}{}{cs().display_encounter_k02();}
-{29}{Close}{}{1}{}{0}{cs().activate_encounter_k02();npc.destroy()}
+{40}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{This small chamber is mostly empty, save for the body of a villager sprawled in the center.}{}{}{}{cs().display_encounter_k04();}
+{49}{Close}{}{1}{}{0}{cs().activate_encounter_k04();npc.destroy()}
 
+{50}{The remains of a small fire smolder in the center of this broad chamber, letting off a plume of oily smoke. Fed by a heap of burning gear, debris, and more than few bones, the fire casts a flickering light across the walls of this room, partially obscured by the veil of smoke.}{The remains of a small fire smolder in the center of this broad chamber, letting off a plume of oily smoke. Fed by a heap of burning gear, debris, and more than few bones, the fire casts a flickering light across the walls of this room, partially obscured by the veil of smoke.}{}{}{}{cs().display_encounter_k05();}
+{59}{Close}{}{1}{}{0}{cs().activate_encounter_k05();npc.destroy()}
+
+{60}{In the center of this room is a large pool of clear water, fed by a fountain on the wall above it. The fountain has a stone statue of a weeping maiden holding the slain body of Kassen, but his head has been broken off and is nowhere to be seen.}{In the center of this room is a large pool of clear water, fed by a fountain on the wall above it. The fountain has a stone statue of a weeping maiden holding the slain body of Kassen, but his head has been broken off and is nowhere to be seen.}{}{}{}{cs().display_encounter_k06();}
+{61}{Continue}{}{1}{}{62}{}
+{62}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{}{}{}{}
+{69}{Close}{}{1}{}{0}{}

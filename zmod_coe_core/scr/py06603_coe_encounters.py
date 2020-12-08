@@ -108,3 +108,16 @@ class CtrlBeetleBombardier(ctrl_behaviour.CtrlBehaviour):
 			tac.add_attack_threatened
 			tac.add_ready_vs_approach()
 		return tac
+
+class CtrlShadow(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14828
+
+	def created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		super(CtrlShadow, self).created(npc)
+		npc.condition_add_with_args("Monster_Ability_Drain_Su", 0, 0, toee.stat_strength, toee.dice_new("1d6").packed, 0)
+		npc.condition_add("Monster_Touch_Attack")
+		#npc.condition_add("Monster_No_Damage")
+		npc.condition_add_with_args("Monster Damage Type", toee.D20DT_SUBDUAL)
+		return

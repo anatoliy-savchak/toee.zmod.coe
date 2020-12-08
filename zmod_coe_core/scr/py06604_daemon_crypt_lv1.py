@@ -1,4 +1,4 @@
-import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
+import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon, const_proto_items
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
 import startup_zmod, utils_sneak, monster_info, copy, coe_consts, math, utils_locks, utils_trap, const_traps
 import py06603_coe_encounters, const_proto_containers
@@ -115,8 +115,10 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		if (not self.encounters_placed):
 			pass
 			#self.place_encounter_k01()
-			self.place_encounter_k02()
-			#self.place_chests()
+			#self.place_encounter_k03()
+			#self.place_encounter_k04()
+			self.place_encounter_k05()
+			self.place_encounter_k06()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -126,6 +128,9 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		#toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 466, 468) #near fontain entrance
 		utils_obj.scroll_to_leader()
 		return
+
+	def delayed_monsters(self):
+		return 1
 
 	def monster_setup(self, npc, encounter_name, monster_code_name, monster_name, no_draw = 1, no_kos = 1, faction = None):
 		super(CtrlCryptLv1, self).monster_setup(npc, encounter_name, monster_code_name, monster_name, no_draw, no_kos, faction)
@@ -140,6 +145,11 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 
 	def get_monster_prefix_default(self):
 		return "CRYPT_LV1"
+
+	def critter_dying(self, attachee, triggerer):
+		super(CtrlCryptLv1, self).critter_dying(attachee, triggerer)
+		assert isinstance(attachee, toee.PyObjHandle)
+		return
 
 	def place_encounter_k01(self):
 		self.create_promter_at(utils_obj.sec2loc(480, 499), self.get_dialogid_default(), 10, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Entry Hall", const_toee.rotation_1100_oclock)
@@ -178,34 +188,64 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		self.activate_monster("k01", "skeleton6")
 		return
 
-	def place_encounter_k02(self):
-		self.create_promter_at(utils_obj.sec2loc(488, 470), self.get_dialogid_default(), 20, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0600_oclock)
+	def place_encounter_k04(self):
+		self.create_promter_at(utils_obj.sec2loc(488, 470), self.get_dialogid_default(), 40, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0600_oclock)
 		if (not self.delayed_monsters()):
-			self.place_monsters_k02()
+			self.place_monsters_k04()
 		return
 
-	def place_monsters_k02(self):
-		self.create_npc_at(utils_obj.sec2loc(487, 469), py06603_coe_encounters.CtrlBeetleBombardier, const_toee.rotation_0900_oclock, "k02", "beetle1", factions_zmod.FACTION_WILDERNESS_HOSTILE)
+	def place_monsters_k04(self):
+		self.create_npc_at(utils_obj.sec2loc(487, 469), py06603_coe_encounters.CtrlBeetleBombardier, const_toee.rotation_0900_oclock, "k04", "beetle1", factions_zmod.FACTION_WILDERNESS_HOSTILE)
 		return
 
-	def display_encounter_k02(self):
-		print("display_encounter_k02")
+	def display_encounter_k04(self):
+		print("display_encounter_k04")
 		if (self.delayed_monsters()):
-			self.place_monsters_k02()
-		self.reveal_monster("k02", "beetle1")
+			self.place_monsters_k04()
+		self.reveal_monster("k04", "beetle1")
 		return
 
-	def activate_encounter_k02(self):
-		print("activate_encounter_k02")
-		self.activate_monster("k02", "beetle1")
+	def activate_encounter_k04(self):
+		print("activate_encounter_k04")
+		self.activate_monster("k04", "beetle1")
 		return
 
-	def critter_dying(self, attachee, triggerer):
-		super(CtrlCryptLv1, self).critter_dying(attachee, triggerer)
-		assert isinstance(attachee, toee.PyObjHandle)
+	def place_encounter_k05(self):
+		self.create_promter_at(utils_obj.sec2loc(498, 459), self.get_dialogid_default(), 50, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Shadowy Shapes", const_toee.rotation_0600_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k05()
 		return
 
-	def place_chests(self):
+	def place_monsters_k05(self):
+		self.create_npc_at(utils_obj.sec2loc(492, 451), py06603_coe_encounters.CtrlShadow, const_toee.rotation_0600_oclock, "k05", "shadow", factions_zmod.FACTION_ENEMY)
+
+		dagger = toee.game.obj_create(const_proto_weapon.PROTO_WEAPON_DAGGER_PLUS_1, utils_obj.sec2loc(495, 455))
+		if (dagger):
+			dagger.obj_set_int(toee.obj_f_secretdoor_flags, const_toee.OSDF_SECRET_DOOR)
+			dagger.obj_set_int(toee.obj_f_secretdoor_dc, 5)
+			dagger.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
+
+		key = toee.game.obj_create(const_proto_items.PROTO_KEY_IRON_RUSTY, utils_obj.sec2loc(495, 456))
+		if (key):
+			key.obj_set_int(toee.obj_f_key_key_id, coe_consts.KEY_CRYPT1_DOOR_6_7)
+			key.obj_set_int(toee.obj_f_secretdoor_flags, const_toee.OSDF_SECRET_DOOR)
+			key.obj_set_int(toee.obj_f_secretdoor_dc, 5)
+			key.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
+		return
+
+	def display_encounter_k05(self):
+		print("display_encounter_k05")
+		if (self.delayed_monsters()):
+			self.place_monsters_k05()
+		self.reveal_monster("k05", "shadow")
+		return
+
+	def activate_encounter_k05(self):
+		print("activate_encounter_k05")
+		self.activate_monster("k05", "shadow")
+		return
+
+	def place_encounter_k03(self):
 		chest_with_key_num = toee.game.random_range(1, 3)
 		chest_with_key = None
 		# first chest
@@ -246,7 +286,7 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 				utils_trap.setup_trap(chest, const_traps.TRAP_PIT_TRAP, const_traps.TRAP_SCRIPT_PIT_TRAP)
 
 		if (chest_with_key):
-			key = utils_item.item_create_in_inventory(10001, chest_with_key)
+			key = utils_item.item_create_in_inventory(const_proto_items.PROTO_KEY_IRON_RUSTY, chest_with_key)
 			if (key):
 				key.obj_set_int(toee.obj_f_key_key_id, coe_consts.KEY_CRYPT1_DOOR_2)
 				#key.obj_set_int(toee.obj_f_description, toee.game.make_custom_name("Crypt key"))
@@ -258,5 +298,27 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 					, utils_locks.HP_DOOR_WOODEN_GOOD, utils_locks.HARDNESS_DOOR_WOODEN_GOOD, utils_locks.BREAK_DC_DOOR_WOODEN_GOOD)
 		return
 
-	def delayed_monsters(self):
-		return 1
+	def place_encounter_k06(self):
+		self.create_promter_at(utils_obj.sec2loc(463, 497), self.get_dialogid_default(), 60, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Key Pool", const_toee.rotation_0700_oclock)
+
+		def do_lock(locked_door):
+			assert isinstance(locked_door, toee.PyObjHandle)
+			if (locked_door):
+				locked_door.portal_flag_set(toee.OPF_LOCKED)
+				utils_locks.portal_setup_dc(locked_door, utils_locks.LOCK_DC_GOOD, coe_consts.KEY_CRYPT1_DOOR_9_10 \
+					, utils_locks.HP_DOOR_WOODEN_STRONG, utils_locks.HARDNESS_DOOR_WOODEN_STRONG, utils_locks.BREAK_DC_DOOR_WOODEN_STRONG)
+			return
+
+		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(467, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_7, toee.OLC_PORTAL))
+		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_8, toee.OLC_PORTAL))
+		return
+
+	def display_encounter_k06(self):
+		key = toee.game.obj_create(const_proto_items.PROTO_KEY_GOLD, utils_obj.sec2loc(463, 504))
+		if (key):
+			key.obj_set_int(toee.obj_f_key_key_id, coe_consts.KEY_CRYPT1_DOOR_9_10)
+			key.obj_set_int(toee.obj_f_secretdoor_flags, const_toee.OSDF_SECRET_DOOR)
+			key.obj_set_int(toee.obj_f_secretdoor_dc, 27)
+			key.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
+			key.obj_set_int(toee.obj_f_key_pad_i_1, toee.OIF_IS_MAGICAL)
+		return

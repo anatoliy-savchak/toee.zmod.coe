@@ -120,6 +120,7 @@
     <Compile Include="zmod_coe_core\scr\Spell076 - Contagion.py" />
     <Compile Include="zmod_coe_core\scr\Spell090 - Cure Light Wounds.py" />
     <Compile Include="zmod_coe_core\scr\Spell096 - Darkness.py" />
+    <Compile Include="zmod_coe_core\scr\Spell114 - Detect Magic.py" />
     <Compile Include="zmod_coe_core\scr\Spell200 - Grease.py" />
     <Compile Include="zmod_coe_core\scr\Spell228 - Hold Person.py" />
     <Compile Include="zmod_coe_core\scr\Spell246 - Inflict Critical Wounds.py" />
@@ -188,6 +189,8 @@
     <Compile Include="zmod_coe_core\scr\tpModifiers\lodged_quills.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\mage_armor_auto.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_ability_drain.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_no_damage.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\monster_touch_attack.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_bite.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_ranged_poison.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_trip_ex.py" />
@@ -257,6 +260,7 @@
     <Content Include="zmod_coe_core\dlg\14713_priest.dlg" />
     <Content Include="zmod_coe_core\mes\gamekeylog.mes" />
     <Content Include="zmod_coe_core\mes\gamequestlog.mes" />
+    <Content Include="zmod_coe_core\mes\skill_ui.mes" />
     <Content Include="zmod_coe_core\oemes\oname.mes" />
     <Content Include="zmod_coe_core\rules\traps.tab" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />

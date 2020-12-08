@@ -26,7 +26,7 @@ def Acid_Spray_Perform(attachee, args, evt_obj):
 		damage_dice_packed = args.get_arg(1)
 		dc = args.get_arg(2)
 		if (not dc): dc = 13
-		targets = toee.game.obj_list_cone(caster, toee.OLC_CRITTERS, radius, -45, 45)
+		targets = toee.game.obj_list_cone(caster, toee.OLC_CRITTERS, radius, -45, 90)
 
 		print(targets)
 		furthest = None

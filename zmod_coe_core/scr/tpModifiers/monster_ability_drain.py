@@ -28,14 +28,15 @@ def Monster_Ability_Drain_Su_OnDealingDamage2(attachee, args, evt_obj):
 				return 0
 
 		target = evt_obj.attack_packet.target
-		dc = args.get_arg(0)
-		save = args.get_arg(1)
-	
 		toee.game.create_history_from_pattern(68, attachee, target) # {60}{[ACTOR] strikes with ~energy drain~[TAG_ENERGY_DRAINED] on [TARGET]!}
-		saved = target.saving_throw(dc, save, toee.D20STD_F_NONE, attachee)
-		if (saved): 
-			print("saved!")
-			return 0
+
+		dc = args.get_arg(0)
+		if (dc):
+			save = args.get_arg(1)
+			saved = target.saving_throw(dc, save, toee.D20STD_F_NONE, attachee)
+			if (saved): 
+				print("saved!")
+				return 0
 
 		ability = args.get_arg(2)
 		dice_packed = int(args.get_arg(3)) #!! long will fail
@@ -48,6 +49,7 @@ def Monster_Ability_Drain_Su_OnDealingDamage2(attachee, args, evt_obj):
 		amount = dice.roll()
 		print("target.condition_add_with_args(Temp_Ability_Loss, {}, {}) {}".format(ability, amount, target))
 		target.condition_add_with_args("Temp_Ability_Loss", ability, amount)
+		target.float_text_line("Ability drain!", toee.tf_red)
 		#toee.game.create_history_from_pattern(61, attachee, toee.OBJ_HANDLE_NULL) # {61}{[ACTOR] recieves 5 ~temporary hit points~[TAG_TEMPORARY_HIT_POINTS].}
 	except Exception, e:
 		print "Monster_Ability_Drain_Su_OnDealingDamage2 error:"
