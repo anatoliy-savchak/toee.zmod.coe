@@ -35,6 +35,7 @@
     <Folder Include="zmod_coe\" />
     <Folder Include="zmod_coe\rules\" />
     <Folder Include="zmod_coe_core\" />
+    <Folder Include="zmod_coe_core\rules\partsys\" />
     <Folder Include="zmod_coe_core\scr.builtin\" />
     <Folder Include="zmod_coe_core\scr.builtin\templeplus\" />
     <Folder Include="zmod_coe_core\scr\" />
@@ -107,6 +108,8 @@
     <Compile Include="zmod_coe_core\scr\py06601_village_npc.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="zmod_coe_core\scr\py06606_trap_arrows.py" />
+    <Compile Include="zmod_coe_core\scr\py06605_trap_kassen_blades.py" />
     <Compile Include="zmod_coe_core\scr\py14712_wizard.py" />
     <Compile Include="zmod_coe_core\scr\py14711_smith_wife.py" />
     <Compile Include="zmod_coe_core\scr\py14710_smith.py" />
@@ -262,6 +265,9 @@
     <Content Include="zmod_coe_core\mes\gamequestlog.mes" />
     <Content Include="zmod_coe_core\mes\skill_ui.mes" />
     <Content Include="zmod_coe_core\oemes\oname.mes" />
+    <Content Include="zmod_coe_core\rules\partsys\ball_of_fire.tab" />
+    <Content Include="zmod_coe_core\rules\partsys\darts.tab" />
+    <Content Include="zmod_coe_core\rules\partsys\tppartsys.tab" />
     <Content Include="zmod_coe_core\rules\traps.tab" />
     <Content Include="zmod_coe_core\scr\tpModifiers\condition_template.txt" />
   </ItemGroup>

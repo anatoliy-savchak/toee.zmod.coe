@@ -20,3 +20,6 @@
 
 {100}{This small chamber has a table on the opposite side of the room. On top of this table are a number of items, each with a small note attached with PC names.}{This small chamber has a table on the opposite side of the room. On top of this table are a number of items, each with a small note attached with PC names.}{}{}{}{cs().display_encounter_k10();}
 {109}{Take items.}{}{1}{}{0}{cs().activate_encounter_k10();npc.destroy()}
+
+{110}{A single pillar in the center of the room supports this wide, domed chamber. The pillar is surrounded by a pit, but a stone bridge crosses the pit on the south side. Dozens of arrows jut from holes in the pillar, facing every direction.}{A single pillar in the center of the room supports this wide, domed chamber. The pillar is surrounded by a pit, but a stone bridge crosses the pit on the south side. Dozens of arrows jut from holes in the pillar, facing every direction.}{}{}{}{cs().display_encounter_k11();}
+{119}{Close}{}{1}{}{0}{npc.destroy()}

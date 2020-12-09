@@ -122,6 +122,7 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k08()
 			#self.place_encounter_k09()
 			self.place_encounter_k10()
+			self.place_encounter_k11()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -489,4 +490,23 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		CtrlCryptLv1.give_treasure()
 		#	import py06604_daemon_crypt_lv1
 		#	py06604_daemon_crypt_lv1.CtrlCryptLv1.give_treasure()
+		return
+
+	def place_encounter_k11(self):
+		p1 = self.create_promter_at(utils_obj.sec2loc(472, 478), self.get_dialogid_default(), 110, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Supply Vault", const_toee.rotation_0200_oclock)
+		p2 = self.create_promter_at(utils_obj.sec2loc(481, 478), self.get_dialogid_default(), 110, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Supply Vault", const_toee.rotation_0700_oclock)
+		p1.obj_set_obj(toee.obj_f_last_hit_by, p2)
+		p2.obj_set_obj(toee.obj_f_last_hit_by, p1)
+
+		if (1):
+			loc = utils_obj.sec2loc(477, 478)
+			chest = toee.game.obj_create(const_proto_containers.PROTO_CONTAINER_CHEST_WOODEN_MEDIUM, loc)
+			if (chest):
+				chest.move(loc, -8.485282, -8.485282)
+				chest.rotation = math.radians(const_toee.rotation_grad_south_east)
+				utils_trap.setup_trap(chest, const_traps.TRAP_POISON_DARTS, 6606)
+				utils_item.item_create_in_inventory(const_proto_armor.PROTO_SHIELD_SMALL_MASTERWORK_WOODEN, chest, 1, 1)
+		return
+
+	def display_encounter_k11(self):
 		return
