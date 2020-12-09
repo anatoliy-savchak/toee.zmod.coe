@@ -26,3 +26,6 @@
 
 {110}{A single pillar in the center of the room supports this wide, domed chamber. The pillar is surrounded by a pit, but a stone bridge crosses the pit on the south side. Dozens of arrows jut from holes in the pillar, facing every direction.}{A single pillar in the center of the room supports this wide, domed chamber. The pillar is surrounded by a pit, but a stone bridge crosses the pit on the south side. Dozens of arrows jut from holes in the pillar, facing every direction.}{}{}{}{cs().display_encounter_k11();}
 {119}{Close}{}{1}{}{0}{npc.destroy()}
+
+{120}{A continuous carving of mourners runs along the walls here, leading to a staircase on the south side of the room.}{A continuous carving of mourners runs along the walls here, leading to a staircase on the south side of the room.}{}{}{}{cs().display_encounter_k12();}
+{129}{Close}{}{1}{}{0}{cs().activate_encounter_k12();npc.destroy()}

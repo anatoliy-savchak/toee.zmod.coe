@@ -119,11 +119,12 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k04()
 			#self.place_encounter_k05()
 			#self.place_encounter_k06()
-			self.place_encounter_k07()
+			#self.place_encounter_k07()
 			#self.place_encounter_k08()
 			#self.place_encounter_k09()
 			#self.place_encounter_k10()
 			#self.place_encounter_k11()
+			self.place_encounter_k12()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -514,4 +515,35 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		return
 
 	def display_encounter_k11(self):
+		return
+
+	def place_encounter_k12(self):
+		self.create_promter_at(utils_obj.sec2loc(477, 459), self.get_dialogid_default(), 120, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Chamber of the Bloody Dead", const_toee.rotation_0400_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k12()
+		return
+
+	def place_monsters_k12(self):
+		self.create_npc_at(utils_obj.sec2loc(480, 456), py06603_coe_encounters.CtrlSkeletonHumanBloody, const_toee.rotation_0400_oclock, "k12", "bskeleton1", factions_zmod.FACTION_ENEMY)
+		self.create_npc_at(utils_obj.sec2loc(478, 453), py06603_coe_encounters.CtrlSkeletonHumanBloody, const_toee.rotation_0400_oclock, "k12", "bskeleton2", factions_zmod.FACTION_ENEMY)
+		self.create_npc_at(utils_obj.sec2loc(476, 453), py06603_coe_encounters.CtrlSkeletonHumanBloody, const_toee.rotation_0400_oclock, "k12", "bskeleton3", factions_zmod.FACTION_ENEMY)
+		self.create_npc_at(utils_obj.sec2loc(474, 456), py06603_coe_encounters.CtrlSkeletonHumanBloody, const_toee.rotation_0400_oclock, "k12", "bskeleton4", factions_zmod.FACTION_ENEMY)
+		return
+
+	def display_encounter_k12(self):
+		print("display_encounter_k12")
+		if (self.delayed_monsters()):
+			self.place_monsters_k12()
+		self.reveal_monster("k12", "bskeleton1")
+		self.reveal_monster("k12", "bskeleton2")
+		self.reveal_monster("k12", "bskeleton3")
+		self.reveal_monster("k12", "bskeleton4")
+		return
+
+	def activate_encounter_k12(self):
+		print("activate_encounter_k12")
+		self.activate_monster("k12", "bskeleton1")
+		self.activate_monster("k12", "bskeleton2")
+		self.activate_monster("k12", "bskeleton3")
+		self.activate_monster("k12", "bskeleton4")
 		return

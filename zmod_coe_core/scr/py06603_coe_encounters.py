@@ -125,3 +125,8 @@ class CtrlShadow(ctrl_behaviour.CtrlBehaviour):
 class CtrlGolemWoodKassen(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14895
+
+
+class CtrlSkeletonHumanBloody(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14720
