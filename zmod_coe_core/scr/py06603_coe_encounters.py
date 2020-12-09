@@ -130,3 +130,22 @@ class CtrlGolemWoodKassen(ctrl_behaviour.CtrlBehaviour):
 class CtrlSkeletonHumanBloody(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14720
+
+class CtrlRoldare(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14715
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		#utils_obj.obj_scripts_clear(npc)
+		#npc.scripts[const_toee.sn_start_combat] = COE_ENCOUNTERS
+		#npc.scripts[const_toee.sn_enter_combat] = COE_ENCOUNTERS
+
+		# create inventory
+		utils_item.item_create_in_inventory(const_proto_armor.PROTO_ARMOR_PADDED_ARMOR_TAN, npc)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_PADDED_TAN, npc).item_flag_set(toee.OIF_NO_LOOT)
+		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_CROSSBOW_LIGHT_MASTERWORK, npc)
+		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_AMMO_BOLT_QUIVER, npc)
+		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_DAGGER, npc)
+		npc.item_wield_best_all()
+		return

@@ -3,7 +3,6 @@ import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrol
 import startup_zmod, utils_sneak, monster_info, copy, coe_consts
 import py06603_coe_encounters
 
-MAP_ID_ROAD2COE = 5127
 ROAD2COE = "road2coe"
 ROAD2COE_DAEMON_SCRIPT = 6602
 ROAD2COE_DAEMON_ID = "G_A2A17BEF_C82B_4021_B305_1857DF8D8A71"
@@ -13,7 +12,7 @@ def san_new_map(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#print(attachee.id)
 	#debug.breakp("san_new_map")
-	if (attachee.map != MAP_ID_ROAD2COE): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_ROAD2COE): toee.RUN_DEFAULT
 	ctrl = CtrlRoad2Coe.ensure(attachee)
 	ctrl.place_encounters(1)
 	return toee.RUN_DEFAULT
@@ -23,7 +22,7 @@ def san_first_heartbeat(attachee, triggerer):
 	#print(attachee.id)
 	#debug.breakp("san_first_heartbeat")
 	startup_zmod.zmod_templeplus_config_apply()
-	if (attachee.map != MAP_ID_ROAD2COE): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_ROAD2COE): toee.RUN_DEFAULT
 	ctrl = CtrlRoad2Coe.ensure(attachee)
 	ctrl.place_encounters(0)
 	return toee.RUN_DEFAULT
@@ -31,7 +30,7 @@ def san_first_heartbeat(attachee, triggerer):
 def san_heartbeat_disable(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#debug.breakp("san_heartbeat")
-	if (attachee.map != MAP_ID_ROAD2COE): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_ROAD2COE): toee.RUN_DEFAULT
 	startup_zmod.zmod_templeplus_config_apply()
 	ctrl = cs()
 	if (not ctrl):
@@ -60,7 +59,7 @@ def san_use(attachee, triggerer):
 		toee.game.fade_and_teleport(0, 0, 0, 5126, 468, 507)
 		return toee.SKIP_DEFAULT
 	elif (attachee.name == coe_consts.PORTAL_ROAD_2EVERFLAME_2CRYPT_OF_EVERFLAME):
-		toee.game.fade_and_teleport(0, 0, 0, 5128, 480, 508)
+		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_CRYPT_LV1, 480, 508)
 	return toee.RUN_DEFAULT
 
 def cs():
@@ -94,7 +93,7 @@ class CtrlRoad2Coe(ctrl_daemon.CtrlDaemon):
 		return "road2coe" # utils_storage.ca("road2coe")
 
 	def get_map_default(self):
-		return MAP_ID_ROAD2COE
+		return coe_consts.MAP_ID_ROAD2COE
 
 	def place_encounters(self, new_map):
 		print("new_map: {}".format(new_map))

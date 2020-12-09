@@ -3,7 +3,6 @@ import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrol
 import startup_zmod, utils_sneak, monster_info, copy, coe_consts, math, utils_locks, utils_trap, const_traps
 import py06603_coe_encounters, const_proto_containers, const_proto_list_weapons_masterwork, const_proto_potions, const_proto_wands
 
-MAP_ID_CRYPT_LV1 = 5128
 CRYPT_LV1 = "CRYPT_LV1"
 CRYPT_LV1_DAEMON_SCRIPT = 6604
 CRYPT_LV1_DAEMON_ID = "G_506CD5D3_2D09_446F_AA0A_75B0281582B2"
@@ -13,7 +12,7 @@ def san_new_map(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#print(attachee.id)
 	#debug.breakp("san_new_map")
-	if (attachee.map != MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
 	ctrl = CtrlCryptLv1.ensure(attachee)
 	ctrl.place_encounters(1)
 	return toee.RUN_DEFAULT
@@ -23,7 +22,7 @@ def san_first_heartbeat(attachee, triggerer):
 	#print(attachee.id)
 	#debug.breakp("san_first_heartbeat")
 	startup_zmod.zmod_templeplus_config_apply()
-	if (attachee.map != MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
 	ctrl = CtrlCryptLv1.ensure(attachee)
 	ctrl.place_encounters(0)
 	return toee.RUN_DEFAULT
@@ -31,7 +30,7 @@ def san_first_heartbeat(attachee, triggerer):
 def san_heartbeat_disable(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#debug.breakp("san_heartbeat")
-	if (attachee.map != MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
+	if (attachee.map != coe_consts.MAP_ID_CRYPT_LV1): toee.RUN_DEFAULT
 	startup_zmod.zmod_templeplus_config_apply()
 	ctrl = cs()
 	if (not ctrl):
@@ -56,11 +55,11 @@ def san_dying(attachee, triggerer):
 def san_use(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	print("san_use id: {}, nameid: {}".format(attachee.id, attachee.name))
-	if (attachee.name == coe_consts.PORTAL_ROAD_2EVERFLAME_2KASSEN):
-		toee.game.fade_and_teleport(0, 0, 0, 5126, 468, 507)
+	if (attachee.name == coe_consts.PORTAL_CRYPT_OF_EVERFLAME_2ROAD_2EVERFLAME):
+		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_ROAD2COE, 468, 507)
 		return toee.SKIP_DEFAULT
-	elif (attachee.name == coe_consts.PORTAL_ROAD_2EVERFLAME_2CRYPT_OF_EVERFLAME):
-		pass
+	elif (attachee.name == coe_consts.PORTAL_CRYPT_OF_EVERFLAME_2CRYPT_OF_EVERFLAME_BELOW):
+		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_CRYPT_LV2, 468, 507)
 	return toee.RUN_DEFAULT
 
 def cs():
@@ -94,7 +93,7 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		return "crypt_lv1" # utils_storage.ca("CRYPT_LV1")
 
 	def get_map_default(self):
-		return MAP_ID_CRYPT_LV1
+		return coe_consts.MAP_ID_CRYPT_LV1
 
 	def place_encounters(self, new_map):
 		print("new_map: {}".format(new_map))
@@ -115,7 +114,7 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		if (not self.encounters_placed):
 			pass
 			#self.place_encounter_k01()
-			#self.place_encounter_k03()
+			self.place_encounter_k03()
 			#self.place_encounter_k04()
 			#self.place_encounter_k05()
 			#self.place_encounter_k06()
@@ -194,6 +193,28 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		self.activate_monster("k01", "skeleton6")
 		return
 
+	def place_encounter_k03(self):
+		self.create_promter_at(utils_obj.sec2loc(500, 466), self.get_dialogid_default(), 30, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Wailing Survivor", const_toee.rotation_0400_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k03()
+		return
+
+	def place_monsters_k03(self):
+		self.create_npc_at(utils_obj.sec2loc(496, 466), py06603_coe_encounters.CtrlRoldare, const_toee.rotation_0500_oclock, "k03", "roldare", factions_zmod.FACTION_NEUTRAL_NPC, 1, 1)
+		return
+
+	def display_encounter_k03(self):
+		print("display_encounter_k03")
+		if (self.delayed_monsters()):
+			self.place_monsters_k03()
+		self.reveal_monster("k03", "roldare")
+		return
+
+	def activate_encounter_k03(self):
+		print("activate_encounter_k03")
+		self.activate_monster("k03", "roldare", 0, 0)
+		return
+
 	def place_encounter_k04(self):
 		self.create_promter_at(utils_obj.sec2loc(488, 470), self.get_dialogid_default(), 40, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0600_oclock)
 		if (not self.delayed_monsters()):
@@ -251,7 +272,7 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		self.activate_monster("k05", "shadow")
 		return
 
-	def place_encounter_k03(self):
+	def place_encounter_k02(self):
 		chest_with_key_num = toee.game.random_range(1, 3)
 		chest_with_key = None
 		# first chest

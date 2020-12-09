@@ -62,7 +62,7 @@ def san_use(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	print("san_use id: {}, nameid: {}".format(attachee.id, attachee.name))
 	if (attachee.name == coe_consts.PORTAL_KASSEN_2_ROAD_2_EVERFLAME):
-		toee.game.fade_and_teleport(0, 0, 0, 5127, 484, 458)
+		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_ROAD2COE, 484, 458)
 		return toee.SKIP_DEFAULT
 	return toee.RUN_DEFAULT
 
