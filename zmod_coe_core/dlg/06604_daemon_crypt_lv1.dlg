@@ -10,4 +10,7 @@
 {60}{In the center of this room is a large pool of clear water, fed by a fountain on the wall above it. The fountain has a stone statue of a weeping maiden holding the slain body of Kassen, but his head has been broken off and is nowhere to be seen.}{In the center of this room is a large pool of clear water, fed by a fountain on the wall above it. The fountain has a stone statue of a weeping maiden holding the slain body of Kassen, but his head has been broken off and is nowhere to be seen.}{}{}{}{cs().display_encounter_k06();}
 {61}{Continue}{}{1}{}{62}{}
 {62}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{}{}{}{}
-{69}{Close}{}{1}{}{0}{}
+{69}{Close}{}{1}{}{0}{npc.destroy()}
+
+{70}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{}{}{}{cs().display_encounter_k07();}
+{79}{Close}{}{1}{}{0}{npc.destroy()}

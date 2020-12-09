@@ -117,8 +117,9 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k01()
 			#self.place_encounter_k03()
 			#self.place_encounter_k04()
-			self.place_encounter_k05()
-			self.place_encounter_k06()
+			#self.place_encounter_k05()
+			#self.place_encounter_k06()
+			self.place_encounter_k07()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -321,4 +322,16 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			key.obj_set_int(toee.obj_f_secretdoor_dc, 27)
 			key.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
 			key.obj_set_int(toee.obj_f_key_pad_i_1, toee.OIF_IS_MAGICAL)
+		return
+
+	def place_encounter_k07(self):
+		self.create_promter_at(utils_obj.sec2loc(460, 488), self.get_dialogid_default(), 70, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "The Gauntlet", const_toee.rotation_0400_oclock)
+
+		door = utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 474), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_8_9, toee.OLC_PORTAL)
+		if (door):
+			utils_trap.setup_trap(door, const_traps.TRAP_SCYTHE_20x20_2, 6605)
+		else: debug.breakp("no door!")
+		return
+
+	def display_encounter_k07(self):
 		return
