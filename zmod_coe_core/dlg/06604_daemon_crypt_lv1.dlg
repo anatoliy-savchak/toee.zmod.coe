@@ -12,6 +12,9 @@
 {62}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{}{}{}{}
 {69}{Close}{}{1}{}{0}{npc.destroy()}
 
+{70}{A small stone bench sits in the center of this dusty chamber. On the far wall is a faded mural depicting the hero Kassen defeating the mercenaries at the entrance to this crypt, with his blade piercing the chest of the mercenary leader. These figures stand alone in the center of a scene of carnage, with dead villagers and mercenaries all around them.}{A small stone bench sits in the center of this dusty chamber. On the far wall is a faded mural depicting the hero Kassen defeating the mercenaries at the entrance to this crypt, with his blade piercing the chest of the mercenary leader. These figures stand alone in the center of a scene of carnage, with dead villagers and mercenaries all around them.}{}{}{}{}
+{79}{Close}{}{1}{}{0}{npc.destroy()}
+
 {80}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{}{}{}{cs().display_encounter_k08();}
 {89}{Close}{}{1}{}{0}{npc.destroy()}
 

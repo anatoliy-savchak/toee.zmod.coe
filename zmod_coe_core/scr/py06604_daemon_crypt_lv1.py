@@ -119,10 +119,11 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k04()
 			#self.place_encounter_k05()
 			#self.place_encounter_k06()
+			self.place_encounter_k07()
 			#self.place_encounter_k08()
 			#self.place_encounter_k09()
-			self.place_encounter_k10()
-			self.place_encounter_k11()
+			#self.place_encounter_k10()
+			#self.place_encounter_k11()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -325,6 +326,10 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			key.obj_set_int(toee.obj_f_secretdoor_dc, 27)
 			key.obj_set_int(toee.obj_f_secretdoor_effectname, 1200)
 			key.obj_set_int(toee.obj_f_key_pad_i_1, toee.OIF_IS_MAGICAL)
+		return
+
+	def place_encounter_k07(self):
+		self.create_promter_at(utils_obj.sec2loc(466, 486), self.get_dialogid_default(), 70, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Room of Reflection", const_toee.rotation_0400_oclock)
 		return
 
 	def place_encounter_k08(self):
