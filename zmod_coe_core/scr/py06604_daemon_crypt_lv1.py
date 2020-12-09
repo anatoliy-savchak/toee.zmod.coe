@@ -119,7 +119,8 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k04()
 			#self.place_encounter_k05()
 			#self.place_encounter_k06()
-			self.place_encounter_k07()
+			#self.place_encounter_k07()
+			self.place_encounter_k09()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -334,4 +335,26 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		return
 
 	def display_encounter_k07(self):
+		return
+
+	def place_encounter_k09(self):
+		self.create_promter_at(utils_obj.sec2loc(463, 468), self.get_dialogid_default(), 90, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0400_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k09()
+		return
+
+	def place_monsters_k09(self):
+		self.create_npc_at(utils_obj.sec2loc(463, 460), py06603_coe_encounters.CtrlGolemWoodKassen, const_toee.rotation_0400_oclock, "k09", "golem", factions_zmod.FACTION_ENEMY)
+		return
+
+	def display_encounter_k09(self):
+		print("display_encounter_k09")
+		if (self.delayed_monsters()):
+			self.place_monsters_k09()
+		self.reveal_monster("k09", "golem")
+		return
+
+	def activate_encounter_k09(self):
+		print("activate_encounter_k09")
+		self.activate_monster("k09", "golem")
 		return

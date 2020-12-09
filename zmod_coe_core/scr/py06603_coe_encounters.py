@@ -121,3 +121,7 @@ class CtrlShadow(ctrl_behaviour.CtrlBehaviour):
 		#npc.condition_add("Monster_No_Damage")
 		npc.condition_add_with_args("Monster Damage Type", toee.D20DT_SUBDUAL)
 		return
+
+class CtrlGolemWoodKassen(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14895
