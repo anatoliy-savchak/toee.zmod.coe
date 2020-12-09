@@ -12,8 +12,11 @@
 {62}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{A voice booms out from the darkness, saying, "Magic is the key." The voice slowly fades, leaving a dreadful silence.}{}{}{}{}
 {69}{Close}{}{1}{}{0}{npc.destroy()}
 
-{70}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{}{}{}{cs().display_encounter_k07();}
-{79}{Close}{}{1}{}{0}{npc.destroy()}
+{80}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{This long corridor is flanked by a row of human statues, set into alcoves on each side. The statues look like Kassen, and each one holds a longsword out in front of it. The blades of roughly half the statues are wrapped in leather padding.}{}{}{}{cs().display_encounter_k08();}
+{89}{Close}{}{1}{}{0}{npc.destroy()}
 
 {90}{One half of this lofty chamber has a lowered floor, with stairs on either side to reach the bottom. Standing opposite the door is a tall wooden statue of Kassen grasping a gigantic wooden shield in each hand. One of the shields is inscribed with the word "home," while the other reads "family."}{One half of this lofty chamber has a lowered floor, with stairs on either side to reach the bottom. Standing opposite the door is a tall wooden statue of Kassen grasping a gigantic wooden shield in each hand. One of the shields is inscribed with the word "home," while the other reads "family."}{}{}{}{cs().display_encounter_k09();}
 {99}{Close}{}{1}{}{0}{cs().activate_encounter_k09();npc.destroy()}
+
+{100}{This small chamber has a table on the opposite side of the room. On top of this table are a number of items, each with a small note attached with PC names.}{This small chamber has a table on the opposite side of the room. On top of this table are a number of items, each with a small note attached with PC names.}{}{}{}{cs().display_encounter_k10();}
+{109}{Take items.}{}{1}{}{0}{cs().activate_encounter_k10();npc.destroy()}

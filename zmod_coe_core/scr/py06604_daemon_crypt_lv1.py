@@ -1,7 +1,7 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon, const_proto_items
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
 import startup_zmod, utils_sneak, monster_info, copy, coe_consts, math, utils_locks, utils_trap, const_traps
-import py06603_coe_encounters, const_proto_containers
+import py06603_coe_encounters, const_proto_containers, const_proto_list_weapons_masterwork, const_proto_potions, const_proto_wands
 
 MAP_ID_CRYPT_LV1 = 5128
 CRYPT_LV1 = "CRYPT_LV1"
@@ -119,8 +119,9 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			#self.place_encounter_k04()
 			#self.place_encounter_k05()
 			#self.place_encounter_k06()
-			#self.place_encounter_k07()
-			self.place_encounter_k09()
+			#self.place_encounter_k08()
+			#self.place_encounter_k09()
+			self.place_encounter_k10()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -303,16 +304,16 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 	def place_encounter_k06(self):
 		self.create_promter_at(utils_obj.sec2loc(463, 497), self.get_dialogid_default(), 60, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Key Pool", const_toee.rotation_0700_oclock)
 
-		def do_lock(locked_door):
+		def do_lock(locked_door, key_id):
 			assert isinstance(locked_door, toee.PyObjHandle)
 			if (locked_door):
 				locked_door.portal_flag_set(toee.OPF_LOCKED)
-				utils_locks.portal_setup_dc(locked_door, utils_locks.LOCK_DC_GOOD, coe_consts.KEY_CRYPT1_DOOR_9_10 \
+				utils_locks.portal_setup_dc(locked_door, utils_locks.LOCK_DC_GOOD, key_id \
 					, utils_locks.HP_DOOR_WOODEN_STRONG, utils_locks.HARDNESS_DOOR_WOODEN_STRONG, utils_locks.BREAK_DC_DOOR_WOODEN_STRONG)
 			return
 
-		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(467, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_7, toee.OLC_PORTAL))
-		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_8, toee.OLC_PORTAL))
+		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(467, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_7, toee.OLC_PORTAL), coe_consts.KEY_CRYPT1_DOOR_6_7)
+		do_lock(utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 494), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_6_8, toee.OLC_PORTAL), coe_consts.KEY_CRYPT1_DOOR_9_10)
 		return
 
 	def display_encounter_k06(self):
@@ -325,8 +326,8 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 			key.obj_set_int(toee.obj_f_key_pad_i_1, toee.OIF_IS_MAGICAL)
 		return
 
-	def place_encounter_k07(self):
-		self.create_promter_at(utils_obj.sec2loc(460, 488), self.get_dialogid_default(), 70, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "The Gauntlet", const_toee.rotation_0400_oclock)
+	def place_encounter_k08(self):
+		self.create_promter_at(utils_obj.sec2loc(460, 488), self.get_dialogid_default(), 80, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "The Gauntlet", const_toee.rotation_0400_oclock)
 
 		door = utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 474), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_8_9, toee.OLC_PORTAL)
 		if (door):
@@ -334,11 +335,11 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 		else: debug.breakp("no door!")
 		return
 
-	def display_encounter_k07(self):
+	def display_encounter_k08(self):
 		return
 
 	def place_encounter_k09(self):
-		self.create_promter_at(utils_obj.sec2loc(463, 468), self.get_dialogid_default(), 90, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Hungry Beetle", const_toee.rotation_0400_oclock)
+		self.create_promter_at(utils_obj.sec2loc(463, 468), self.get_dialogid_default(), 90, 5, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "The Shield Guardian", const_toee.rotation_0400_oclock)
 		if (not self.delayed_monsters()):
 			self.place_monsters_k09()
 		return
@@ -357,4 +358,135 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 	def activate_encounter_k09(self):
 		print("activate_encounter_k09")
 		self.activate_monster("k09", "golem")
+		return
+
+	def place_encounter_k10(self):
+		self.create_promter_at(utils_obj.sec2loc(458, 451), self.get_dialogid_default(), 100, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Supply Vault", const_toee.rotation_0400_oclock)
+
+		if (not coe_consts.ISDEBUG):
+			door = utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(460, 457), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_9_10, toee.OLC_PORTAL)
+			if (door):
+				utils_locks.portal_setup_dc(door, utils_locks.LOCK_DC_GOOD, coe_consts.KEY_CRYPT1_DOOR_9_10 \
+					, utils_locks.HP_DOOR_WOODEN_STRONG, utils_locks.HARDNESS_DOOR_WOODEN_STRONG, utils_locks.BREAK_DC_DOOR_WOODEN_STRONG)
+			else: debug.breakp("no door!")
+		return
+
+	def display_encounter_k10(self):
+		return
+
+	@staticmethod
+	def give_treasure():
+		def announce(pc, item):
+			assert isinstance(pc, toee.PyObjHandle)
+			assert isinstance(item, toee.PyObjHandle)
+			if (item): 
+				pc.float_text_line("Received {}!".format(item.description), toee.tf_green)
+			return item
+
+		def make_new_weapon(pc):
+			assert isinstance(pc, toee.PyObjHandle)
+			newweapon = None
+			weapon = pc.item_worn_at(toee.item_wear_weapon_primary)
+			if (weapon):
+				protoid = weapon.proto
+				if (protoid in const_proto_list_weapons_masterwork.PROTOS_WEAPON_2MASTERWORK):
+					protoid = const_proto_list_weapons_masterwork.PROTOS_WEAPON_2MASTERWORK[protoid]
+					if (protoid):
+						if (not utils_item.item_has(pc, protoid)):
+							newweapon = utils_item.item_create_in_inventory(protoid, pc, 1, 1)
+							announce(pc, newweapon)
+			return newweapon
+
+		def give_scroll(pc, proto):
+			assert isinstance(pc, toee.PyObjHandle)
+			assert isinstance(proto, int)
+			scroll = utils_item.item_create_in_inventory(proto, pc, 1, 1)
+			scroll.item_flag_set(toee.OIF_IDENTIFIED)
+			announce(pc, scroll)
+			return scroll
+
+		def give_fighter_potion(pc):
+			assert isinstance(pc, toee.PyObjHandle)
+			item = utils_item.item_create_in_inventory(const_proto_potions.PROTO_POTION_OIL_OF_MAGIC_WEAPON, pc, 1, 1)
+			item.item_flag_set(toee.OIF_IDENTIFIED)
+			announce(pc, item)
+			return item
+
+		def give_used_wand(pc, proto, uses):
+			assert isinstance(pc, toee.PyObjHandle)
+			assert isinstance(proto, int)
+			assert isinstance(uses, int)
+			wand = utils_item.item_create_in_inventory(proto, pc, 1, 1)
+			wand.item_flag_set(toee.OIF_IDENTIFIED)
+			wand.obj_set_int(toee.obj_f_item_spell_charges_idx, uses)
+			announce(pc, wand)
+			return wand
+
+		for pc in toee.game.leader.group_list():
+			pcclass1 = pc.char_classes[0]
+			if (pcclass1 == toee.stat_level_barbarian):
+				give_fighter_potion(pc)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_BULLS_STRENGTH)
+
+			elif (pcclass1 == toee.stat_level_bard):
+				give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_CATS_GRACE)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_CONFUSION_LESSER)
+
+			elif (pcclass1 == toee.stat_level_cleric):
+				give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_RESTORATION_LESSER)
+				give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_CURE_LIGHT_WOUNDS, 10)
+
+			elif (pcclass1 == toee.stat_level_druid):
+				give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_BARKSKIN)
+				give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_PRODUCE_FLAME, 10)
+
+			elif (pcclass1 == toee.stat_level_fighter):
+				give_fighter_potion(pc)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_BULLS_STRENGTH)
+
+			elif (pcclass1 == toee.stat_level_monk):
+				give_scroll(pc, const_proto_potions.PROTO_POTION_OF_CURE_LIGHT_WOUNDS)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_OWLS_WISDOM)
+
+			elif (pcclass1 == toee.stat_level_paladin):
+				give_fighter_potion(pc)
+				#give_scroll(pc, const_proto_potions.PROTO_POTION_OF_CURE_LIGHT_WOUNDS) # eagle splendor
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_CURE_LIGHT_WOUNDS)
+
+			elif (pcclass1 == toee.stat_level_ranger):
+				give_fighter_potion(pc)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_CATS_GRACE)
+
+			elif (pcclass1 == toee.stat_level_rogue):
+				give_scroll(pc, const_proto_potions.PROTO_POTION_OF_CURE_LIGHT_WOUNDS)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_INVISIBILITY)
+
+			elif (pcclass1 == toee.stat_level_sorcerer):
+				give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_SCORCHING_RAY)
+				give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_MAGIC_MISSILES_1ST, 10)
+
+			elif (pcclass1 == toee.stat_level_wizard):
+				give_scroll(pc, const_proto_scrolls.PROTO_SCROLL_OF_WEB)
+				#give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_MAGE_ARMOR, 10)
+				if (not utils_item.item_has(pc, const_proto_wands.PROTO_WAND_OF_DISRUPT_UNDEAD)):
+					give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_DISRUPT_UNDEAD, 50)
+				else: give_used_wand(pc, const_proto_wands.PROTO_WAND_OF_MAGIC_MISSILES_1ST, 10)
+
+			else:
+				give_fighter_potion(pc)
+				if (not make_new_weapon(pc)):
+					give_scroll(pc, const_proto_potions.PROTO_POTION_OF_BULLS_STRENGTH)
+		return
+
+	def activate_encounter_k10(self):
+		CtrlCryptLv1.give_treasure()
+		#	import py06604_daemon_crypt_lv1
+		#	py06604_daemon_crypt_lv1.CtrlCryptLv1.give_treasure()
 		return
