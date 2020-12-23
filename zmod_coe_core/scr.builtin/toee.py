@@ -529,7 +529,7 @@ class PyObjHandle(object):
 		return
 
 	def spell_memorized_add(self, spellIdx, spellClassCode, slotLevel):
-		"""npc.spell_memorized_add(int[skill_appraise...]: spellIdx, int: spellClassCode, int: slotLevel) -> None"""
+		"""npc.spell_memorized_add(int: spellIdx, int: spellClassCode, int: slotLevel) -> None"""
 		return
 	
 	def spells_pending_to_memorized(self):

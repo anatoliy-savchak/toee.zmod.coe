@@ -115,7 +115,7 @@
 {1209}{E:}{}{1}{}{0}{}
 
 {1230}{Barter options:}{Barter options:}{}{}{}{}
-{1232}{B:Buy Divine Wand Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_0)}
+{1231}{B:Buy Divine Wand Level 0}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_0)}
 {1232}{B:Buy Divine Wand Level 1}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_1)}
 {1233}{B:Buy Divine Wand Level 2}{}{1}{}{0}{utils_item.barter_list(npc, const_proto_list_wands.PROTOS_WANDS_DIVINE_LEVEL_2)}
 {1237}{Next...}{}{1}{}{1240}{}

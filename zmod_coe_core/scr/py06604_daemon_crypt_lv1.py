@@ -113,29 +113,27 @@ class CtrlCryptLv1(ctrl_daemon.CtrlDaemon):
 
 		if (not self.encounters_placed):
 			pass
-			#self.place_encounter_k01()
+			self.place_encounter_k01()
 			self.place_encounter_k03()
-			#self.place_encounter_k04()
-			#self.place_encounter_k05()
-			#self.place_encounter_k06()
-			#self.place_encounter_k07()
-			#self.place_encounter_k08()
-			#self.place_encounter_k09()
-			#self.place_encounter_k10()
-			#self.place_encounter_k11()
+			self.place_encounter_k04()
+			self.place_encounter_k05()
+			self.place_encounter_k06()
+			self.place_encounter_k07()
+			self.place_encounter_k08()
+			self.place_encounter_k09()
+			self.place_encounter_k10()
+			self.place_encounter_k11()
 			self.place_encounter_k12()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
 		self.check_sleep_status_update(1)
 
-		#toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 479, 494) #smith
-		#toee.game.fade_and_teleport(0, 0, 0, self.get_map_default(), 466, 468) #near fontain entrance
 		utils_obj.scroll_to_leader()
 		return
 
 	def delayed_monsters(self):
-		return 1
+		return 0
 
 	def monster_setup(self, npc, encounter_name, monster_code_name, monster_name, no_draw = 1, no_kos = 1, faction = None):
 		super(CtrlCryptLv1, self).monster_setup(npc, encounter_name, monster_code_name, monster_name, no_draw, no_kos, faction)

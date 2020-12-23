@@ -1,5 +1,5 @@
 import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod
-import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls
+import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_wands
 
 def san_dialog(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)

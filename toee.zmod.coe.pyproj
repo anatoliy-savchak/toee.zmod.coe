@@ -163,6 +163,7 @@
     <Compile Include="zmod_coe_core\scr\tpModifiers\caster_level_base_add.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\caster_level_mod.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\cast_defensively_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\lifting_bonus.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\chained.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\close_door.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\combat_messages.py" />
