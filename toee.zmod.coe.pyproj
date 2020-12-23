@@ -99,6 +99,7 @@
     <Compile Include="zmod_coe_core\scr\py06111_sneak.py" />
     <Compile Include="zmod_coe_core\scr\py06122_cormyr_prompter.py" />
     <Compile Include="zmod_coe_core\scr\py06214_doors_autodestroy.py" />
+    <Compile Include="zmod_coe_core\scr\py06607_daemon_crypt_lv2.py" />
     <Compile Include="zmod_coe_core\scr\py06604_daemon_crypt_lv1.py" />
     <Compile Include="zmod_coe_core\scr\py06603_coe_encounters.py" />
     <Compile Include="zmod_coe_core\scr\py06602_daemon_road_to_coe.py" />
