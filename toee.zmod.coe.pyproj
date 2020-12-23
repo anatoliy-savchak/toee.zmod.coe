@@ -256,6 +256,7 @@
     <Content Include="zmod_coe\rules\MapList.mes" />
     <Content Include="zmod_coe_core\dlg\00406Game_Portal.dlg" />
     <Content Include="zmod_coe_core\dlg\06601_village_npc.dlg" />
+    <Content Include="zmod_coe_core\dlg\06607_daemon_crypt_lv2.dlg" />
     <Content Include="zmod_coe_core\dlg\06604_daemon_crypt_lv1.dlg" />
     <Content Include="zmod_coe_core\dlg\14710_smith.dlg" />
     <Content Include="zmod_coe_core\dlg\14711_smith_wife.dlg" />

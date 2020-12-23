@@ -113,6 +113,7 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 
 		if (not self.encounters_placed):
 			pass
+			self.place_encounter_k13()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -141,4 +142,8 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 	def critter_dying(self, attachee, triggerer):
 		super(CtrlCryptLv2, self).critter_dying(attachee, triggerer)
 		assert isinstance(attachee, toee.PyObjHandle)
+		return
+
+	def place_encounter_k13(self):
+		self.create_promter_at(utils_obj.sec2loc(499, 481), self.get_dialogid_default(), 130, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Crossroads", const_toee.rotation_0700_oclock)
 		return
