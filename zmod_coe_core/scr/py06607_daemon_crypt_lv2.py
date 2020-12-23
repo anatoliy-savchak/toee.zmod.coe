@@ -114,7 +114,8 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 		if (not self.encounters_placed):
 			pass
 			#self.place_encounter_k13()
-			self.place_encounter_k14()
+			#self.place_encounter_k14()
+			self.place_encounter_k15()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -175,4 +176,25 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 		self.activate_monster("k14", "frog1")
 		self.activate_monster("k14", "frog2")
 		self.activate_monster("k14", "frog3")
+		return
+
+	def place_encounter_k15(self):
+		self.create_promter_at(utils_obj.sec2loc(495, 468), self.get_dialogid_default(), 150, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Azure Fungus", const_toee.rotation_0500_oclock)
+		self.place_monsters_k15()
+		return
+
+	def place_monsters_k15(self):
+		self.create_npc_at(utils_obj.sec2loc(495, 466), py06603_coe_encounters.CtrlFungusArea, const_toee.rotation_0500_oclock, "k15", "fungus", None, 0, 0)
+
+		body = toee.game.obj_create(14774, utils_obj.sec2loc(498, 463))
+		body.obj_set_int(toee.obj_f_hp_damage, 50)
+
+		body = toee.game.obj_create(14774, utils_obj.sec2loc(498, 464))
+		body.obj_set_int(toee.obj_f_hp_damage, 50)
+
+		body = toee.game.obj_create(14774, utils_obj.sec2loc(497, 463))
+		body.obj_set_int(toee.obj_f_hp_damage, 50)
+
+		body = toee.game.obj_create(14721, utils_obj.sec2loc(497, 467))
+		body.obj_set_int(toee.obj_f_hp_damage, 50)
 		return

@@ -46,6 +46,16 @@ def san_will_kos(attachee, triggerer):
 	else: print("san_will_kos ctrl not found")
 	return toee.RUN_DEFAULT
 
+def san_heartbeat(attachee, triggerer):
+	assert isinstance(attachee, toee.PyObjHandle)
+	assert isinstance(triggerer, toee.PyObjHandle)
+	#print("san_heartbeat({}, {})".format(attachee, triggerer))
+	ctrl = ctrl_behaviour.CtrlBehaviour.get_from_obj(attachee)
+	if (ctrl):
+		return ctrl.heartbeat(attachee, triggerer)
+	else: print("san_heartbeat ctrl not found")
+	return toee.RUN_DEFAULT
+
 class CtrlOrc(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14899
@@ -153,3 +163,72 @@ class CtrlRoldare(ctrl_behaviour.CtrlBehaviour):
 class CtrlGiantFrog(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14721
+
+class CtrlFungusArea(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14831
+
+	def after_created(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		npc.scripts[const_toee.sn_heartbeat] = COE_ENCOUNTERS
+		self.vars["discharge_counter"] = 9
+		name_id = toee.game.make_custom_name("Azure Fungus")
+		npc.obj_set_int(const_toee.obj_f_description_correct, name_id)
+		npc.obj_set_int(toee.obj_f_critter_description_unknown, name_id)
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+
+		discharge_counter = self.get_var("discharge_counter")
+		if (discharge_counter is None): discharge_counter = 0
+		discharge_counter += 1
+		self.vars["discharge_counter"] = discharge_counter
+
+		discharge_times_roll = self.get_var("discharge_times_roll")
+		if (discharge_times_roll is None):
+			discharge_times_roll = toee.game.random_range(1, 10)*3
+			self.vars["discharge_times_roll"] = discharge_times_roll
+			print("discharge discharge_times_roll: {}, discharge_counter: {}".format(discharge_times_roll, discharge_counter))
+
+		#print("discharge discharge_times_roll: {}, discharge_counter: {}".format(discharge_times_roll, discharge_counter))
+		if (discharge_times_roll <= discharge_counter):
+			discharge_counter = toee.game.random_range(1, 6)*-1*3
+			discharge_times_roll = toee.game.random_range(1, 10)*3
+			print("discharged discharge_times_roll: {}, discharge_counter: {}".format(discharge_times_roll, discharge_counter))
+			self.vars["discharge_counter"] = discharge_counter
+			self.vars["discharge_times_roll"] = discharge_times_roll
+			self.do_discharge(attachee)
+
+		return toee.RUN_DEFAULT
+
+	def do_discharge(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		rolled = None
+		dice = None
+		for obj in toee.game.obj_list_range(npc.location, 10, toee.OLC_CRITTERS):
+			if (obj == npc): continue
+			f = obj.object_flags_get()
+			if ((f & toee.OF_OFF) or (f & toee.OF_DESTROYED) or (f & toee.OF_DONTDRAW)): continue
+			if (obj.stat_level_get(toee.stat_hp_current) <= 10): continue
+			saved = obj.saving_throw(14, toee.D20_Save_Fortitude, toee.D20STD_F_NONE, npc)
+			if (rolled is None):
+				dice = toee.dice_new("3d6")
+				rolled = dice.roll()
+			reduction = 100
+			if (saved):
+				reduction = toee.DAMAGE_REDUCTION_HALF
+			obj.damage_with_reduction(npc, toee.D20DT_ELECTRICITY, dice, toee.D20DAP_UNSPECIFIED, reduction, toee.D20A_CLASS_ABILITY_SA)
+			toee.game.pfx_lightning_bolt(npc, obj.location, obj.off_x, obj.off_y, 0)
+			toee.game.particles( 'sp-Shocking Grasp', obj)
+			toee.game.sound(14622)
+			#obj.critter_flag_unset(toee.OCF_COMBAT_MODE_ACTIVE)
+
+		if (rolled):
+			#toee.game.particles("sp-Cone of Cold", npc)
+			npc.ai_stop_attacking()
+			for pc in toee.game.leader.group_list():
+				pc.critter_flag_unset(toee.OCF_COMBAT_MODE_ACTIVE)
+			#npc.destroy()
+		return

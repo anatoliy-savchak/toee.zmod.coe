@@ -3,3 +3,6 @@
 
 {140}{The mournful wailing grows louder with each step toward the door at the end of this musty hallway. There are a host of bones strewn on the floor here, many of which are cracked and broken.}{The mournful wailing grows louder with each step toward the door at the end of this musty hallway. There are a host of bones strewn on the floor here, many of which are cracked and broken.}{}{}{}{cs().display_encounter_k14();}
 {149}{Close}{}{1}{}{0}{cs().activate_encounter_k14();npc.destroy()}
+
+{150}{A strange blue fungus covers the walls, ceiling, and pillars of this waterlogged chamber. Its wispy strands stretch out from the wall like roots dangling in the air, twitching and swaying in an unseen breeze. Floating in the water are four decaying corpses - three large rats and one giant frog - with strange burn marks all over their bodies.}{A strange blue fungus covers the walls, ceiling, and pillars of this waterlogged chamber. Its wispy strands stretch out from the wall like roots dangling in the air, twitching and swaying in an unseen breeze. Floating in the water are four decaying corpses - three large rats and one giant frog - with strange burn marks all over their bodies.}{}{}{}{}
+{159}{Close}{}{1}{}{0}{npc.destroy()}

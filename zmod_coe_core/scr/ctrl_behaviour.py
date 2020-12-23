@@ -183,3 +183,8 @@ class CtrlBehaviour(object):
 			tac.add_total_defence()
 			return tac
 		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+		return toee.RUN_DEFAULT
