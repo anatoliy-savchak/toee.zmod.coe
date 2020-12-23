@@ -149,3 +149,7 @@ class CtrlRoldare(ctrl_behaviour.CtrlBehaviour):
 		utils_item.item_create_in_inventory(const_proto_weapon.PROTO_WEAPON_DAGGER, npc)
 		npc.item_wield_best_all()
 		return
+
+class CtrlGiantFrog(ctrl_behaviour.CtrlBehaviour):
+	@classmethod
+	def get_proto_id(cls): return 14721

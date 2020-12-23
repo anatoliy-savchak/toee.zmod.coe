@@ -1,2 +1,5 @@
 {130}{At the bottom of the stairs is a circular chamber with three passageways leading from it. In the center is a small stone pedestal. The sound of dripping water can be heard coming from the eastern passageway, while the stench of rot emanates from the west.}{At the bottom of the stairs is a circular chamber with three passageways leading from it. In the center is a small stone pedestal. The sound of dripping water can be heard coming from the eastern passageway, while the stench of rot emanates from the west.}{}{}{}{}
 {139}{Close}{}{1}{}{0}{npc.destroy()}
+
+{140}{The mournful wailing grows louder with each step toward the door at the end of this musty hallway. There are a host of bones strewn on the floor here, many of which are cracked and broken.}{The mournful wailing grows louder with each step toward the door at the end of this musty hallway. There are a host of bones strewn on the floor here, many of which are cracked and broken.}{}{}{}{cs().display_encounter_k14();}
+{149}{Close}{}{1}{}{0}{cs().activate_encounter_k14();npc.destroy()}

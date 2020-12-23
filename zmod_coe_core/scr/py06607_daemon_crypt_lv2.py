@@ -113,7 +113,8 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 
 		if (not self.encounters_placed):
 			pass
-			self.place_encounter_k13()
+			#self.place_encounter_k13()
+			self.place_encounter_k14()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -146,4 +147,32 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 
 	def place_encounter_k13(self):
 		self.create_promter_at(utils_obj.sec2loc(499, 481), self.get_dialogid_default(), 130, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Crossroads", const_toee.rotation_0700_oclock)
+		return
+
+	def place_encounter_k14(self):
+		self.create_promter_at(utils_obj.sec2loc(506, 468), self.get_dialogid_default(), 140, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Angry Frogs", const_toee.rotation_0500_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k14()
+		return
+
+	def place_monsters_k14(self):
+		self.create_npc_at(utils_obj.sec2loc(508, 457), py06603_coe_encounters.CtrlGiantFrog, const_toee.rotation_0500_oclock, "k14", "frog1")
+		self.create_npc_at(utils_obj.sec2loc(503, 457), py06603_coe_encounters.CtrlGiantFrog, const_toee.rotation_0500_oclock, "k14", "frog2")
+		self.create_npc_at(utils_obj.sec2loc(506, 461), py06603_coe_encounters.CtrlGiantFrog, const_toee.rotation_0500_oclock, "k14", "frog3")
+		return
+
+	def display_encounter_k14(self):
+		print("display_encounter_k14")
+		if (self.delayed_monsters()):
+			self.place_monsters_k14()
+		self.reveal_monster("k14", "frog1")
+		self.reveal_monster("k14", "frog2")
+		self.reveal_monster("k14", "frog3")
+		return
+
+	def activate_encounter_k14(self):
+		print("activate_encounter_k14")
+		self.activate_monster("k14", "frog1")
+		self.activate_monster("k14", "frog2")
+		self.activate_monster("k14", "frog3")
 		return
