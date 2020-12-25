@@ -60,6 +60,8 @@ def san_use(attachee, triggerer):
 		return toee.SKIP_DEFAULT
 	elif (attachee.name == coe_consts.PORTAL_CRYPT_OF_EVERFLAME_2CRYPT_OF_EVERFLAME_BELOW):
 		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_CRYPT_LV2, 468, 507)
+	elif (attachee.name == coe_consts.NAME_WHEEL):
+		cs().do_wheel_click(attachee, triggerer)
 	return toee.RUN_DEFAULT
 
 def cs():
@@ -72,6 +74,7 @@ def cs():
 	else: return None
 	#print("data: {}".format(result))
 	#debugg.breakp("csl")
+	assert isinstance(result, CtrlCryptLv2)
 	return result
 
 class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
@@ -115,7 +118,8 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 			pass
 			#self.place_encounter_k13()
 			#self.place_encounter_k14()
-			self.place_encounter_k15()
+			#self.place_encounter_k15()
+			self.place_encounter_k16()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -197,4 +201,66 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 
 		body = toee.game.obj_create(14721, utils_obj.sec2loc(497, 467))
 		body.obj_set_int(toee.obj_f_hp_damage, 50)
+		return
+
+	def place_encounter_k16(self):
+		self.create_promter_at(utils_obj.sec2loc(484, 459), self.get_dialogid_default(), 160, 10, py06122_cormyr_prompter.PROMTER_DIALOG_METHOD_DIALOG, "Angry Frogs", const_toee.rotation_0800_oclock)
+		if (not self.delayed_monsters()):
+			self.place_monsters_k16()
+		return
+
+	def place_monsters_k16(self):
+		self.create_npc_at(utils_obj.sec2loc(477, 459), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton1")
+		self.create_npc_at(utils_obj.sec2loc(475, 460), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton2")
+		self.create_npc_at(utils_obj.sec2loc(477, 461), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton3")
+
+		self.create_npc_at(utils_obj.sec2loc(477, 464), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton4")
+		self.create_npc_at(utils_obj.sec2loc(476, 466), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton5")
+		self.create_npc_at(utils_obj.sec2loc(478, 467), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton6")
+
+		self.create_npc_at(utils_obj.sec2loc(479, 462), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton7")
+		self.create_npc_at(utils_obj.sec2loc(479, 465), py06603_coe_encounters.CtrlSkeletonEntry, const_toee.rotation_0800_oclock, "k16", "skeleton8")
+		return
+
+	def display_encounter_k16(self):
+		print("display_encounter_k16")
+		if (self.delayed_monsters()):
+			self.place_monsters_k16()
+		self.reveal_monster("k16", "skeleton1")
+		self.reveal_monster("k16", "skeleton2")
+		self.reveal_monster("k16", "skeleton3")
+		self.reveal_monster("k16", "skeleton4")
+		self.reveal_monster("k16", "skeleton5")
+		self.reveal_monster("k16", "skeleton6")
+		self.reveal_monster("k16", "skeleton7")
+		self.reveal_monster("k16", "skeleton8")
+		return
+
+	def activate_encounter_k16(self):
+		print("activate_encounter_k16")
+		self.activate_monster("k16", "skeleton1")
+		self.activate_monster("k16", "skeleton2")
+		self.activate_monster("k16", "skeleton3")
+		self.activate_monster("k16", "skeleton4")
+		self.activate_monster("k16", "skeleton5")
+		self.activate_monster("k16", "skeleton6")
+		self.activate_monster("k16", "skeleton7")
+		self.activate_monster("k16", "skeleton8")
+		return
+
+	def do_wheel_click(self, wheel, pc):
+		assert isinstance(wheel, toee.PyObjHandle)
+		assert isinstance(pc, toee.PyObjHandle)
+
+		portcullis = utils_obj.find_nearest_obj_by_nameid_loc(utils_obj.sec2loc(483, 497), 10, coe_consts.NAME_DOOR_CRYPT1_DOOR_19_20, toee.OLC_PORTAL)
+		if (portcullis):
+			locked = portcullis.portal_flags_get() & toee.OPF_LOCKED
+			msg = None
+			if (locked): 
+				portcullis.portal_flag_unset(toee.OPF_LOCKED)
+				msg = "Sound of distant door unlocking..."
+			else: 
+				portcullis.portal_flag_set(toee.OPF_LOCKED)
+				msg = "Sound of distant door locking..."
+		wheel.float_text_line(msg)
 		return

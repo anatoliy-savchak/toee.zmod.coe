@@ -24,6 +24,12 @@
 {831}{Crypt1 Door 8-9}
 {832}{Crypt1 Door 9-10}
 {833}{Crypt1 Door 11-12}
+{835}{Crypt2 Door 13-14}
+{836}{Crypt2 Door 15-14}
+{837}{Crypt2 Door 18-19}
+{838}{Crypt2 Door 19-20}
+{839}{Crypt2 Door 20-21}
+{840}{Crypt2 Door 21-22}
 
 // Container ranges from 1200 - 1599
 {1200}{Container}
@@ -40,6 +46,7 @@
 {1817}{CryptOfEverflame2Road2Everflame}
 {1818}{CryptOfEverflame2CryptOfEverflameBelow}
 {1819}{CryptOfEverflameBelow2CryptOfEverflame}
+{1821}{Wheel}
 
 
 // Projectile ranges from 1980 - 1999
