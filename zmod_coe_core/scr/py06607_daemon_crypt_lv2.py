@@ -62,6 +62,8 @@ def san_use(attachee, triggerer):
 		toee.game.fade_and_teleport(0, 0, 0, coe_consts.MAP_ID_CRYPT_LV2, 468, 507)
 	elif (attachee.name == coe_consts.NAME_WHEEL):
 		cs().do_wheel_click(attachee, triggerer)
+	elif (attachee.name == coe_consts.NAME_WELL):
+		return cs().do_well_click(attachee, triggerer)
 	return toee.RUN_DEFAULT
 
 def cs():
@@ -264,3 +266,30 @@ class CtrlCryptLv2(ctrl_daemon.CtrlDaemon):
 				msg = "Sound of distant door locking..."
 		wheel.float_text_line(msg)
 		return
+
+	def do_well_click(self, wheel, pc):
+		assert isinstance(wheel, toee.PyObjHandle)
+		assert isinstance(pc, toee.PyObjHandle)
+
+		now = toee.game.time.time_game_in_hours2(toee.game.time)
+		yesterday = now - 24
+		store = utils_storage.obj_storage(pc)
+		fountain_last_used = None
+		if ("fountain_last_used" in store.data):
+			fountain_last_used = store.data["fountain_last_used"]
+		if (not fountain_last_used or fountain_last_used <= yesterday):
+			fountain_last_used = now
+			store.data["fountain_last_used"] = fountain_last_used
+			pc.float_text_line("Refreshing!", toee.tf_green)
+			potion = utils_item.item_create_in_inventory(const_proto_potions.PROTO_POTION_OF_CURE_MODERATE_WOUNDS, pc, 1, 0)
+			#potion = toee.game.obj_create(const_proto_potions.PROTO_POTION_OF_CURE_MODERATE_WOUNDS, pc.location)
+			if (potion):
+				pc.use_item(potion)
+			potion = utils_item.item_create_in_inventory(const_proto_potions.PROTO_POTION_OF_RESTORATION, pc, 1, 0)
+			#potion = toee.game.obj_create(const_proto_potions.PROTO_POTION_OF_RESTORATION, pc.location)
+			if (potion):
+				pc.use_item(potion)
+		else:
+			pc.float_text_line("Already used today", toee.tf_yellow)
+
+		return toee.SKIP_DEFAULT

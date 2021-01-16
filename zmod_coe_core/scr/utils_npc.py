@@ -414,3 +414,27 @@ class HairStyle:
 	def from_npc(cls, npc):
 		assert isinstance(npc, toee.PyObjHandle)
 		return cls(npc.obj_get_int(toee.obj_f_critter_hair_style))
+
+class Waypoint:
+	def __init__(self, x, y, rotation, delay, flags = 0, anim1 = 0):
+		self.flags = flags
+		self.x = x
+		self.y = y
+		self.off_x = 0
+		self.off_y = 0
+		self.rotation = rotation
+		self.delay = delay
+		self.anim1 = anim1
+		self.anim2 = 0
+		self.anim3 = 0
+		self.anim4 = 0
+		self.anim5 = 0
+		self.anim6 = 0
+		self.anim7 = 0
+		self.anim8 = 0
+		return
+
+class WaypointFlag:
+    FixedRotation = 1
+    Delay = 2
+    Animate = 4

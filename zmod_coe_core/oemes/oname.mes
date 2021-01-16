@@ -33,7 +33,7 @@
 
 // Container ranges from 1200 - 1599
 {1200}{Container}
-
+{1220}{Well}
 
 // Scenery ranges from 1600 - 1799
 {1600}{Scenery}
@@ -47,6 +47,7 @@
 {1818}{CryptOfEverflame2CryptOfEverflameBelow}
 {1819}{CryptOfEverflameBelow2CryptOfEverflame}
 {1821}{Wheel}
+
 
 
 // Projectile ranges from 1980 - 1999

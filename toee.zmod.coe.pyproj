@@ -199,6 +199,7 @@
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_bite.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_ranged_poison.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\monster_trip_ex.py" />
+    <Compile Include="zmod_coe_core\scr\tpModifiers\asleep.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\napping.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\netted.py" />
     <Compile Include="zmod_coe_core\scr\tpModifiers\net_throw.py" />

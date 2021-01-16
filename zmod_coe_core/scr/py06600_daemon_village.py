@@ -1,6 +1,6 @@
 import toee, debug, utils_toee, utils_storage, utils_obj, utils_item, const_proto_weapon, const_proto_armor, const_toee, ctrl_daemon
 import ctrl_behaviour, py06122_cormyr_prompter, factions_zmod, const_proto_scrolls, const_proto_wands, utils_npc
-import startup_zmod, utils_sneak, monster_info, copy, coe_consts
+import startup_zmod, utils_sneak, monster_info, copy, coe_consts, const_animate
 import py14710_smith, py14711_smith_wife, py14712_wizard, py14713_priest, py06601_village_npc, py14714_mayor
 
 # import py06500_daemon_barovia
@@ -115,13 +115,14 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 		if (not self.last_leave_shrs):
 			self.last_leave_shrs = this_entrance_time
 
-		if (not self.encounters_placed):
+		if (not self.encounters_placed and 1):
 			self.create_npc_at(utils_obj.sec2loc(478, 508), py14710_smith.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(476, 505), py14711_smith_wife.CtrlVillageSmithWife, const_toee.rotation_0800_oclock, "merchant", "smith_wife", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.rotation_1100_oclock, "merchant", "priest", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(475, 475), py14714_mayor.CtrlVillageMayor, const_toee.rotation_1000_oclock, "authority", "mayor", None, 0, 1)
-			self.generate_crowd()
+			#self.generate_crowd()
+			self.generate_animals()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -187,3 +188,41 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 
 	def get_monster_prefix_default(self):
 		return "village"
+
+	def generate_animals(self):
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(474, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig1", None, 0, 1)
+		if (npc):
+			if (1):
+				waypoints = list()
+				waypoints.append(utils_npc.Waypoint(474, 456, const_toee.rotation_1100_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(474, 461, const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 456, const_toee.rotation_0900_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 461, const_toee.rotation_0600_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				npc.npc_waypoints_set(waypoints)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(475, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig2", None, 0, 1)
+		if (npc):
+			if (1):
+				waypoints = list()
+				waypoints.append(utils_npc.Waypoint(475, 456, const_toee.rotation_1100_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 461, const_toee.rotation_0600_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(474, 461, const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 456, const_toee.rotation_0900_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				npc.npc_waypoints_set(waypoints)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(476, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig2", None, 0, 1)
+		if (npc):
+			if (1):
+				waypoints = list()
+				waypoints.append(utils_npc.Waypoint(476, 456, const_toee.rotation_1100_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(474, 461, const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 461, const_toee.rotation_0600_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				waypoints.append(utils_npc.Waypoint(479, 456, const_toee.rotation_0900_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+				npc.npc_waypoints_set(waypoints)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+		return

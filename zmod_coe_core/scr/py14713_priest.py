@@ -27,7 +27,7 @@ class CtrlVillagePriest(ctrl_behaviour.CtrlBehaviour):
 
 		# create inventory
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_CIRCLET_HOODLESS, npc, 1, 1)
-		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_ROBE_WIZARD_WHITE, npc, 1, 1)
+		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_ROBES_WIZARD_WHITE, npc, 1, 1)
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
 		
 		npc.item_wield_best_all()

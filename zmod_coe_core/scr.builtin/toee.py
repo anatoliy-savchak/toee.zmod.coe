@@ -439,6 +439,10 @@ class PyObjHandle(object):
 		"""Get internal field array int value. npc.obj_get_idx_int(int[obj_f_*]: field, subIdx) -> int"""
 		return 0
 
+	def obj_get_idx_int64(self, field, subIdx):
+		"""Get internal field array int value. npc.obj_get_idx_int(int[obj_f_*]: field, subIdx) -> int"""
+		return 0
+
 	def obj_set_idx_int(self, field, subIdx, value):
 		"""Set internal field array int value. npc.obj_set_idx_int(int[obj_f_*]: field, subIdx, value) -> None"""
 		return
@@ -559,7 +563,7 @@ class PyObjHandle(object):
 		"""npc.unconceal() -> int"""
 		return
 
-	def use_item():
+	def use_item(self, item, target = None):
 		"""npc.use_item(PyObjHandle: item, PyObjHandle: target = None) -> int"""
 		return 1
 
