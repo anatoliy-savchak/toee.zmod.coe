@@ -18,6 +18,7 @@ def san_new_map(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#print(attachee.id)
 	#debug.breakp("san_new_map")
+	startup_zmod.zmod_templeplus_config_apply()
 	if (attachee.map != MAP_ID_VILLAGE): toee.RUN_DEFAULT
 	ctrl = CtrlVillage.ensure(attachee)
 	ctrl.place_encounters(1)
@@ -37,11 +38,7 @@ def san_heartbeat(attachee, triggerer):
 	assert isinstance(attachee, toee.PyObjHandle)
 	#debug.breakp("san_heartbeat")
 	if (attachee.map != MAP_ID_VILLAGE): toee.RUN_DEFAULT
-	startup_zmod.zmod_templeplus_config_apply()
 	ctrl = cs()
-	if (not ctrl):
-		ctrl = CtrlVillage.ensure(attachee)
-		ctrl.place_encounters(1)
 	if (ctrl):
 		ctrl.heartbeat()
 	return toee.RUN_DEFAULT
@@ -81,6 +78,8 @@ def cs():
 class CtrlVillage(ctrl_daemon.CtrlDaemon):
 	def __init__(self):
 		super(CtrlVillage, self).__init__()
+		self.last_heartbeat_time_sec = toee.game.time.time_game_in_seconds(toee.game.time)
+		self.last_heartbeat_time_hr = toee.game.time.time_game_in_hours2(toee.game.time)
 		return
 
 	def created(self, npc):
@@ -116,6 +115,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.last_leave_shrs = this_entrance_time
 
 		if (not self.encounters_placed and 1):
+			#debug.breakp("encounters_placed")
 			self.create_npc_at(utils_obj.sec2loc(478, 508), py14710_smith.CtrlVillageSmith, const_toee.rotation_0900_oclock, "merchant", "smith", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(476, 505), py14711_smith_wife.CtrlVillageSmithWife, const_toee.rotation_0800_oclock, "merchant", "smith_wife", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
@@ -148,6 +148,11 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 	def generate_crowd(self):
 		num = 0
 		x = 464
+		pious_max = 8
+		pious_current = 0
+		pious_max_men = 3
+		pious_curr_men = 0
+		subgroup_num = 0
 		while (x <= 472-2):
 			x += 2
 			y = 468
@@ -155,11 +160,28 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 				x1 = x + toee.game.random_range(0, 1)
 				y += 2 + toee.game.random_range(0, 1)
 				num += 1
+				subgroup_num = 0
 				a, b = py06601_village_npc.VillagePlaces.get_random_sqare_place()
-				npc, ctrl = self.create_npc_at(utils_obj.sec2loc(a, b), py06601_village_npc.CtrlVillageRandomWanderer, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
+				cl = py06601_village_npc.CtrlVillageRandomWanderer
+				if (pious_current < pious_max):
+					pious_current += 1
+					cl = py06601_village_npc.CtrlVillageRandomWandererPiousWoman
+					if (pious_curr_men < pious_max_men):
+						pious_curr_men += 1
+						cl = py06601_village_npc.CtrlVillageRandomWandererPious
+					subgroup_num = pious_current
+				else: 
+					break
+				npc, ctrl = self.create_npc_at(utils_obj.sec2loc(a, b), cl, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
 				assert isinstance(ctrl, py06601_village_npc.CtrlVillageRandomWanderer)
 				ctrl.vars["crowd_place"] = (y, x1)
+				ctrl.vars["crowd_num"] = num
+				ctrl.vars["subgroup_num"] = subgroup_num
 				ctrl.make_day_route(npc)
+				
+				nid = utils_toee.make_custom_name("person {} / {}".format(num, subgroup_num))
+				npc.obj_set_int(toee.obj_f_critter_description_unknown, nid)
+				npc.obj_set_int(const_toee.obj_f_description_correct, nid)
 		return
 
 	def quest_everflame_recieved(self):
@@ -222,4 +244,58 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			x, y = py06601_village_npc.VillagePlaces.get_random_sqare_place()
 			npc, ctrl = self.create_npc_at(utils_obj.sec2loc(x, y), py06601_village_npc.CtrlVillageRandomWanderer, const_toee.rotation_1100_oclock, "wanderers", "person{}".format(num), None, 0, 1)
 			ctrl.make_day_route(npc)
+		return
+
+	def heartbeat(self):
+		heartbeat_time_sec = toee.game.time.time_game_in_seconds(toee.game.time)
+		heartbeat_time_hr = toee.game.time.time_game_in_hours2(toee.game.time)
+
+		prev_heartbeat_time_sec = self.last_heartbeat_time_sec
+		prev_heartbeat_time_hr = self.last_heartbeat_time_hr
+
+		self.last_heartbeat_time_sec = heartbeat_time_sec
+		self.last_heartbeat_time_hr = heartbeat_time_hr
+
+		if (prev_heartbeat_time_hr != self.last_heartbeat_time_hr):
+			self.time_hour_passed(prev_heartbeat_time_hr, prev_heartbeat_time_sec)
+		return
+
+	def time_hour_passed(self, prev_heartbeat_time_hr, prev_heartbeat_time_sec):
+		assert isinstance(prev_heartbeat_time_hr, int)
+		assert isinstance(prev_heartbeat_time_sec, int)
+
+		self.validate_minfo()
+		for minfo in self.m2:
+			assert isinstance(minfo, monster_info.MonsterInfo)
+			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
+			if (minfo.name.find("crowd") != -1):
+				npc = toee.game.get_obj_by_id(minfo.id)
+				ctrl = ctrl_behaviour.get_ctrl(minfo.id)
+				ctrl.time_hour_passed(npc)
+		return
+
+	def validate_minfo(self):
+		objs = utils_storage.Storage().objs
+		assert isinstance(objs, dict)
+		m3 = copy.copy(self.m2)
+		for minfo in m3:
+			assert isinstance(minfo, monster_info.MonsterInfo)
+			npc = toee.game.get_obj_by_id(minfo.id)
+			if (not npc):
+				id = minfo.id
+				self.m2.remove(minfo)
+				del self.monsters[minfo.name]
+				del objs[id]
+		return
+
+	def storage_data_loaded_all(self):
+		super(CtrlVillage, self).storage_data_loaded_all()
+		self.validate_minfo()
+		for minfo in self.m2:
+			assert isinstance(minfo, monster_info.MonsterInfo)
+			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
+			if (minfo.name.find("crowd") != -1):
+				npc = toee.game.get_obj_by_id(minfo.id)
+				if (npc):
+					npc.anim_goal_interrupt()
 		return

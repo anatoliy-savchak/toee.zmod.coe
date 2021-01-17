@@ -432,6 +432,7 @@ class Waypoint:
 		self.anim6 = 0
 		self.anim7 = 0
 		self.anim8 = 0
+		self.name = None
 		return
 
 class WaypointFlag:

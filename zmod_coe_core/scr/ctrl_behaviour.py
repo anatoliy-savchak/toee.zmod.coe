@@ -162,10 +162,11 @@ class CtrlBehaviour(object):
 		assert isinstance(step, int)
 		return
 
-	def get_var(self, name):
+	def get_var(self, name, default_value = None):
 		if (self.vars and name in self.vars):
 			return self.vars[name]
-		return None
+		self.vars[name] = default_value
+		return default_value
 
 	def tactic_coup_de_grace(self, npc, foes = None):
 		assert isinstance(npc, toee.PyObjHandle)
@@ -188,3 +189,18 @@ class CtrlBehaviour(object):
 		assert isinstance(attachee, toee.PyObjHandle)
 		assert isinstance(triggerer, toee.PyObjHandle)
 		return toee.RUN_DEFAULT
+
+	def cooldown(self, var_name):
+		if (var_name is None): return
+		var_value = self.get_var(var_name, 0)
+		if (var_value > 0):
+			var_value -=1
+			self.vars[var_name] = var_value
+		return var_value
+
+	def cooldown_all(self):
+		for key in self.vars.iterkeys():
+			assert isinstance(key, str)
+			if ("cooldown" in key):
+				self.cooldown(key)
+		return

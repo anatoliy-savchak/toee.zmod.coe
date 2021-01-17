@@ -78,7 +78,7 @@ class Storage(object):
 		try:
 			saveDirBase = "modules\\{}\\save\\".format(Storage.get_default_module())
 			saveDirName = "d" + savegame
-			saveDirName = "\\Current\\dSlot"
+			#saveDirName = "\\Current\\dSlot"
 			saveDir = saveDirBase + saveDirName
 			#print(saveDir)
 			if (not os.path.exists(saveDir)):
@@ -103,7 +103,7 @@ class Storage(object):
 		#breakp("Storage.load({})".format(savegame))
 		saveDirBase = "modules\\{}\\save\\".format(Storage.get_default_module())
 		saveDirName = "d" + savegame
-		saveDirName = "\\Current\\dSlot"
+		#saveDirName = "\\Current\\dSlot"
 		saveDir = saveDirBase + saveDirName
 		ss = Storage()
 		oo = ss.objs

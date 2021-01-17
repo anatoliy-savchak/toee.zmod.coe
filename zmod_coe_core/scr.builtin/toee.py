@@ -576,6 +576,7 @@ class game(object):
 	quests = PyQuests()
 	char_ui_display_type = 0
 	global_flags = PyGlobalFlags()
+	time = PyTimeStamp()
 
 	@staticmethod
 	def obj_create(protoId, loc, offset_x = None, offset_y = None):
@@ -607,6 +608,17 @@ class game(object):
 		""" Get 1 if combat is active. game.combat_is_active() -> int"""
 		return 0
 	
+	@staticmethod
+	def written_ui_show(obj):
+		""" Show written ui dialog if obj.type == obj_t_written and obj_f_written_text_start_line is set and exists in rules\\written_ui.mes. returns 1 if did displayed that"""
+		assert isinstance(obj, PyObjHandle)
+		return 1
+
+	@staticmethod
+	def is_daytime():
+		h = game.time.time_elapsed() // 3600000 % 24
+		return (h >= 6 and h < 18)
+
 	@staticmethod
 	def create_history_freeform(histText):
 		""" game.create_history_freeform(str: histText) -> None"""
@@ -895,6 +907,21 @@ class PyGlobalFlags(object):
 	def __setitem__(self, index, data):
 		assert isinstance(data, int)
 		return
+
+class PyTimeStamp:
+	def time_elapsed(self, time_stamp):
+		assert isinstance(time_stamp, PyTimeStamp)
+		return PyTimeStamp()
+
+	def time_game_in_hours(self, time_stamp):
+		""" game's today's time hour """
+		assert isinstance(time_stamp, PyTimeStamp)
+		return 1
+
+	def time_game_in_hours2(self, time_stamp):
+		""" hours from the beginning in game in game time"""
+		assert isinstance(time_stamp, PyTimeStamp)
+		return 1
 
 RUN_DEFAULT = 1
 SKIP_DEFAULT = 0

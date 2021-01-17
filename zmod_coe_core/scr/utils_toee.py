@@ -168,3 +168,8 @@ def get_obj_by_id(id):
 	except:
 		result = OBJ_HANDLE_NULL
 	return result
+
+# utils_toee.time_hours2_from_elapsed_sec(game.time.time_game_in_seconds(game.time))
+def time_hours2_from_elapsed_sec(elapsed_sec):
+	h = elapsed_sec // 3600 % 24
+	return h
