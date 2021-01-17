@@ -214,6 +214,7 @@ class CtrlVillageRandomWanderer(CtrlVillagePersonRandom):
 		return
 
 	def make_interest_route(self, waypoints):
+		attachee.obj_set_int(toee.obj_f_npc_waypoint_current, 0)
 		x, y = VillagePlaces.get_random_sqare_place()
 		waypoints.append(utils_npc.Waypoint(x, y, const_toee.rotation_1100_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 
@@ -269,39 +270,51 @@ class CtrlVillageRandomWanderer(CtrlVillagePersonRandom):
 
 class CtrlVillageRandomWandererPious(CtrlVillageRandomWanderer):
 	def make_interest_route(self, waypoints):
+		
 		x, y = VillagePlaces.get_random_sqare_place()
 		waypoints.append(utils_npc.Waypoint(x, y, const_toee.rotation_1100_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 
-		subgroup_num = self.get_var("subgroup_num")
-		if (subgroup_num is None): subgroup_num = 0
+		subgroup_num = self.get_var("subgroup_num", 0)
 
 		# first go to pre sermon chat
-		if (1):
+		if (subgroup_num <= 3):
 			place_no = subgroup_num % 8
 			place = (497, 487)
+			rotation = const_toee.rotation_0500_oclock
 			if (place_no <= 1):
 				place = (498, 485)
+				rotation = const_toee.rotation_0500_oclock
 			elif (place_no <= 2):
 				place = (496, 485)
+				rotation = const_toee.rotation_0500_oclock
 			elif (place_no <= 3):
 				place = (494, 485)
+				rotation = const_toee.rotation_0500_oclock
 			elif (place_no <= 4):
 				place = (494, 487)
+				rotation = const_toee.rotation_0900_oclock
 			elif (place_no <= 5):
 				place = (494, 489)
+				rotation = const_toee.rotation_0900_oclock
 			elif (place_no <= 6):
 				place = (496, 488)
+				rotation = const_toee.rotation_0900_oclock
 			elif (place_no <= 7):
 				place = (498, 488)
+				rotation = const_toee.rotation_0300_oclock
 			elif (place_no <= 8):
 				place = (498, 486)
+				rotation = const_toee.rotation_0300_oclock
+			waypoints.append(utils_npc.Waypoint(place[0], place[1], rotation, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay| utils_npc.WaypointFlag.FixedRotation))
 			waypoints.append(utils_npc.Waypoint(place[0], place[1], const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 			waypoints.append(utils_npc.Waypoint(place[0], place[1], const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 			waypoints.append(utils_npc.Waypoint(place[0], place[1], const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
-			waypoints.append(utils_npc.Waypoint(place[0], place[1], const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
+		else:
+			waypoints.append(utils_npc.Waypoint(497, 487, const_toee.rotation_0500_oclock, 0))
 
 		# then go to the church to pray
-			place_no = subgroup_num % 8
+		if (1):
+			place_no = subgroup_num % 9
 			place = (495, 499)
 			if (place_no <= 1):
 				place = (498, 500)
@@ -328,8 +341,8 @@ class CtrlVillageRandomWandererPious(CtrlVillageRandomWanderer):
 			waypoints.append(utils_npc.Waypoint(place[0], place[1], const_toee.rotation_0500_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay | utils_npc.WaypointFlag.Animate | utils_npc.WaypointFlag.FixedRotation \
 			, 32 + const_animate.NormalAnimType.FeatTrack))
 
-		# first go to post sermon chat
-		if (1):
+		# then go to post sermon chat
+		if (subgroup_num <= 3):
 			place_no = subgroup_num % 8
 			place = (497, 487)
 			if (place_no <= 1):
@@ -362,28 +375,31 @@ class CtrlVillageRandomWandererPious(CtrlVillageRandomWanderer):
 		assert isinstance(attachee, toee.PyObjHandle)
 		assert isinstance(triggerer, toee.PyObjHandle)
 
-		self.cooldown_all()
-		init_talk_cooldown = self.get_var("init_talk_cooldown", 6)
-		#print("init_talk_cooldown: {} for {}".format(init_talk_cooldown, attachee))
+		if (self.get_var("subgroup_num", 0) <= 3):
+			self.cooldown_all()
+			init_talk_cooldown = self.get_var("init_talk_cooldown", 6)
+			#print("init_talk_cooldown: {} for {}".format(init_talk_cooldown, attachee))
 
-		if (init_talk_cooldown == 0):
-			wpc = attachee.obj_get_int(toee.obj_f_npc_waypoint_current)
-			if (wpc > 1 and wpc <= 4):
-				near_list = CtrlVillageRandomWanderer.find_manwoman_in_radius(attachee, 10, 1)
-				if (near_list):
-					idx = toee.game.random_range(0, len(near_list)-1)
-					talk_to = near_list[idx]
-					if (talk_to):
-						attachee.turn_towards(talk_to)
-						message = "Glory to Pelor!"
-						attachee.float_text_line(message, toee.tf_yellow)
+			if (init_talk_cooldown == 0):
+				wpc = attachee.obj_get_int(toee.obj_f_npc_waypoint_current)
+				if (wpc > 1 and wpc <= 4):
+					near_list = CtrlVillageRandomWanderer.find_manwoman_in_radius(attachee, 10, 1)
+					if (near_list):
+						idx = toee.game.random_range(0, len(near_list)-1)
+						talk_to = near_list[idx]
+						if (talk_to):
+							attachee.turn_towards(talk_to)
+							message = "Glory to Pelor!"
+							attachee.float_text_line(message, toee.tf_yellow)
+							self.vars["init_talk_cooldown"] = 5
+							for obj in near_list:
+								cobj = ctrl_behaviour.get_ctrl(obj.id)
+								if (not cobj): continue
+								if (cobj is CtrlVillageRandomWanderer): continue
+								assert isinstance(cobj, CtrlVillageRandomWanderer)
+								cobj.talked_to(attachee, talk_to, message)
+					elif (wpc > 5):
 						self.vars["init_talk_cooldown"] = 5
-						for obj in near_list:
-							cobj = ctrl_behaviour.get_ctrl(obj.id)
-							if (not cobj): continue
-							if (cobj is CtrlVillageRandomWanderer): continue
-							assert isinstance(cobj, CtrlVillageRandomWanderer)
-							cobj.talked_to(attachee, talk_to, message)
 
 		return toee.RUN_DEFAULT
 
@@ -394,6 +410,20 @@ class CtrlVillageRandomWandererPious(CtrlVillageRandomWanderer):
 			message = "Praise him"
 			npc.float_text_line(message, toee.tf_light_blue)
 			self.vars["init_talk_cooldown"] = -1
+		return
+
+	def time_hour_passed(self, npc):
+		assert isinstance(npc, toee.PyObjHandle)
+		if (npc.object_flags_get() & OF_OFF and toee.game.is_daytime()):
+			npc.object_flag_unset(OF_OFF)
+			npc.anim_goal_interrupt()
+			self.vars["init_talk_cooldown"] = 5
+			self.make_day_route(npc)
+			print("Turned on: {}".format(npc))
+
+		if (not (npc.object_flags_get() & OF_OFF) and not toee.game.is_daytime()):
+			npc.object_flag_set(OF_OFF)
+			print("Turned off: {}".format(npc))
 		return
 
 

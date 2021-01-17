@@ -271,7 +271,8 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			if (minfo.name.find("crowd") != -1):
 				npc = toee.game.get_obj_by_id(minfo.id)
 				ctrl = ctrl_behaviour.get_ctrl(minfo.id)
-				ctrl.time_hour_passed(npc)
+				if ("time_hour_passed" in dir(ctrl)):
+					ctrl.time_hour_passed(npc)
 		return
 
 	def validate_minfo(self):
@@ -294,8 +295,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 		for minfo in self.m2:
 			assert isinstance(minfo, monster_info.MonsterInfo)
 			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
-			if (minfo.name.find("crowd") != -1):
-				npc = toee.game.get_obj_by_id(minfo.id)
-				if (npc):
-					npc.anim_goal_interrupt()
+			npc = toee.game.get_obj_by_id(minfo.id)
+			if (npc):
+				npc.anim_goal_interrupt()
 		return
