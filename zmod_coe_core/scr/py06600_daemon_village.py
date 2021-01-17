@@ -121,8 +121,9 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.rotation_1100_oclock, "merchant", "priest", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(475, 475), py14714_mayor.CtrlVillageMayor, const_toee.rotation_1000_oclock, "authority", "mayor", None, 0, 1)
-			#self.generate_crowd()
+			self.generate_crowd()
 			self.generate_animals()
+			#self.generate_wanderers()
 
 		self.encounters_placed += 1
 		self.factions_existance_refresh()
@@ -154,36 +155,25 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 				x1 = x + toee.game.random_range(0, 1)
 				y += 2 + toee.game.random_range(0, 1)
 				num += 1
-				cl = py06601_village_npc.CtrlVillageManRandom
-				if (toee.game.random_range(0, 1)):
-					cl = py06601_village_npc.CtrlVillageWomanRandom
-				self.create_npc_at(utils_obj.sec2loc(y, x1), cl, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
+				a, b = py06601_village_npc.VillagePlaces.get_random_sqare_place()
+				npc, ctrl = self.create_npc_at(utils_obj.sec2loc(a, b), py06601_village_npc.CtrlVillageRandomWanderer, const_toee.rotation_0500_oclock, "crowd", "person_{}".format(num), None, 0, 1)
+				assert isinstance(ctrl, py06601_village_npc.CtrlVillageRandomWanderer)
+				ctrl.vars["crowd_place"] = (y, x1)
+				ctrl.make_day_route(npc)
 		return
 
 	def quest_everflame_recieved(self):
 		toee.game.quests[coe_consts.QUEST_EVERFLAME].state = toee.qs_accepted
 		utils_storage.ca("mayor_uptal").quest_everflame_recieved()
 
-		exit_loc = utils_obj.sec2loc(505, 473)
-		objs = utils_storage.Storage().objs
-		assert isinstance(objs, dict)
-		m3 = copy.copy(self.m2)
-		for minfo in m3:
+		for minfo in self.m2:
 			assert isinstance(minfo, monster_info.MonsterInfo)
 			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
 			if (minfo.name.find("crowd") != -1):
-				id = minfo.id
-				self.m2.remove(minfo)
-				del self.monsters[minfo.name]
-				del objs[id]
-				#npc = minfo.get_npc()
-				npc = utils_toee.get_obj_by_id(id)
-				print(npc)
-				assert isinstance(npc, toee.PyObjHandle)
-				if (npc):
-					#print("npc.runoff(), {}".format(npc))
-					npc.runoff(exit_loc, 0, 0)
-				#else: print("npc not found: {}, id: {}".format(npc, id))
+				npc = toee.game.get_obj_by_id(minfo.id)
+				ctrl = ctrl_behaviour.get_ctrl(minfo.id)
+				ctrl.vars["crowd_place"] = None
+				ctrl.make_day_route(npc)
 		return
 
 	def get_monster_prefix_default(self):
@@ -200,7 +190,7 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 				waypoints.append(utils_npc.Waypoint(479, 461, const_toee.rotation_0600_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 				npc.npc_waypoints_set(waypoints)
 				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
-				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+				npc.npc_flag_unset(toee.ONF_WAYPOINTS_NIGHT)
 
 		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(475, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig2", None, 0, 1)
 		if (npc):
@@ -212,9 +202,9 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 				waypoints.append(utils_npc.Waypoint(479, 456, const_toee.rotation_0900_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 				npc.npc_waypoints_set(waypoints)
 				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
-				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+				npc.npc_flag_unset(toee.ONF_WAYPOINTS_NIGHT)
 
-		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(476, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig2", None, 0, 1)
+		npc, ctrl = self.create_npc_at(utils_obj.sec2loc(476, 456), py06601_village_npc.CtrlVillageAnimalPig, const_toee.rotation_1100_oclock, "animals", "pig3", None, 0, 1)
 		if (npc):
 			if (1):
 				waypoints = list()
@@ -224,5 +214,12 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 				waypoints.append(utils_npc.Waypoint(479, 456, const_toee.rotation_0900_oclock, 1000 * toee.game.random_range(1, 10), utils_npc.WaypointFlag.Delay))
 				npc.npc_waypoints_set(waypoints)
 				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
-				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+				npc.npc_flag_unset(toee.ONF_WAYPOINTS_NIGHT)
+		return
+
+	def generate_wanderers(self):
+		for num in range(1, 20):
+			x, y = py06601_village_npc.VillagePlaces.get_random_sqare_place()
+			npc, ctrl = self.create_npc_at(utils_obj.sec2loc(x, y), py06601_village_npc.CtrlVillageRandomWanderer, const_toee.rotation_1100_oclock, "wanderers", "person{}".format(num), None, 0, 1)
+			ctrl.make_day_route(npc)
 		return

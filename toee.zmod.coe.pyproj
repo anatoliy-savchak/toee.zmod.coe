@@ -69,6 +69,7 @@
     <Compile Include="zmod_coe_core\scr\const_proto_food.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_items.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_list_armor.py" />
+    <Compile Include="zmod_coe_core\scr\const_proto_list_cloth.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_list_scrolls.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_list_wands.py" />
     <Compile Include="zmod_coe_core\scr\const_proto_list_weapons.py" />
