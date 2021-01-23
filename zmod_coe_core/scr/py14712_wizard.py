@@ -1,4 +1,4 @@
-import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod
+import toee, ctrl_behaviour, utils_item, utils_obj, const_toee, factions_zmod, utils_npc, const_animate
 import const_proto_armor, const_proto_weapon, const_proto_food, const_proto_cloth, const_proto_containers, const_proto_list_weapons, const_proto_list_scrolls, const_proto_list_wands
 
 def san_dialog(attachee, triggerer):
@@ -9,13 +9,29 @@ def san_dialog(attachee, triggerer):
 		return ctrl.dialog(attachee, triggerer)
 	return toee.RUN_DEFAULT
 
+def san_heartbeat(attachee, triggerer):
+	assert isinstance(attachee, toee.PyObjHandle)
+	assert isinstance(triggerer, toee.PyObjHandle)
+	ctrl = ctrl_behaviour.CtrlBehaviour.get_from_obj(attachee)
+	if (ctrl):
+		#print("heartbeat {}".format(attachee))
+		return ctrl.heartbeat(attachee, triggerer)
+	else: 
+		print("ctrl not found for {}".format(attachee))
+	return toee.RUN_DEFAULT
+
 class CtrlVillageWizard(ctrl_behaviour.CtrlBehaviour):
 	@classmethod
 	def get_proto_id(cls): return 14712
 
 	def after_created(self, npc):
 		assert isinstance(npc, toee.PyObjHandle)
+
+		self.vars["initial_position"] = utils_obj.loc2sec(npc.location)
+		self.vars["initial_rotation"] = npc.rotation
+
 		npc.scripts[const_toee.sn_dialog] = self.get_proto_id()
+		npc.scripts[const_toee.sn_heartbeat] = self.get_proto_id()
 		npc.faction_add(factions_zmod.FACTION_NEUTRAL_NPC)
 
 		utils_item.item_clear_all(npc)
@@ -31,6 +47,42 @@ class CtrlVillageWizard(ctrl_behaviour.CtrlBehaviour):
 		utils_item.item_create_in_inventory(const_proto_cloth.PROTO_CLOTH_BOOTS_LEATHER_BOOTS_BLACK, npc, 1, 1)
 		
 		npc.item_wield_best_all()
+		self.generate_waypoints(npc)
+		return
+
+	def generate_waypoints(self, npc):
+		waypoints_scenario = self.get_var("waypoints_scenario", -1)
+
+		is_daytime = toee.game.is_daytime()
+		if (waypoints_scenario != is_daytime):
+			print("re-routing Wizard for is_daytime: {}".format(is_daytime))
+			npc.anim_goal_interrupt()
+			self.vars["waypoints_scenario"] = is_daytime
+			waypoints = list()
+			initial_position = self.vars["initial_position"]
+			initial_rotation = self.vars["initial_rotation"]
+			if (is_daytime):
+				npc.d20_send_signal("wake up")
+				#npc.standpoint_set(toee.STANDPOINT_DAY, -1, utils_obj.sec2loc(503, 478), 0, 0, 0)
+				waypoints.append(utils_npc.Waypoint(503, 478, const_toee.rotation_0200_oclock, 1000*10*60, utils_npc.WaypointFlag.Delay))
+				self.vars["went_to"] = (503, 477, const_toee.rotation_0200_oclock, "desk")
+			else:
+				waypoints.append(utils_npc.Waypoint(499, 475, 0, 0))
+				waypoints.append(utils_npc.Waypoint(501, 482, 0, 0))
+				waypoints.append(utils_npc.Waypoint(502, 487, const_toee.rotation_1100_oclock, 1000*10*60, utils_npc.WaypointFlag.Delay | utils_npc.WaypointFlag.FixedRotation))
+				self.vars["went_to"] = (502, 487, const_toee.rotation_1100_oclock, "bed")
+			npc.npc_waypoints_set(waypoints)
+			npc.obj_set_int(toee.obj_f_npc_waypoint_current, 0)
+			if (waypoints):
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_set(toee.ONF_WAYPOINTS_NIGHT)
+				last_loc = waypoints[len(waypoints)-1].loc()
+				#assert isinstance(last_wp, utils_npc.Waypoint)
+				npc.standpoint_set(toee.STANDPOINT_DAY, -1, last_loc, 0, 0, 0)
+				npc.standpoint_set(toee.STANDPOINT_NIGHT, -1, last_loc, 0, 0, 0)
+			else:
+				npc.npc_flag_unset(toee.ONF_WAYPOINTS_DAY)
+				npc.npc_flag_unset(toee.ONF_WAYPOINTS_NIGHT)
 		return
 
 	def dialog(self, attachee, triggerer):
@@ -44,3 +96,29 @@ class CtrlVillageWizard(ctrl_behaviour.CtrlBehaviour):
 		else:
 			triggerer.begin_dialog(attachee, 100)
 		return toee.SKIP_DEFAULT
+
+	def time_hour_passed(self, npc):
+		self.generate_waypoints(npc)
+		return
+
+	def heartbeat(self, attachee, triggerer):
+		assert isinstance(attachee, toee.PyObjHandle)
+		assert isinstance(triggerer, toee.PyObjHandle)
+		went_to = self.get_var("went_to")
+		if (went_to):
+			dist = attachee.distance_to(utils_obj.sec2loc(went_to[0], went_to[1]))
+			print("dist: {}".format(dist))
+			if (dist <= 5 and 0):
+				print("interrupting...")
+				attachee.npc_waypoints_set(list())
+				attachee.obj_set_int(toee.obj_f_npc_waypoint_current, 0)
+				attachee.anim_goal_interrupt()
+				attachee.npc_flag_unset(toee.ONF_WAYPOINTS_DAY)
+				attachee.npc_flag_unset(toee.ONF_WAYPOINTS_NIGHT)
+				attachee.rotation = went_to[2]
+				if (went_to[3] == "bed"):
+					print("go sleep")
+					attachee.condition_add("Napping")
+				self.vars["went_to"] = None
+
+		return toee.RUN_DEFAULT

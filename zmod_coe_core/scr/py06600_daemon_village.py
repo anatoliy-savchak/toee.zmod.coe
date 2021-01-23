@@ -121,8 +121,8 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 			self.create_npc_at(utils_obj.sec2loc(503, 477), py14712_wizard.CtrlVillageWizard, const_toee.rotation_0200_oclock, "merchant", "wizard", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(494, 506), py14713_priest.CtrlVillagePriest, const_toee.rotation_1100_oclock, "merchant", "priest", None, 0, 1)
 			self.create_npc_at(utils_obj.sec2loc(475, 475), py14714_mayor.CtrlVillageMayor, const_toee.rotation_1000_oclock, "authority", "mayor", None, 0, 1)
-			self.generate_crowd()
-			self.generate_animals()
+			#self.generate_crowd()
+			#self.generate_animals()
 			#self.generate_wanderers()
 
 		self.encounters_placed += 1
@@ -268,11 +268,10 @@ class CtrlVillage(ctrl_daemon.CtrlDaemon):
 		for minfo in self.m2:
 			assert isinstance(minfo, monster_info.MonsterInfo)
 			#print("minfo.name: {}, minfo.id: {}".format(minfo.name, minfo.id))
-			if (minfo.name.find("crowd") != -1):
+			ctrl = ctrl_behaviour.get_ctrl(minfo.id)
+			if ("time_hour_passed" in dir(ctrl)):
 				npc = toee.game.get_obj_by_id(minfo.id)
-				ctrl = ctrl_behaviour.get_ctrl(minfo.id)
-				if ("time_hour_passed" in dir(ctrl)):
-					ctrl.time_hour_passed(npc)
+				ctrl.time_hour_passed(npc)
 		return
 
 	def validate_minfo(self):

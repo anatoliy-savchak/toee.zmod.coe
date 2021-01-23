@@ -101,3 +101,5 @@ modObj.AddHook(toee.ET_OnD20Query, toee.EK_Q_CoupDeGrace, QuerySetReturnVal1, ()
 modObj.AddHook(toee.ET_OnGetAC, toee.EK_NONE, Asleep_OnGetAC, ())
 modObj.AddHook(toee.ET_OnGetACBonus2, toee.EK_NONE, Asleep_OnGetACBonus2, ())
 modObj.AddHook(toee.ET_OnD20Query, toee.EK_Q_Prone, QuerySetReturnVal1, ())
+
+modObj.AddHook(toee.ET_OnD20PythonSignal, "wake up", Asleep_Remove, ())

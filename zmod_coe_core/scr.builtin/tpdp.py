@@ -44,6 +44,31 @@ def config_set_int(config_item, value):
 	assert isinstance(value, int)
 	return
 
+class LocXY:
+	def __init__(self):
+		self.x = 0
+		self.y = 0
+		return
+
+class LocAndOffsets:
+	def __init__(self):
+		self.loc_xy = LocXY()
+		self.off_x = 0.0
+		self.off_y = 0.0
+		return
+
+	def get_location(self):
+		return 0
+
+	def distance_to(self, dest):
+		assert isinstance(dest, LocAndOffsets)
+		return 0.0
+
+	def get_offset_loc(self, angle_rad, range_ft):
+		assert isinstance(angle_rad, float)
+		assert isinstance(range_ft, float)
+		return LocAndOffsets()
+
 class TurnBasedStatus:
 	def __init__(self):
 		self.hourglass_state = toee.D20ACT_Full_Round_Action

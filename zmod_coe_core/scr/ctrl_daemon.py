@@ -157,6 +157,8 @@ class CtrlDaemon(object):
 		if (npc):
 			npc.move(npc_loc)
 			npc.rotation = rot
+			ctrl.vars["initial_position"] = utils_obj.loc2sec(npc.location)
+			ctrl.vars["initial_rotation"] = npc.rotation
 			self.monster_setup(npc, encounter, code_name, None, no_draw, no_kos, faction)
 		return npc, ctrl
 

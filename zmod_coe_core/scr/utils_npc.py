@@ -150,7 +150,7 @@ def print_distances_at_origin(locx, locy):
 	return
 
 def find_npc_by_proto(loc, proto):
-	for obj in toee.game.obj_list_vicinity(loc, OLC_NPC):
+	for obj in toee.game.obj_list_vicinity(loc, toee.OLC_NPC):
 		assert isinstance(obj, toee.PyObjHandle)
 		if (obj.proto == proto): return obj
 	return OBJ_HANDLE_NULL
@@ -435,7 +435,11 @@ class Waypoint:
 		self.name = None
 		return
 
+	def loc(self):
+		return utils_obj.sec2loc(self.x, self.y)
+
 class WaypointFlag:
-    FixedRotation = 1
-    Delay = 2
-    Animate = 4
+	FixedRotation = 1
+	Delay = 2
+	Animate = 4
+	NoLoop = 8

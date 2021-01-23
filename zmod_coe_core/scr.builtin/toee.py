@@ -11,7 +11,7 @@ class PyObjHandle(object):
 		self.description = ""	#	Gets description display name
 		self.name = 1	#	GetNameId
 		self.location = 9223372036854775807	#	Gets location LongLong
-		self.location_full	= object()	#	Gets location LocAndOffsets
+		self.location_full	= object()	#	Gets location tpdp.LocAndOffsets
 		self.type = obj_t_npc	#	Gets obj_f type like obj_t_npc
 		self.radius = 1.1	#	Gets and Sets radius
 		self.height = 1.1	#	Gets and Sets RenderHeight double
